@@ -49,7 +49,12 @@ to the data (see below) and pushing.
 
 ## Approving submissions — the review console
 
-Open **`/admin.html`** on the site (e.g. `https://startuplogin.com/admin.html`).
+Open **`/admin`** on the site (e.g. `https://startuplogin.com/admin`) and enter
+the admin passcode. To change the passcode, compute the SHA-256 hash of the new
+one (`python3 -c "import hashlib;print(hashlib.sha256(b'NEW-PASSCODE').hexdigest())"`)
+and put it in `config.js` → `adminPassHash`. The gate is a convenience lock, not
+real authentication — the console holds no secrets and publishing always
+requires a git commit.
 It's a four-step queue: paste submissions from your Formspree inbox (JSON or
 plain `key: value` lines), review each one with a live preview of its registry
 card, fix up fields (city, sector, stage, founders), approve or reject, then

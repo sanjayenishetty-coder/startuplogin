@@ -2,6 +2,42 @@
 (function () {
   "use strict";
 
+  /* ---------- access gate ---------- */
+  var CFG = window.SL_CONFIG || {};
+  var gateWrap = document.getElementById("gateWrap");
+  var consoleWrap = document.getElementById("consoleWrap");
+  function sha256hex(text) {
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return b.toString(16).padStart(2, "0");
+      }).join("");
+    });
+  }
+  function unlock() {
+    gateWrap.classList.add("hidden");
+    consoleWrap.classList.remove("hidden");
+  }
+  var unlocked = false;
+  try { unlocked = sessionStorage.getItem("sl_admin_ok") === "1"; } catch (e) {}
+  if (!CFG.adminPassHash || unlocked || !window.crypto || !crypto.subtle) {
+    unlock(); // no passcode configured (or no WebCrypto) — open console directly
+  } else {
+    gateWrap.classList.remove("hidden");
+    document.getElementById("gateForm").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var pass = document.getElementById("gatePass").value;
+      sha256hex(pass).then(function (hex) {
+        if (hex === CFG.adminPassHash) {
+          try { sessionStorage.setItem("sl_admin_ok", "1"); } catch (e) {}
+          unlock();
+        } else {
+          document.getElementById("gateErr").classList.remove("hidden");
+          document.getElementById("gatePass").select();
+        }
+      });
+    });
+  }
+
   var EXISTING = window.STARTUP_DATA || [];
   var ALL = EXISTING.concat(window.VC_DATA || []);
 
