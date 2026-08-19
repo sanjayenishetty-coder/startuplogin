@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Login — Review Console</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .console-wrap { max-width: 1160px; margin: 0 auto; padding: 34px 24px 80px; }
+  .console-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+  .console-sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 640px; }
+  .console-grid { display: grid; grid-template-columns: minmax(300px, 5fr) minmax(340px, 7fr); gap: 26px; align-items: start; }
+  @media (max-width: 920px) { .console-grid { grid-template-columns: 1fr; } }
+
+  .panel { background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; padding: 20px; }
+  .panel h2 { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: .16em; color: var(--ink-soft); margin: 0 0 14px; text-transform: uppercase; }
+  .panel + .panel { margin-top: 22px; }
+
+  .paste-box { width: 100%; min-height: 130px; resize: vertical; font-family: var(--font-mono); font-size: 12.5px; color: var(--ink); background: var(--ground); border: 1.5px solid var(--hairline); border-radius: 10px; padding: 12px; outline: none; }
+  .paste-box:focus { border-color: var(--accent); }
+  .panel-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .btn-ghost2 { border: 1.5px solid var(--hairline); background: var(--surface); color: var(--ink); font: 600 13px var(--font-body); padding: 9px 15px; border-radius: 9px; cursor: pointer; }
+  .btn-ghost2:hover { border-color: var(--accent); color: var(--accent); }
+
+  .queue-item { display: flex; align-items: center; gap: 10px; padding: 11px 6px; border-bottom: 1px solid var(--hairline); cursor: pointer; border-radius: 8px; }
+  .queue-item:hover { background: var(--surface-2); }
+  .queue-item.sel { background: var(--accent-soft); }
+  .queue-item .q-name { font-weight: 700; font-size: 14px; }
+  .queue-item .q-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); }
+  .queue-item .q-status { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: .08em; padding: 3px 9px; border-radius: 999px; }
+  .q-status.pending { background: var(--surface-2); color: var(--ink-soft); }
+  .q-status.approved { background: var(--live-soft); color: var(--live); }
+  .q-status.rejected { background: var(--warn-soft); color: var(--warn-ink); }
+  .queue-empty { color: var(--ink-faint); font-size: 13.5px; padding: 14px 4px; }
+
+  .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+  .editor-grid label, .editor-full label { display: block; font: 600 12px var(--font-mono); letter-spacing: .06em; color: var(--ink-soft); text-transform: uppercase; }
+  .editor-grid input, .editor-grid select, .editor-full input, .editor-full textarea {
+    display: block; width: 100%; margin-top: 5px; font: 500 14px var(--font-body); color: var(--ink);
+    background: var(--ground); border: 1.5px solid var(--hairline); border-radius: 9px; padding: 9px 11px; outline: none; box-sizing: border-box;
+  }
+  .editor-grid input:focus, .editor-grid select:focus, .editor-full input:focus, .editor-full textarea:focus { border-color: var(--accent); }
+  .editor-full { margin-top: 12px; }
+  .editor-full textarea { min-height: 74px; resize: vertical; font-family: var(--font-body); }
+  .dup-warn { margin-top: 12px; background: var(--warn-soft); color: var(--warn-ink); border-radius: 9px; padding: 10px 13px; font-size: 13px; }
+  .decision-row { display: flex; gap: 10px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
+  .btn-approve { border: 0; background: var(--live); color: #fff; font: 700 14px var(--font-body); padding: 11px 22px; border-radius: 10px; cursor: pointer; }
+  .btn-approve:hover { filter: brightness(1.08); }
+  .btn-reject { border: 1.5px solid var(--warn-ink); background: transparent; color: var(--warn-ink); font: 600 13.5px var(--font-body); padding: 10px 18px; border-radius: 10px; cursor: pointer; }
+
+  .preview-note { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin: 0 0 10px; letter-spacing: .1em; }
+  #previewCard .reg-card { cursor: default; }
+
+  .export-bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+  .export-count { font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
+  .export-count b { color: var(--live); }
+  .export-steps { font-size: 13px; color: var(--ink-soft); line-height: 1.65; margin: 14px 0 0; padding-left: 18px; }
+  .export-steps code { font-family: var(--font-mono); font-size: 12px; background: var(--surface-2); border-radius: 5px; padding: 1px 6px; }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="index.html">&gt;_ startuplogin<span class="cursor">▌</span></a>
+  <nav class="site-nav"><span class="mono" style="font-size:12px;letter-spacing:.16em;color:var(--ink-soft)">REVIEW CONSOLE</span></nav>
+  <div class="head-actions">
+    <a class="btn-cta" href="index.html">← Back to the registry</a>
+  </div>
+</header>
+
+<div class="console-wrap">
+  <h1 class="console-title">Review queue</h1>
+  <p class="console-sub">Paste submissions from your inbox, check them against the registry,
+    approve or reject — then export the updated data file and push it. Nothing here is
+    published until you commit the export.</p>
+
+  <div class="console-grid">
+    <div>
+      <section class="panel">
+        <h2>1 · Add submissions</h2>
+        <textarea id="pasteBox" class="paste-box" placeholder='Paste one or more submissions — the JSON from a Formspree email, or plain lines like:&#10;&#10;name: Acme Robotics&#10;website: https://acme.in&#10;tagline: Warehouse robots for Indian D2C brands&#10;city: Pune&#10;stage: Seed'></textarea>
+        <div class="panel-actions">
+          <button class="btn-cta" id="parseBtn">Add to queue</button>
+          <button class="btn-ghost2" id="loadLocalBtn" title="Loads test submissions made from this same browser">Load this browser's test submissions</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2 · Queue</h2>
+        <div id="queueList"></div>
+        <p class="queue-empty" id="queueEmpty">Queue is empty — paste a submission above to begin.</p>
+      </section>
+
+      <section class="panel">
+        <h2>4 · Publish</h2>
+        <div class="export-bar">
+          <span class="export-count"><b id="approvedCount">0</b> approved, ready to publish</span>
+          <button class="btn-cta" id="exportBtn">Download updated startups.js</button>
+          <button class="btn-ghost2" id="copyBtn">Copy new entries as JSON</button>
+        </div>
+        <ol class="export-steps">
+          <li>Download the file — it's the full registry data with your approvals added.</li>
+          <li>In the GitHub repo, open <code>data/startups.js</code> → Edit → replace its contents with the downloaded file (or commit it from your computer).</li>
+          <li>Commit to <code>main</code>. The live site updates itself in about a minute.</li>
+        </ol>
+      </section>
+    </div>
+
+    <div>
+      <section class="panel">
+        <h2>3 · Check &amp; decide</h2>
+        <div id="editorEmpty" class="queue-empty">Select a submission from the queue to review it.</div>
+        <div id="editorBody" class="hidden">
+          <div class="editor-grid">
+            <label>Name<input id="f_name"></label>
+            <label>Website<input id="f_website"></label>
+            <label>City<input id="f_city" list="cityList"><datalist id="cityList"></datalist></label>
+            <label>Sector<select id="f_sector"></select></label>
+            <label>Stage<select id="f_stage"><option value="">—</option></select></label>
+            <label>Founded<input id="f_founded" placeholder="e.g. 2021"></label>
+            <label>Founders<input id="f_founders" placeholder="names only"></label>
+            <label>Submitter email<input id="f_email" disabled></label>
+          </div>
+          <div class="editor-full"><label>One-liner<input id="f_tagline"></label></div>
+          <div class="editor-full"><label>Description (optional)<textarea id="f_description"></textarea></label></div>
+          <div id="dupWarn" class="dup-warn hidden"></div>
+
+          <p class="preview-note" style="margin-top:20px">LIVE PREVIEW — HOW IT WILL APPEAR ON THE REGISTRY</p>
+          <div id="previewCard"></div>
+
+          <div class="decision-row">
+            <button class="btn-approve" id="approveBtn">✓ Approve for the registry</button>
+            <button class="btn-reject" id="rejectBtn">Reject</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data/startups.js"></script>
+<script src="data/vcs.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

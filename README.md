@@ -47,6 +47,21 @@ Submissions then arrive in your inbox/dashboard as JSON
 (`name, website, tagline, city, sector, stage, email`). Approve one by adding it
 to the data (see below) and pushing.
 
+## Approving submissions — the review console
+
+Open **`/admin.html`** on the site (e.g. `https://startuplogin.com/admin.html`).
+It's a four-step queue: paste submissions from your Formspree inbox (JSON or
+plain `key: value` lines), review each one with a live preview of its registry
+card, fix up fields (city, sector, stage, founders), approve or reject, then
+**Download updated startups.js** and commit it to `data/startups.js` — the live
+site updates about a minute after the commit.
+
+It warns you when a submission duplicates an existing listing, fills in
+state + map coordinates from the city automatically, and keeps submitter emails
+out of the published data. The page is static and unlisted (`noindex`, no links
+to it) — it holds no secrets and publishes nothing by itself; only your git
+commit publishes.
+
 ## Updating the data
 
 `data/startups.js` is generated from spreadsheet exports by
