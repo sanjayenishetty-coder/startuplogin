@@ -6,8 +6,7 @@ window.SL_CONFIG = {
   // in the visitor's browser (localStorage) with an on-screen note.
   formEndpoint: "",
 
-  // Map tiles (Carto Voyager: free with attribution, warm cream style).
-  tileUrl: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
-  tileLabelsUrl: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png",
+  // Map tiles (Carto Positron: free with attribution, cool light-grey style).
+  tileUrl: "https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}{r}.png",
   tileAttribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 };

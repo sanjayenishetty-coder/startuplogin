@@ -99,7 +99,7 @@ window.STARTUP_DATA = [
  {
   "name": "FarmTheory",
   "type": "startup",
-  "tagline": "Farmtheory is a B2B agri-tech startup. We are bridging the gap between buyers and sellers of ugly produce by creating a farm-to-fork value chain.",
+  "tagline": "Farmtheory is a B2B agri-tech startup",
   "description": "Farmtheory is an innovative agri-waste management startup committed to mitigating waste at its source, empowering farmers to enhance their income, mitigate food loss, and combat climate change.The company's platform sources flawed produce from farmers and sells it to various restaurants directly, enabling restaurant owners to get farm fresh produce at a low cost which is otherwise healthy to eat but not sold in the market due to irregularity.",
   "website": "http://farmtheory.in/",
   "city": "Bengaluru",
@@ -251,7 +251,7 @@ window.STARTUP_DATA = [
  {
   "name": "Ninjacart",
   "type": "startup",
-  "tagline": "Ninjacart is a business-to-business fresh produce supply chain that connects farmers, manufactures, and brands to retailers directly.",
+  "tagline": "Ninjacart is a business-to-business fresh produce supply chain that connects farmers, manufactures, and brands to…",
   "description": "Developer of an agricultural marketing and supply chain platform intended to streamline the fresh produce supply chain. The company's platform leverages data science, infrastructure, and networks to connect farmers directly to businesses and end retailers such as grocery stores as well as allows them to interact with the local manager to meet store-specific needs personally, enabling merchants to source fresh farm produce directly from farmers in less time and in a cost-effective way.",
   "website": "http://www.ninjacart.in/",
   "city": "Bengaluru",
@@ -422,7 +422,7 @@ window.STARTUP_DATA = [
  {
   "name": "Aibono",
   "type": "startup",
-  "tagline": "Aibono is an end-to-end AGRITECH platform specialised in Aggregation and Just-In-Time Supply of Super Fresh Fruits & Vegetables.",
+  "tagline": "Aibono is an end-to-end AGRITECH platform specialised in Aggregation and Just-In-Time Supply of Super Fresh Fruits & Vegetables",
   "description": "Provider of AI-powered fresh food aggregator platform. The platform synchronizes real-time production with real-time consumption of fruits and vegetables by using predictive analytics, precision farming, and just-in-time harvests. The solution offered by the company helps the farmer to increase yield, reduce wastage, and also provides insights derived from AI & shared farm intelligence on what to produce and how to produce it.",
   "website": "https://www.aibono.com/",
   "city": "Bengaluru",
@@ -479,7 +479,7 @@ window.STARTUP_DATA = [
  {
   "name": "QpiAI",
   "type": "startup",
-  "tagline": "QpiAITM is vertically integrating AI and Quantum technologies in Enterprise solutions, focusing on Tech Agility, Quantum-readiness, and near-term practical…",
+  "tagline": "QpiAITM is vertically integrating AI and Quantum technologies in Enterprise solutions, focusing on Tech Agility,…",
   "description": "Provider of AI-based quantum model generation platform. These are systems that convert data into intelligence and generates more intelligent information. It provides solutions such as AI modeling and quantum computing. it can be used in life sciences, healthcare, transportation, finance, industrial, space technologies and deploying them at the speed of light.",
   "website": "https://qpiai.tech/",
   "city": "Bengaluru",
@@ -517,7 +517,7 @@ window.STARTUP_DATA = [
  {
   "name": "LimeChat",
   "type": "startup",
-  "tagline": "LimeChat boosts support and customer satisfaction with AI-powered WhatsApp journeys. Perfect for rapidly growing e-commerce brands.",
+  "tagline": "LimeChat boosts support and customer satisfaction with AI-powered WhatsApp journeys",
   "description": "Provider of AI-based conversational commerce solutions. It provides Whatsapp marketing solutions with features including customer retention, chatbot, marketing campaigns, personalization, cart conversions, and more.",
   "website": "https://www.limechat.ai/",
   "city": "Bengaluru",
@@ -555,7 +555,7 @@ window.STARTUP_DATA = [
  {
   "name": "Nodding Heads Games",
   "type": "startup",
-  "tagline": "Nodding Heads Games develops video games that are inspired by myths, legends, and tales from the Indian subcontinent.",
+  "tagline": "Nodding Heads Games develops video games that are inspired by myths, legends, and tales from the Indian subcontinent",
   "description": "Developer of unique Action Adventure Games based on Indian Epic Stories and Lore that appeal to a mainstream global audience",
   "website": "https://www.noddingheadsgames.com/",
   "city": "Pune",
@@ -612,7 +612,7 @@ window.STARTUP_DATA = [
  {
   "name": "Sensys Technologies",
   "type": "startup",
-  "tagline": "Sensys Technologies is the Developer and Supplier of advance range of Taxation & HR related Software Products & Services.",
+  "tagline": "Sensys Technologies is the Developer and Supplier of advance range of Taxation & HR related Software Products & Services",
   "description": "Sensys Technologies is an online HRMS and payroll management solutions providing company. Product offerings include EasyPAY.Web (payroll & HRMS solution), AssetExpert (fixed asset management software), EasyTDS (TDS management solution), InstantXBRL (financial statement filing software), and eFormExpert (IT return e-filing software).",
   "website": "https://sensysindia.com/",
   "city": "Mumbai",
@@ -688,7 +688,7 @@ window.STARTUP_DATA = [
  {
   "name": "SuperGaming",
   "type": "startup",
-  "tagline": "SuperGaming is a company that develops and publishes innovative, socially engaging games for mobile and PC platforms.",
+  "tagline": "SuperGaming is a company that develops and publishes innovative, socially engaging games for mobile and PC platforms",
   "description": "Developer of mobile-based casual games",
   "website": "https://www.supergaming.com/",
   "city": "Pune",
@@ -859,7 +859,7 @@ window.STARTUP_DATA = [
  {
   "name": "HappyPlus",
   "type": "startup",
-  "tagline": "Happy+ is created by happiness experts, positive psychologists and researchers whose quest is to add happiness to the world through different interventions…",
+  "tagline": "Happy+ is created by happiness experts, positive psychologists and researchers whose quest is to add happiness to the…",
   "description": "AI-based stress management solutions for employees. The platform allows employees to track daily habits and activities to monitor the actions related to employee engagement. the employees can connect with psychologists for consultation regarding mental health. Also, self-care exercises, daily activities, anger, stress, depression management solutions are available.",
   "website": "https://happyplus.in/",
   "city": "Mumbai",
@@ -992,7 +992,7 @@ window.STARTUP_DATA = [
  {
   "name": "Eeki Foods",
   "type": "startup",
-  "tagline": "Eeki Foods specialises in growing high-quality, nutrient-rich vegetables and fruits with the help of its patented IoT-powered growing chambers or polyhouse",
+  "tagline": "Eeki Foods specialises in growing high-quality, nutrient-rich vegetables and fruits with the help of its patented…",
   "description": "Eeki Foods is an Agritech startup that has developed large-scale, climate-proof farms that allow food to be grown throughout the year without being affected by seasonal variations. The company's system utilizes Internet-of-Things-enabled medium-less growing technology which solve the long-standing challenges in farming and develop sustainable solutions.. The hydroponic growing chambers work on water considerably reduces costs and the need for fertilizers etc. The Kota-based company also leverages technology to manage and control its operations, which further improves productivity.Growing nutritious vegetables with a focus on sustainability to preserve the well-being of both the population…",
   "website": "https://www.eeki.com/",
   "city": "Kota",
@@ -1011,7 +1011,7 @@ window.STARTUP_DATA = [
  {
   "name": "Born Monkie",
   "type": "startup",
-  "tagline": "BornMonkie is a video game studio based in India developing PC, Console and Mobile games.",
+  "tagline": "BornMonkie is a video game studio based in India developing PC, Console and Mobile games",
   "description": "A video game studio based in India developing PC, Console and Mobile games.",
   "website": "https://bornmonkie.com/",
   "city": "Hyderabad",
@@ -1030,7 +1030,7 @@ window.STARTUP_DATA = [
  {
   "name": "Crofarm",
   "type": "startup",
-  "tagline": "Crofarm is Agritech startup that provides fresh fruits and vegetables to consumers at reasonable prices.",
+  "tagline": "Crofarm is Agritech startup that provides fresh fruits and vegetables to consumers at reasonable prices",
   "description": "Online e-distributor of fruits and vegetables. The platform offers different brands of a variety of products, including fresh fruits, vegetables, grains, oils, spices, and dry fruits. It offers a farm-to-home delivery platform.",
   "website": "https://crofarm.com/",
   "city": "Gurugram",
@@ -1068,7 +1068,7 @@ window.STARTUP_DATA = [
  {
   "name": "Statwig",
   "type": "startup",
-  "tagline": "Running a blockchain supply chain platform for real-time, tamper-proof product tracking from manufacturer to customer, integrating IoT and emerging technologie",
+  "tagline": "Running a blockchain supply chain platform for real-time, tamper-proof product tracking from manufacturer to customer,…",
   "description": "Provides a cloud-based solution for transparency and security in cold-chain management",
   "website": "https://statwig.com/",
   "city": "Hyderabad",
@@ -1106,7 +1106,7 @@ window.STARTUP_DATA = [
  {
   "name": "Studio Sirah",
   "type": "startup",
-  "tagline": "Studio Sirah is an Indie Gaming studio making core Indian content games.",
+  "tagline": "Studio Sirah is an Indie Gaming studio making core Indian content games",
   "description": "Video game developer focusing on core games",
   "website": "https://www.studiosirah.com/",
   "city": "Bengaluru",
@@ -1182,7 +1182,7 @@ window.STARTUP_DATA = [
  {
   "name": "ONO",
   "type": "startup",
-  "tagline": "ONO is an agri-tech product company. It has built a first-of-its-kind multisided agri-tech platform that promotes transparency and increases trust across the…",
+  "tagline": "ONO is an agri-tech product company",
   "description": "Operator of a market intelligence platform intended to optimize the agricultural supply chain. The company's platform aggregates and analyzes data on crop prices across various wholesale markets and allows farmers, traders, and other stakeholders to access real-time and historical price information, enabling participants in the agricultural sector to make informed decisions regarding buying, selling, and logistics.",
   "website": "https://ono.ag/",
   "city": "Bengaluru",
@@ -1201,7 +1201,7 @@ window.STARTUP_DATA = [
  {
   "name": "PulseHRM",
   "type": "startup",
-  "tagline": "PulseHRM enables organizations to manage all HR data from one place. With a modular structure and customization option, PulseHRM allows you to build an HR…",
+  "tagline": "PulseHRM enables organizations to manage all HR data from one place",
   "description": "Cloud-based HR management solution for enterprises. The platform offers tools for reimbursement management, loan administration, statutory compliance, payroll management, project/task tracking, asset tracking, salary administration, performance management, manpower budgeting, control, attendance monitoring, training, skill management, etc. It is available on the Google Play Store and Apple App Store.",
   "website": "https://pulsehrm.com/",
   "city": "Hyderabad",
@@ -1277,7 +1277,7 @@ window.STARTUP_DATA = [
  {
   "name": "BarRaiser",
   "type": "startup",
-  "tagline": "BarRaiser is an AI-powered video interview intelligence platform that saves time, conducts unbiased interviews, and provides a great candidate experience.",
+  "tagline": "BarRaiser is an AI-powered video interview intelligence platform that saves time, conducts unbiased interviews, and…",
   "description": "Cloud-based platform for applicant tracking. The platform provides assessment reports, candidate scores, videos for each interview and more. Also allows employers to compare candidates with other peers. It helps candidates in getting shortlisted, job offers, higher compensation, etc. It allows the candidate to schedule their interviews with industry experts.",
   "website": "https://www.barraiser.com/",
   "city": "Bengaluru",
@@ -1372,7 +1372,7 @@ window.STARTUP_DATA = [
  {
   "name": "PerspectAI",
   "type": "startup",
-  "tagline": "PerspectAI helps organizations discover the True Potential of the candidates remotely, using Games and AI through a mobile-first platform.",
+  "tagline": "PerspectAI helps organizations discover the True Potential of the candidates remotely, using Games and AI through a…",
   "description": "AI-based gamified talent assessment platform provider. The platform provides remote proctoring capabilities. The engaging game-based assessments capture cognitive abilities along with the personality and behavioral traits of a candidate, helping organizations find their right fit. Its AI-assisted video interviews help pre-screen candidates in large volumes.",
   "website": "https://perspect.ai/",
   "city": "Hyderabad",
@@ -1600,7 +1600,7 @@ window.STARTUP_DATA = [
  {
   "name": "Param",
   "type": "startup",
-  "tagline": "Param.ai is an AI-powered recruitment platform that automates tasks and helps businesses find and hire top talent.",
+  "tagline": "Param.ai is an AI-powered recruitment platform that automates tasks and helps businesses find and hire top talent",
   "description": "AI-based applicant tracking software solutions provider. The product is a recruiting software with features such as candidate sourcing, AI-based candidate screening, candidate communication, offer management, actionable insights, reports generation, etc. Monetizes through subscription-based pricing plan.",
   "website": "https://param.ai/",
   "city": "Hyderabad",
@@ -1619,7 +1619,7 @@ window.STARTUP_DATA = [
  {
   "name": "HireHunch",
   "type": "startup",
-  "tagline": "HireHunch is a revolutionary full stack technical assessment platform that provides Skill Assessment, a Video Interview Platform, and our core offering of…",
+  "tagline": "HireHunch is a revolutionary full stack technical assessment platform that provides Skill Assessment, a Video…",
   "description": "Cloud based applicant tracking platform for technical interviews. It offers tools for candidate shortlisting, screening and interviews. It is a B2B platform that provides technical interviewing services to screen candidates for the companys tech positions. It also provides tools to streamline the hiring process, including video interviews, coding assessments, collaborative problem solving sessions, and more.It uses AI technology for cv matching.",
   "website": "https://hirehunch.com/",
   "city": "Bengaluru",
@@ -1657,7 +1657,7 @@ window.STARTUP_DATA = [
  {
   "name": "Kroop AI",
   "type": "startup",
-  "tagline": "Kroop AI develops an audio-visual deep learning platform that allows for the creation and detection of synthetic media with limitless possibilities.",
+  "tagline": "Kroop AI develops an audio-visual deep learning platform that allows for the creation and detection of synthetic media…",
   "description": "AI-based solutions for deep fake detection. The features of the product include real-time analysis and detection, analysis and visualization of video content on dashboards, multi-layered detection, identification of malicious content, API integration, etc.",
   "website": "https://kroop.ai/",
   "city": "Bengaluru",
@@ -1733,7 +1733,7 @@ window.STARTUP_DATA = [
  {
   "name": "Aikenist",
   "type": "startup",
-  "tagline": "Aikenist provides AI based solutions for faster scanning, better detection and quick turnaround to reach to benefits of medical imaging to larger population.",
+  "tagline": "Aikenist provides AI based solutions for faster scanning, better detection and quick turnaround to reach to benefits…",
   "description": "AI-based software suite for radiology diagnosis process. The company's QuickSuite includes QuickFlow online appointment booking and billing, QuickScan to reduce scanning time and QuickRad and QuickDiag AI analysis of X-rays for detection of COVID-19.",
   "website": "https://www.aikenist.com/",
   "city": "Bengaluru",
@@ -1752,7 +1752,7 @@ window.STARTUP_DATA = [
  {
   "name": "Hirex.ai",
   "type": "startup",
-  "tagline": "hirex.ai is a no-code AI platform to build voice-based bots that conduct and score level one interviews at scale.",
+  "tagline": "hirex.ai is a no-code AI platform to build voice-based bots that conduct and score level one interviews at scale",
   "description": "Al-based bots for applicant tracking. Job seekers use the platform to discover jobs and recruiters to post jobs and recruit candidates. It offers tools to reach out to candidates via WhatsApp chatbots or email and also conduct remote interviews using voice-based bots. It also provides tools for candidate screening and resumes parsing. Monetizes through subscription-based pricing plans.",
   "website": "https://www.hirex.ai/",
   "city": "Hyderabad",
@@ -1771,7 +1771,7 @@ window.STARTUP_DATA = [
  {
   "name": "CropIn",
   "type": "startup",
-  "tagline": "A leading 'Full-Stack AgTech' organization providing smart SaaS based solutions to agribusinesses globally, to maximize productivity across the board.",
+  "tagline": "A leading 'Full-Stack AgTech' organization providing smart SaaS based solutions to agribusinesses globally, to…",
   "description": "Cloud based ERP software and solutions for the agriculture sector and farmers. It leverages AI models to offer location and crop agnostic, ag-knowledge graphs, intelligence at crop, location, and pin code levels, and convergence of satellite imagery and cloud computing. It offers solutions for farming companies, agri-input companies, crop insurance providers, seed production companies, governments, and advisories.",
   "website": "https://www.cropin.com/",
   "city": "Bengaluru",
@@ -1809,7 +1809,7 @@ window.STARTUP_DATA = [
  {
   "name": "Deep Rooted",
   "type": "startup",
-  "tagline": "Deep Rooted - Online platform offering farm-based fruits and vegetables.",
+  "tagline": "Deep Rooted - Online platform offering farm-based fruits and vegetables",
   "description": "Online platform offering farm-based fruits and vegetables . The product catalog includes including spinach, amaranthus, mint, coriander, lettuce, gourds, capsicum, cauliflower, broccoli, bananas, oranges, grapes, papaya, and more. Its mobile application is available on Android and iOS platforms.",
   "website": "https://deeprooted.co/",
   "city": "Bengaluru",
@@ -1980,7 +1980,7 @@ window.STARTUP_DATA = [
  {
   "name": "ZedBlox Logitech",
   "type": "startup",
-  "tagline": "Ensures secure and transparent last-mile transportation for temperature-sensitive pharmaceuticals, blood samples, vaccines and veterinary products , tackling…",
+  "tagline": "Ensures secure and transparent last-mile transportation for temperature-sensitive pharmaceuticals, blood samples,…",
   "description": "Innovates with the ActiPod, a temperature-controlled carrier for healthcare logistics, tackling the critical last-mile challenge of vaccine delivery",
   "website": "https://www.zedblox.com/",
   "city": "Hyderabad",
@@ -2018,7 +2018,7 @@ window.STARTUP_DATA = [
  {
   "name": "EHNOTE",
   "type": "startup",
-  "tagline": "They employ cutting-edge health cloud technology with robust integration capabilities that consolidates EHR, PM, ASC, Patient Engagement, Revenue Cycle,…",
+  "tagline": "They employ cutting-edge health cloud technology with robust integration capabilities that consolidates EHR, PM, ASC,…",
   "description": "Cloud and AI-based clinic management system. Modules of the clinic management system include online appointment management, pharmacy management, and practice management. Additional features include diagnostics, lab test modules, billing and surgery modules, consent forms, e-prescription, and ICD 11 coding among others. Offers a mobile app for Android and iOS users.",
   "website": "https://ehnote.com/",
   "city": "Hyderabad",
@@ -2056,7 +2056,7 @@ window.STARTUP_DATA = [
  {
   "name": "GameEon",
   "type": "startup",
-  "tagline": "GameEon Studios is a leading game development company dedicated to creating high-quality & engaging games for players worldwide.",
+  "tagline": "GameEon Studios is a leading game development company dedicated to creating high-quality & engaging games for players worldwide",
   "description": "Mobile game developer focusing on casual games",
   "website": "https://gameeon.in/",
   "city": "Mumbai",
@@ -2094,7 +2094,7 @@ window.STARTUP_DATA = [
  {
   "name": "Gamezop",
   "type": "startup",
-  "tagline": "Gamezop is a company that integrates casual games into apps and websites, enabling users to play without downloads while enhancing engagement and monetization…",
+  "tagline": "Gamezop is a company that integrates casual games into apps and websites, enabling users to play without downloads…",
   "description": "Online gaming platform for casual gamers",
   "website": "https://www.gamezop.com/",
   "city": "Delhi",
@@ -2189,7 +2189,7 @@ window.STARTUP_DATA = [
  {
   "name": "Gameberry Labs",
   "type": "startup",
-  "tagline": "Gameberry Labs develops engaging mobile games with a focus on creating fun and interactive experiences for users worldwide.",
+  "tagline": "Gameberry Labs develops engaging mobile games with a focus on creating fun and interactive experiences for users worldwide",
   "description": "Mobile game development company",
   "website": "https://gameberrylabs.com/",
   "city": "Bengaluru",
@@ -2227,7 +2227,7 @@ window.STARTUP_DATA = [
  {
   "name": "Talocity",
   "type": "startup",
-  "tagline": "Provider of cognitive assessments and video interview platform created to help businesses in hiring.",
+  "tagline": "Provider of cognitive assessments and video interview platform created to help businesses in hiring",
   "description": "Provider of AI-based applicant tracking and assessment software solutions. The product offerings include the applicant tracking system, and a recruitment process management solution that uses machine learning and natural language processing technologies. It uses AI technology for assessing English language proficiency, assessing the candidate's grammar, vocabulary, and pronunciation. It features interviewing scheduling, candidate management, one-way video interviews, and a candidate personality assessment solution.",
   "website": "https://talocity.ai/",
   "city": "Gurugram",
@@ -2284,7 +2284,7 @@ window.STARTUP_DATA = [
  {
   "name": "StrideAhead",
   "type": "startup",
-  "tagline": "Automating talent data for catalyzing education and the human resource ecosystem for faster, smarter and quicker, cost-effective decisions.",
+  "tagline": "Automating talent data for catalyzing education and the human resource ecosystem for faster, smarter and quicker,…",
   "description": "Cloud-based suite solutions for workforce analytics. It offers features like automating talent data, boosting enrollments, streamlining operations, reducing customer acquisition cost (CAC), and improving engagement through career mapping and gap analysis. Platform integrates with existing systems and provides insights into soft skills. It uses AI technology for behavioural analytics.",
   "website": "https://www.strideahead.io/",
   "city": "Delhi",
@@ -2360,7 +2360,7 @@ window.STARTUP_DATA = [
  {
   "name": "Hyperleap",
   "type": "startup",
-  "tagline": "HyperleapAI is a software technology company that offers a generative AI platform to help businesses accelerate their growth.",
+  "tagline": "HyperleapAI is a software technology company that offers a generative AI platform to help businesses accelerate their growth",
   "description": "Provider of e-commerce software suite solutions for businesses. The solutions provided are storefront solutions for the development of digital stores with features like order processing, revenue management, catalog & invoice management, auto-segmentation & alerts for Shopify businesses, hyper-personalized conversational commerce solutions, and more.",
   "website": "https://hyperleap.ai/",
   "city": "Hyderabad",
@@ -2398,7 +2398,7 @@ window.STARTUP_DATA = [
  {
   "name": "Vuenow Infotech",
   "type": "startup",
-  "tagline": "VueNow is your one-stop solution for all your data management and computing requirements for commencing smooth and uninterrupted business.",
+  "tagline": "VueNow is your one-stop solution for all your data management and computing requirements for commencing smooth and…",
   "description": "VueNow is a leading IT Infrastructure as a Service (ITaaS) provider, specializing in the design, construction, and operation of cloud-enabled Edge Data Centers. Their services include Co-location and Network Management, designed to meet precise business requirements and enhance competitiveness.VueNow is pioneering the world's largest Edge Data Centre Network catering to organizations of all sizes and adapting to evolving demands seamlessly.",
   "website": "https://vuenowonline.com/",
   "city": "Noida",
@@ -2417,7 +2417,7 @@ window.STARTUP_DATA = [
  {
   "name": "Unnati Agri",
   "type": "startup",
-  "tagline": "Unnati Agri is a leading Agri fintech startup in India that empowers farmers & agriculture stakeholders with digital farming & modern agri technology",
+  "tagline": "Unnati Agri is a leading Agri fintech startup in India that empowers farmers & agriculture stakeholders with digital…",
   "description": "Operator of an agri ecosystem platform intended to minimize the risks in farming and ensure business transparency. The company offers a variety of services including agri-inputs services, agronomy services, output management services and farmer relationship management, enabling farmers to get a single digital platform that nurtures farm entrepreneurship to become their driving force and leads to the creation of a holistic ecosystem for farming.",
   "website": "https://unnati.ag/",
   "city": "Noida",
@@ -2493,7 +2493,7 @@ window.STARTUP_DATA = [
  {
   "name": "Agrowave",
   "type": "startup",
-  "tagline": "Agrowave is an AgriTech startup that builds a farm-to-business mobility supply chain through an integrated network of mobile pickup stations at farm gates.",
+  "tagline": "Agrowave is an AgriTech startup that builds a farm-to-business mobility supply chain through an integrated network of…",
   "description": "Provider of an app-based marketplace platform. Its platform provides real-time prices and provides the supply of products to businesses. It identifies and sells the produce to the nearest MPS of the farmers. Its mobile application is available on Android and iOS.",
   "website": "https://www.agrofare.com/",
   "city": "Gurugram",
@@ -2531,7 +2531,7 @@ window.STARTUP_DATA = [
  {
   "name": "Alltius",
   "type": "startup",
-  "tagline": "Alltius is giving enterprises the ability to quickly create generative AI agents that are accurate, secure and compliant.",
+  "tagline": "Alltius is giving enterprises the ability to quickly create generative AI agents that are accurate, secure and compliant",
   "description": "Platform offering conversational AI-based project management software. The platform provides generative AI for SaaS products and leverages generative AI that answers questions, supports, and allows users to interact with products using natural language. It is an AI-driven platform for conversational assistance in software products to guide users. Its platform helps users with product engagement and adoption.",
   "website": "https://www.alltius.ai/",
   "city": "Bengaluru",
@@ -2550,7 +2550,7 @@ window.STARTUP_DATA = [
  {
   "name": "Rapyder Cloud Solutions",
   "type": "startup",
-  "tagline": "Rapyder Cloud Solutions is a Born on the Cloud Company, with expertise in Strategic Cloud Consulting, DevOps Automation, Managed Service and Security…",
+  "tagline": "Rapyder Cloud Solutions is a Born on the Cloud Company, with expertise in Strategic Cloud Consulting, DevOps…",
   "description": "Provider of Cloud infrastructure management solutions .The company offers cloud consulting, implementation, and managed services to enterprises, SMBs, and startups. It also provides cloud migration, DevOps, and frameworks. The features of the company include database migration, automation, cloud security, identity, and access management, application security, security management, governance, and compliance, cloud access security catering to FinTech,Healthcare, Ecommerce,Gaming,Edtech",
   "website": "https://www.rapyder.com/",
   "city": "Bengaluru",
@@ -2588,7 +2588,7 @@ window.STARTUP_DATA = [
  {
   "name": "ApnaGodam",
   "type": "startup",
-  "tagline": "Apna Godam is a Jaipur based Agritech Startup providing warehousing facilities, online commodity trading & financing.",
+  "tagline": "Apna Godam is a Jaipur based Agritech Startup providing warehousing facilities, online commodity trading & financing",
   "description": "Online listing platform for agriculture commodities. The platform offers information regarding the warehouse location, storage rate, and amenities available at the warehouse such as a loading machine, CCTV camera, fire safety, moisture meter, and more.",
   "website": "https://apnagodam.com/",
   "city": "Jaipur",
@@ -2626,7 +2626,7 @@ window.STARTUP_DATA = [
  {
   "name": "Kheyti",
   "type": "startup",
-  "tagline": "Kheyti helps smallholder farmers in India gain a steady, dependable income through its “Greenhouse-in-a-Box”, a low-cost, modular greenhouse kit bundled with…",
+  "tagline": "Kheyti helps smallholder farmers in India gain a steady, dependable income through its “Greenhouse-in-a-Box”, a…",
   "description": "Provider of farming advisory and assistance services intended to offer technical support and business consulting to farmers in India.They combine these technologies with end-to-end support to give these farmers a seamless path towards income increase. They have developed a “Greenhouse-in-a-box” – an affordable, modular greenhouse, bundled with full-stack agronomy services, that uses 90% less water, grows 7 times more food, increases climate resilience, and gives farmers a steady dependable income",
   "website": "https://www.kheyti.com/",
   "city": "Hyderabad",
@@ -2664,7 +2664,7 @@ window.STARTUP_DATA = [
  {
   "name": "HuddleUp",
   "type": "startup",
-  "tagline": "HuddleUp is an AI-driven continuous feedback platform for teams. It helps your Managers & Employees get the actionable feedback they need to grow & develop…",
+  "tagline": "HuddleUp is an AI-driven continuous feedback platform for teams",
   "description": "AI-based employee engagement and virtual watercooler chat solution for remote teams. The platform offers features such as people science for organizational psychology & people behavior and person-specific praise & rewards. It also provides a micro-learning solution for employees. It allows employees to connect over a watercooler chat by selecting a channel, browsing from the various topics of discussion, and commencing a team chat. It integrates with Slack, Teams, O365, Google, and more.",
   "website": "https://huddleup.ai/",
   "city": "Bengaluru",
@@ -2702,7 +2702,7 @@ window.STARTUP_DATA = [
  {
   "name": "TurboHire",
   "type": "startup",
-  "tagline": "It combines the capabilities of an applicant tracking system (ATS), candidate sourcing, talent screening, candidate engagement, interview automation, offer &…",
+  "tagline": "It combines the capabilities of an applicant tracking system (ATS), candidate sourcing, talent screening, candidate…",
   "description": "Cloud-based applicant tracking solutions provider. It provides automated scheduling, Al-powered screening, premium sourcing, Whatsapp customization, HRMS integration, interviewing, and more. The features include assessments, white labeling, document collection, automated reminders, training, etc. Monetizes through subscription-based pricing plans.",
   "website": "https://turbohire.co/",
   "city": "Hyderabad",
@@ -2816,7 +2816,7 @@ window.STARTUP_DATA = [
  {
   "name": "HealthKon",
   "type": "startup",
-  "tagline": "Provides global access to integrated healthcare through remote monitoring, telehealth, and cloud-based clinical support, prioritizing underserved communities…",
+  "tagline": "Provides global access to integrated healthcare through remote monitoring, telehealth, and cloud-based clinical…",
   "description": "Platform connecting patients and doctors in remote areas.",
   "website": "https://www.healthkon.com/",
   "city": "Hyderabad",
@@ -2873,7 +2873,7 @@ window.STARTUP_DATA = [
  {
   "name": "Aganitha",
   "type": "startup",
-  "tagline": "Aganitha.ai leverages AI and machine learning to accelerate drug discovery and development.",
+  "tagline": "Aganitha.ai leverages AI and machine learning to accelerate drug discovery and development",
   "description": "Provider of cognitive solutions for bio-pharma applications. It combines AI with throughput automation to accelerate data processing and obtain insights. It uses data, analytics and AI to develop solutions for molecular design and undiagnosable diseases in clinical trials. It features genomics solutions, modeling for biologics, in silico lead optimization, in silico synthesis planning, and clinical trial management solutions.",
   "website": "https://www.aganitha.ai/",
   "city": "Hyderabad",
@@ -2892,7 +2892,7 @@ window.STARTUP_DATA = [
  {
   "name": "Vigocare",
   "type": "startup",
-  "tagline": "Vigocare is your all-in-one, device-agnostic, and AI-powered patient monitoring platform, offering solutions across a variety of disease conditions.",
+  "tagline": "Vigocare is your all-in-one, device-agnostic, and AI-powered patient monitoring platform, offering solutions across a…",
   "description": "Vigocare provides remote monitoring solutions to manage the patient's health. The company develops an AI-based platform which helps the practitioner to optimize their patient health vitals in real time using their connected IoT or other medical devices for giving clinical decision and treatment planning solutions.",
   "website": "https://www.vigocare.com/",
   "city": "Hyderabad",
@@ -3006,7 +3006,7 @@ window.STARTUP_DATA = [
  {
   "name": "Zero Cow Factory",
   "type": "startup",
-  "tagline": "Provider of microbe-based milk products and alternatives. It reproduces milk proteins using bioengineering and microbial fermentation processes.",
+  "tagline": "Provider of microbe-based milk products and alternatives",
   "description": "Surat-based Zero Cow Factory uses biotechnology to develop sustainable animal-free milk and dairy products. The company has developed a patented technology that offers a new alternative to cow’s milk protein that replicates its taste, texture, nutrient profile, and appearance without any animal being involved. Zero Cow Factory is set to provide a sustainable alternative to animal-based dairy production as this can reduce significant environmental impacts, including the generation of greenhouse gas emissions, land usage, and high water consumption.",
   "website": "https://zerocowfactory.com/",
   "city": "Surat",
@@ -3025,7 +3025,7 @@ window.STARTUP_DATA = [
  {
   "name": "ScaleNut",
   "type": "startup",
-  "tagline": "Scalenut is a highly advanced platform that uses artificial intelligence to facilitate content research, planning, writing, and optimization.",
+  "tagline": "Scalenut is a highly advanced platform that uses artificial intelligence to facilitate content research, planning,…",
   "description": "AI-based freelancers matching platform. It allows freelancers to create a profile by mentioning skills, education, experience, and service offerings. It allows employers to post projects, and AI-based algorithms match with freelancers and allow them to hire.",
   "website": "https://www.scalenut.com/",
   "city": "Gurugram",
@@ -3044,7 +3044,7 @@ window.STARTUP_DATA = [
  {
   "name": "Sapien Biosciences Private Limited",
   "type": "startup",
-  "tagline": "Provider of personalized medicine and cell research services for pharma companies and patients, specializing in biobanking, biomarker discovery, and drug…",
+  "tagline": "Provider of personalized medicine and cell research services for pharma companies and patients, specializing in…",
   "description": "Offers platform for biomarker discovery and drug development in areas like cancer.",
   "website": "https://sapienbio.co.in/",
   "city": "Hyderabad",
@@ -3082,7 +3082,7 @@ window.STARTUP_DATA = [
  {
   "name": "Vodex",
   "type": "startup",
-  "tagline": "Vodex is a Generative AI tool for making lead qualification outbound calls to your customers.",
+  "tagline": "Vodex is a Generative AI tool for making lead qualification outbound calls to your customers",
   "description": "AI and SaaS-based outbound phone call automation software. It offers an automated calling solution for lead qualification, sales calls, and marketing calls. It provides features like conversational AI for natural-sounding calls, integration with CRM platforms, call recording and analytics, customizable call scripts, and pay-as-you-go pricing options. It automates outbound calls to customers, using a human-like voice for natural conversations.",
   "website": "https://vodex.ai/",
   "city": "Bengaluru",
@@ -3120,7 +3120,7 @@ window.STARTUP_DATA = [
  {
   "name": "Red Apple Technolgies",
   "type": "startup",
-  "tagline": "A Global Leading Game Development Company that transforms vision into reality with top gaming application development services.",
+  "tagline": "A Global Leading Game Development Company that transforms vision into reality with top gaming application development services",
   "description": "specialize Game Development , App Development, Metaverse, IoT, Blockchain, AR, VR, etc.",
   "website": "https://www.redappletech.com/",
   "city": "Delhi",
@@ -3196,7 +3196,7 @@ window.STARTUP_DATA = [
  {
   "name": "Rezo.ai",
   "type": "startup",
-  "tagline": "Rezo.ai is an autonomous platform that revolutionizes contact center operations with AI-powered solutions and real-time support.",
+  "tagline": "Rezo.ai is an autonomous platform that revolutionizes contact center operations with AI-powered solutions and real-time support",
   "description": "AI interfaced customer support automation solutions. It offers a conversational AI assistant with omnichannel offerings across Voice, SMS, Whatsapp API, Email, and social media. It automates and analyses customer interaction by using natural language processing algorithms. It offers a no-code bot-building platform that allows enterprises to create bots to analyze consumer sentiments and emotions. It caters to automobiles, insurance, logistics, education, and more industries.",
   "website": "https://rezo.ai/",
   "city": "Noida",
@@ -3348,7 +3348,7 @@ window.STARTUP_DATA = [
  {
   "name": "Maithri Aquatech",
   "type": "startup",
-  "tagline": "Provider of systems that generate water from air.",
+  "tagline": "Provider of systems that generate water from air",
   "description": "Developer and manufacturer of water systems designed to ease dependence on scarce water resources and provide water on a sustainable basis. The company offers a product that is capable of generating clean, potable water from the air, no groundwater is needed, and no surface water is required, enabling carbon-free, water-positive solutions for consumers",
   "website": "http://www.maithriaqua.com/",
   "city": "Hyderabad",
@@ -3367,7 +3367,7 @@ window.STARTUP_DATA = [
  {
   "name": "Huwats",
   "type": "startup",
-  "tagline": "HUWATS (Hire Your Way ATS) provides a smart, self service and flexible recruitment software that features tools to make your hiring process productive",
+  "tagline": "HUWATS (Hire Your Way ATS) provides a smart, self service and flexible recruitment software that features tools to…",
   "description": "Huwats is an applicant tracking software. It allows users to design & build career site and post job opportunities on social media channels. It integrates with third-party software through API. Also allows users to investigate a candidate's background on the basis of pre-determined criteria.",
   "website": "https://huwats.com/",
   "city": "Bengaluru",
@@ -3386,7 +3386,7 @@ window.STARTUP_DATA = [
  {
   "name": "Nano Health",
   "type": "startup",
-  "tagline": "Provides personalized chronic disease management including monitoring,counseling and home based care for diabetes,hypertension, cholesterol and thyroid…",
+  "tagline": "Provides personalized chronic disease management including monitoring,counseling and home based care for…",
   "description": "Offers personalized advice to combat non-communicable diseases.",
   "website": "https://www.nanohealth.in/",
   "city": "Hyderabad",
@@ -3424,7 +3424,7 @@ window.STARTUP_DATA = [
  {
   "name": "PlayHT",
   "type": "startup",
-  "tagline": "Play.ht is an AI-powered voice generator that creates ultra-realistic humanlike voices from text instantly.",
+  "tagline": "Play.ht is an AI-powered voice generator that creates ultra-realistic humanlike voices from text instantly",
   "description": "AI and SaaS-based text-to-voice generation solutions. It generates text-to-speech audio using an online AI voice generator and synthetic voices. It converts blog posts to audio using synthetic voices to increase content accessibility, user engagement, and time-on-page metrics.",
   "website": "https://play.ht/",
   "city": "Bengaluru",
@@ -3443,7 +3443,7 @@ window.STARTUP_DATA = [
  {
   "name": "Xigma Games",
   "type": "startup",
-  "tagline": "Xigma Games is an indie studio specializing in developing games on creative, fun, original and innovative ideas.",
+  "tagline": "Xigma Games is an indie studio specializing in developing games on creative, fun, original and innovative ideas",
   "description": "Developer of PC and mobile-based casual games",
   "website": "https://xigmagames.com/",
   "city": "Bengaluru",
@@ -3462,7 +3462,7 @@ window.STARTUP_DATA = [
  {
   "name": "Daman",
   "type": "startup",
-  "tagline": "Daman Games is an online earning platform where you can earn money by playing casino-like games. Casino, Dragon Tiger, Color Prediction.",
+  "tagline": "Daman Games is an online earning platform where you can earn money by playing casino-like games",
   "description": "Provider of online gaming platform",
   "website": "https://www.damangamesapp.org/",
   "city": "Jaipur",
@@ -3519,7 +3519,7 @@ window.STARTUP_DATA = [
  {
   "name": "Classic Rummy",
   "type": "startup",
-  "tagline": "Classic Rummy is an online rummy portal. It has a vast experience in running and managing multiplayer games. Their management is committed to promote Rummy as…",
+  "tagline": "Classic Rummy is an online rummy portal",
   "description": "Online multilingual gaming portal to play Rummy",
   "website": "https://www.classicrummy.com/",
   "city": "Hyderabad",
@@ -3709,7 +3709,7 @@ window.STARTUP_DATA = [
  {
   "name": "Primera Medical Technologies",
   "type": "startup",
-  "tagline": "Primera Medical Technologies Elevates healthcare through cutting-edge technology solutions, spanning Human Information services , Revenue Cycle Management,…",
+  "tagline": "Primera Medical Technologies Elevates healthcare through cutting-edge technology solutions, spanning Human Information…",
   "description": "Health information services, management, revenue cycle management, EMR implementation, IT support",
   "website": "https://primeramed.com/",
   "city": "Hyderabad",
@@ -3728,7 +3728,7 @@ window.STARTUP_DATA = [
  {
   "name": "Drucare",
   "type": "startup",
-  "tagline": "Drucare redefines HealthcareIT with an innovative cloud-based platform, supporting care-providers and enhancing patient care holistically",
+  "tagline": "Drucare redefines HealthcareIT with an innovative cloud-based platform, supporting care-providers and enhancing…",
   "description": "Cloud-based healthcare interoperability platform",
   "website": "https://www.dru.care/",
   "city": "Hyderabad",
@@ -3747,7 +3747,7 @@ window.STARTUP_DATA = [
  {
   "name": "Ikiminds",
   "type": "startup",
-  "tagline": "Pioneers efficient drug design using AI and deep learning, supporting companies throughout the drug discovery lifecycle to accelerate market entry and enhance…",
+  "tagline": "Pioneers efficient drug design using AI and deep learning, supporting companies throughout the drug discovery…",
   "description": "Big data and AI for healthcare and science (drug research)",
   "website": "https://ikiminds.com/",
   "city": "Hyderabad",
@@ -3766,7 +3766,7 @@ window.STARTUP_DATA = [
  {
   "name": "Theranosis Life Sciences Pvt Ltd (Oncophenomics)",
   "type": "startup",
-  "tagline": "Transforms personalized cancer therapy with AI driven diagnostics and clinical data analysis globally.",
+  "tagline": "Transforms personalized cancer therapy with AI driven diagnostics and clinical data analysis globally",
   "description": "Uses AI for cancer diagnostics and personalized treatment plans.",
   "website": "https://oncophenomics.com/",
   "city": "Hyderabad",
@@ -3785,7 +3785,7 @@ window.STARTUP_DATA = [
  {
   "name": "Exsegen Genomics",
   "type": "startup",
-  "tagline": "Developer of liquid biopsy to transform brain tumour diagnosis and treatment.",
+  "tagline": "Developer of liquid biopsy to transform brain tumour diagnosis and treatment",
   "description": "Specializes in genomics research using Liquid Biopsy for brain tumor diagnosis.",
   "website": "https://exsegen.com/",
   "city": "Hyderabad",
@@ -3804,7 +3804,7 @@ window.STARTUP_DATA = [
  {
   "name": "Molverse",
   "type": "startup",
-  "tagline": "Revolutionizes drug discovery through sustainable structural insights and machine learning applications.",
+  "tagline": "Revolutionizes drug discovery through sustainable structural insights and machine learning applications",
   "description": "Uses machine learning for 3D molecular modeling in drug development.",
   "website": "https://molverse.tech/",
   "city": "Bengaluru",
@@ -3859,7 +3859,7 @@ window.STARTUP_DATA = [
  {
   "name": "SKEPSAR Technologies",
   "type": "startup",
-  "tagline": "Uses AI to create AR/MR and holograms for healthcare education and training.",
+  "tagline": "Uses AI to create AR/MR and holograms for healthcare education and training",
   "description": "Specialized in AI and Augmented reality solutions alongside custom 3D Holographic visualizations tailored for Healthcare,Life Sciences,Manufacturing,Automobile, Education.",
   "website": "http://skepsar.com/",
   "city": "Hyderabad",
@@ -3878,7 +3878,7 @@ window.STARTUP_DATA = [
  {
   "name": "Carpl.ai",
   "type": "startup",
-  "tagline": "CARPL's platform enables healthcare providers from around the world to identify and trial the latest advances in AI in radiology.",
+  "tagline": "CARPL's platform enables healthcare providers from around the world to identify and trial the latest advances in AI in radiology",
   "description": "AI-based medical image analysis platform for hospitals and imaging centers. The company has developed a deployable platform that provides a single window to create and test AI imaging solutions. Tools are available for analysis of external datasets and PACS integration. The validation studies and clinical tests can be done using external APIs.",
   "website": "https://carpl.ai/",
   "city": "Delhi",
@@ -3916,7 +3916,7 @@ window.STARTUP_DATA = [
  {
   "name": "Cogneau Systems",
   "type": "startup",
-  "tagline": "Cogneau Systems is a Gurgaon-based software startup specializing in artificial intelligence, big data analytics, and data science. The company offers…",
+  "tagline": "Cogneau Systems is a Gurgaon-based software startup specializing in artificial intelligence, big data analytics, and data science",
   "description": "The VERDIS Digital Mind is an evolutionary supply chain decision-making platform enabled by Artificial Intelligence, Machine Learning & Big Data technologies, that helps enterprises move towards agile supply chains while catering to the uncertainties in supply, demand, and the ecosystem.",
   "website": "http://cogneau.com/",
   "city": "Gurugram",
@@ -3935,7 +3935,7 @@ window.STARTUP_DATA = [
  {
   "name": "Alpha AI",
   "type": "startup",
-  "tagline": "pioneers ethical AI solutions across industries with cutting-edge technology and a commitment to innovation.",
+  "tagline": "pioneers ethical AI solutions across industries with cutting-edge technology and a commitment to innovation",
   "description": "Designs custom AI models, predictive analytics tools, and automation systems to meet the specific needs of various industries, including finance, healthcare, retail, and logistics.",
   "website": "https://alphaai.biz/",
   "city": "Chandigarh",
@@ -3954,7 +3954,7 @@ window.STARTUP_DATA = [
  {
   "name": "SyncPhasorAI",
   "type": "startup",
-  "tagline": "SyncPhasorAI provides real time analytics for reliable grid operations.",
+  "tagline": "SyncPhasorAI provides real time analytics for reliable grid operations",
   "description": "Offers an innovative approach which encompasses predictive maintenance systems, real-time monitoring solutions, and smart grid technologies, all aimed at maximizing productivity and minimizing downtime.Beyond their technological achievements, SyncPhasor AI is committed to sustainability and environmental responsibility.",
   "website": "https://syncphasorai.com/",
   "city": "Kanpur",
@@ -4068,7 +4068,7 @@ window.STARTUP_DATA = [
  {
   "name": "SimpliSmart",
   "type": "startup",
-  "tagline": "Simplismart enables businesses to build a scalable production-grade AI system and manage the development lifecycle without writing a single line of code.",
+  "tagline": "Simplismart enables businesses to build a scalable production-grade AI system and manage the development lifecycle…",
   "description": "Provider of AI-based no-code machine learning platform. Its users can use their data to train custom machine learning models and use it to power applications and decisions without writing code.",
   "website": "https://www.simplismart.ai/",
   "city": "Bengaluru",
@@ -4087,7 +4087,7 @@ window.STARTUP_DATA = [
  {
   "name": "Psyhire",
   "type": "startup",
-  "tagline": "PsyHire' is an AI-driven 'applicant tracking system' that utilizes video Psychometric assessments, enabling talent acquisition teams to move beyond evaluating…",
+  "tagline": "PsyHire' is an AI-driven 'applicant tracking system' that utilizes video Psychometric assessments, enabling talent…",
   "description": "Provider of AI-driven ATS. It utilizes video psychometric assessments, enabling talent acquisition teams to analyze candidates' behavior, interpersonal skills, and job-specific behavioral fit. The results are based on objective algorithms and provide a holistic perspective on a candidate's suitability for a job.",
   "website": "https://psyhire.ai/",
   "city": "Hyderabad",
@@ -4410,7 +4410,7 @@ window.STARTUP_DATA = [
  {
   "name": "Multiplier Solutions",
   "type": "startup",
-  "tagline": "Multiplier AI delivers cutting-edge AI, data insights, and physician influencer marketing solutions to transform global healthcare brands.",
+  "tagline": "Multiplier AI delivers cutting-edge AI, data insights, and physician influencer marketing solutions to transform…",
   "description": "Provider of AI based healthcare analytics and marketing services. It has developed proprietary tools for automated physician marketing analytics, campaign management, advertising workflows, and more. Its portfolio includes DocProfile, DocGrow, DocCampaign, AI-WhatsappBots, and BrandShareofVoice.",
   "website": "https://multipliersolutions.com/",
   "city": "Hyderabad",
@@ -4429,7 +4429,7 @@ window.STARTUP_DATA = [
  {
   "name": "ABI Health",
   "type": "startup",
-  "tagline": "ABI Health offers AI-centric solutions for revenue control, smart reporting, and data science, revolutionizing business management for hospitals.",
+  "tagline": "ABI Health offers AI-centric solutions for revenue control, smart reporting, and data science, revolutionizing…",
   "description": "Provider of a suite of healthcare solutions and insurance claim management. It offers solutions including Spectra cloud PACS, an HTML 5 DICOM viewer, Live Doctor, a telemedicine application; HIT Integration Engine, and a Home health platform, for patient data capture. Services offered include Healthcare Application Development, Healthcare Consulting, Interoperability, Mobility Services, and Product Engineering.",
   "website": "https://www.abi-health.com/",
   "city": "Bengaluru",
@@ -4448,7 +4448,7 @@ window.STARTUP_DATA = [
  {
   "name": "Ten Med Network",
   "type": "startup",
-  "tagline": "Provides rapid ambulance dispatch and medical personnel within 15 minutes across India, saving lives by ensuring timely and cost-effective emergency healthcare.",
+  "tagline": "Provides rapid ambulance dispatch and medical personnel within 15 minutes across India, saving lives by ensuring…",
   "description": "Provides ambulance and professionally trained medical personnel like Doctors and Paramedics within 15 minutes across India",
   "website": "https://tenmednetwork.com/",
   "city": "Hyderabad",
@@ -4524,7 +4524,7 @@ window.STARTUP_DATA = [
  {
   "name": "Raga AI",
   "type": "startup",
-  "tagline": "RagaAI offers AI-driven analytics and automation solutions using ML and NLP technologies, catering to enterprises seeking to enhance operational efficiency…",
+  "tagline": "RagaAI offers AI-driven analytics and automation solutions using ML and NLP technologies, catering to enterprises…",
   "description": "RagaAI offers an AI platform for enterprise use cases. Offers an end-to-end platform for managing the AI pipeline. Offers platform to manage MLOps",
   "website": "https://raga.ai/",
   "city": "Ghaziabad",
@@ -4695,7 +4695,7 @@ window.STARTUP_DATA = [
  {
   "name": "The Energy Company",
   "type": "startup",
-  "tagline": "Making Energy Transactions Economically and Environmentally Sustainable.",
+  "tagline": "Making Energy Transactions Economically and Environmentally Sustainable",
   "description": "Manufacturer of fast charging batteries. It provides a full-stack energy storage platform that offers battery technology for electric vehicles to enable fast charging, longer battery life, and affordability",
   "website": "https://www.energycompany.in/",
   "city": "Bengaluru",
@@ -4866,7 +4866,7 @@ window.STARTUP_DATA = [
  {
   "name": "Powerbot",
   "type": "startup",
-  "tagline": "Developer of an energy efficiency solution designed to improve energy efficiency and reduce the cost of electricity.",
+  "tagline": "Developer of an energy efficiency solution designed to improve energy efficiency and reduce the cost of electricity",
   "description": "SaaS-driven energy monitoring solutions for industrial applications. The company's platform analyzes electrical data, designs optimum filters based on the data collected from the factory, and continuously monitors the performance of filters via IoT system, enabling industries, offices, and homes to save up to save electricity costs and reduce overpayment due to low power factor and harmonics.",
   "website": "https://powerbot.in/",
   "city": "Pune",
@@ -4885,7 +4885,7 @@ window.STARTUP_DATA = [
  {
   "name": "ScatterPie Analytics",
   "type": "startup",
-  "tagline": "ScatterPie Analytics provides advanced data analytics and visualization services using AI / ML and big data technologies, catering to enterprises across…",
+  "tagline": "ScatterPie Analytics provides advanced data analytics and visualization services using AI / ML and big data…",
   "description": "Provider of business intelligence, data visualisation, and cloud services. Its other services include data analytics consulting which specialize in creating visualization layers on data processing solutions, designing dashboards for various operations platforms, geospatial analytics, data warehousing, and providing end-to-end visualization projects. It focuses on industries such as asset management, banking, insurance, logistics, retail, e-commerce, and pharmaceuticals.",
   "website": "https://www.scatterpie.io/",
   "city": "Mumbai",
@@ -4904,7 +4904,7 @@ window.STARTUP_DATA = [
  {
   "name": "AuraML",
   "type": "startup",
-  "tagline": "AuraML provides AI and ML solutions using advanced neural networks and big data analytics, catering to industries including finance, healthcare, and…",
+  "tagline": "AuraML provides AI and ML solutions using advanced neural networks and big data analytics, catering to industries…",
   "description": "Platform offering data annotation tools for visual datasets like images and videos. The company offers an AI-assisted data labelling solution with proprietary rendering solution",
   "website": "https://www.auraml.com/",
   "city": "Bengaluru",
@@ -4923,7 +4923,7 @@ window.STARTUP_DATA = [
  {
   "name": "Meritic",
   "type": "startup",
-  "tagline": "Meritic Company specializes in providing AI-driven data analytics and cloud computing solutions tailored for the finance and healthcare sectors.",
+  "tagline": "Meritic Company specializes in providing AI-driven data analytics and cloud computing solutions tailored for the…",
   "description": "AI tools for automating reporting and business analytics. It equips business teams with advanced generative AI tools to support business intelligence process. It leverages AI to generate knowledge graphs, reports, and analyze the business.",
   "website": "https://meritic.ai/",
   "city": "Bengaluru",
@@ -4942,7 +4942,7 @@ window.STARTUP_DATA = [
  {
   "name": "Segwise",
   "type": "startup",
-  "tagline": "Segwise provides AI-driven segmentation and analytics solutions using advanced ML technology, catering primarily to retail, finance, and healthcare sectors.",
+  "tagline": "Segwise provides AI-driven segmentation and analytics solutions using advanced ML technology, catering primarily to…",
   "description": "Product monitoring and analytics software for product teams. It is an AI copilot for growth and product teams to fetch growth data from tools and automatically runs analytics to generate insights. The platform tracks user segments and alerts users on growth opportunities.",
   "website": "https://www.segwise.ai/",
   "city": "Bengaluru",
@@ -5094,7 +5094,7 @@ window.STARTUP_DATA = [
  {
   "name": "Spashta Technologies",
   "type": "startup",
-  "tagline": "Decision platform with component library and an interpreted language (Scython) for organising the components and creating custom workflows, which can then be…",
+  "tagline": "Decision platform with component library and an interpreted language (Scython) for organising the components and…",
   "description": "Provider of supply chain management solutions. The company offers data analysis, decision-making solutions that manage the procurement process, manufacturer & supplier collaboration. The solution provides features like product planning& scheduling, demand forecasting, inventory planning, supplier sourcing, and many more.",
   "website": "https://spashtatech.com/",
   "city": "Bengaluru",
@@ -5132,7 +5132,7 @@ window.STARTUP_DATA = [
  {
   "name": "Saddlepointtech.com",
   "type": "startup",
-  "tagline": "Offers integrated cloud-based supply chain planning, optimization, and digitization suite. An end-to-end SaaS platform for supply chain planning and…",
+  "tagline": "Offers integrated cloud-based supply chain planning, optimization, and digitization suite",
   "description": "Saddle Point Technologies offers integrated cloud-based supply chain planning, optimization, and digitization suite. Its modules include facilities location optimizer, demand planner, inventory optimizer, supply network optimizer, production planner and scheduler, procurement optimizer, dispatch optimizer, vehicle route planner, global optimized order fulfillment, TMS, WMS. It has clients spread across the globe and F&B, FMCG, FMEG, Consumer Durables, Pharma, and Chemicals. Its micro-vertical solutions cater to the specific planning needs of each industry and the adaptive planning keeps the plan aligned to the supply chain disruptions.",
   "website": "https://saddlepointtech.com/",
   "city": "Hyderabad",
@@ -5189,7 +5189,7 @@ window.STARTUP_DATA = [
  {
   "name": "Mojro",
   "type": "startup",
-  "tagline": "Provider of SaaS-enabled logistics transportation planning and supply chain optimization solutions. Claims to be an AI-enabled, future-ready logistics…",
+  "tagline": "Provider of SaaS-enabled logistics transportation planning and supply chain optimization solutions",
   "description": "Provider of SaaS-enabled logistics transportation planning and supply chain optimization solutions. It offers freight services as well as a customized SaaS platform to manage transportation & logistics services. The platform enables users to track shipments & manage operations. Additionally, they also offer planning & execution services enabling businesses to streamline their supply chain.",
   "website": "http://www.mojro.com/",
   "city": "Bengaluru",
@@ -5284,7 +5284,7 @@ window.STARTUP_DATA = [
  {
   "name": "ATAI Labs PVt LTd",
   "type": "startup",
-  "tagline": "SCM AI Company which claims to have deep learning AI models and equipped with pre-trained real-world data to increase supply chain efficiencies.",
+  "tagline": "SCM AI Company which claims to have deep learning AI models and equipped with pre-trained real-world data to increase…",
   "description": "An applied AI company pioneering Digital Transformation for the Maritime, Logistics, and Supply Chain industries. Our innovative business models are targeted toward optimizing productivity and identifying opportunities for sustainability and cost efficiency. ATAI streamlines existing processes with true problem-solving applied AI solutions end-to-end. Powered by AI algorithms, sensors (Camera, Location sensors, Wireless mesh networks (LoRa, 5G, etc.), Lidar and Radar), and other cutting-edge technologies, ATAI has addressed a multitude of operational challenges across different market sectors.",
   "website": "https://www.atai.ai/",
   "city": "Hyderabad",
@@ -5322,7 +5322,7 @@ window.STARTUP_DATA = [
  {
   "name": "Shipsy",
   "type": "startup",
-  "tagline": "AI-powered platform to optimize, automate, track and simplify end-to-end logistics and supply chain operations.",
+  "tagline": "AI-powered platform to optimize, automate, track and simplify end-to-end logistics and supply chain operations",
   "description": "AI powered logistics management software. It offers shipment tracking software that allows users to connect with multiple freight forwarders and CHAs, track containers and cargo in real-time, check reports, and more. It offers features such as routing, shipping management, scheduling, customer database, billing, and invoicing. It provides a platform for optimizing, automating, tracking, and simplifying end-to-end logistics operations.",
   "website": "https://shipsy.io/",
   "city": "Gurugram",

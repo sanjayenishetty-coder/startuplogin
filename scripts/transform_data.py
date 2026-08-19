@@ -244,6 +244,18 @@ def clean_text(t, limit=None):
     return t
 
 
+def tidy_tagline(t):
+    """One crisp line: prefer the first sentence when the raw tagline rambles."""
+    t = clean_text(t)
+    if len(t) > 110:
+        first = re.split(r"(?<=[.!?])\s+", t)[0].strip()
+        if 30 <= len(first) <= 130:
+            t = first
+        else:
+            t = clean_text(t, 120)
+    return t.rstrip(".")
+
+
 def iter_rows(path):
     if path.lower().endswith((".xlsx", ".xlsm")):
         import openpyxl
@@ -275,7 +287,7 @@ def parse_file(path):
         entry = {
             "name": name,
             "type": "startup",
-            "tagline": clean_text(get(r, "tagline"), 160),
+            "tagline": tidy_tagline(get(r, "tagline")),
             "description": clean_text(get(r, "description"), 700),
             "website": clean_url(get(r, "website")),
             "city": city,

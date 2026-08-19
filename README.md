@@ -2,7 +2,7 @@
 
 **The discovery platform for Indian startups.** An interactive map + directory of
 Indian startups and VCs, searchable and filterable by city, state, sector, stage
-and type — inspired by Bangalore Startup Map, scaled to all of India. Any startup
+and type — with a registry-console visual identity: directory-first home, explore workspace, full startup profiles and an India map view. Any startup
 can submit a free listing; every submission is reviewed before it goes live.
 
 ## Features
