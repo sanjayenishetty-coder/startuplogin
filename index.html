@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Login — Discover Indian Startups</title>
+<meta name="description" content="Startup Login is the discovery platform for Indian startups. Browse startups by city, state, sector and stage on an interactive map — and list your startup for free.">
+<meta property="og:title" content="Startup Login — Discover Indian Startups">
+<meta property="og:description" content="The discovery platform for Indian startups. Browse by city, sector and stage. List your startup for free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://startuplogin.com/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#/" id="brandLink">
+    <span class="brand-pin">📍</span>
+    <span class="brand-name">Startup Login</span>
+  </a>
+  <div class="searchbox">
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z"/></svg>
+    <input id="searchInput" type="search" placeholder="Search startups, sectors, founders…" autocomplete="off">
+  </div>
+  <select id="typeFilter" class="pill-select" aria-label="Type">
+    <option value="">All types</option>
+    <option value="startup">Startups</option>
+    <option value="vc">VCs</option>
+  </select>
+  <select id="stateFilter" class="pill-select" aria-label="State">
+    <option value="">All states</option>
+  </select>
+  <select id="cityFilter" class="pill-select" aria-label="City">
+    <option value="">All cities</option>
+  </select>
+  <select id="stageFilter" class="pill-select" aria-label="Stage">
+    <option value="">All stages</option>
+  </select>
+  <select id="sectorFilter" class="pill-select" aria-label="Sector">
+    <option value="">All sectors</option>
+  </select>
+  <div class="view-toggle" role="tablist" aria-label="View">
+    <button id="mapViewBtn" class="active" role="tab">Map</button>
+    <button id="gridViewBtn" role="tab">Grid</button>
+  </div>
+  <button id="submitBtn" class="btn-submit">Submit</button>
+</header>
+
+<main>
+  <div id="map" class="map-root"></div>
+
+  <section id="gridRoot" class="grid-root hidden" aria-label="Startup directory">
+    <div id="gridCards" class="grid-cards"></div>
+    <div id="gridEmpty" class="grid-empty hidden">
+      <h3>No results</h3>
+      <p>Try clearing a filter or searching for something else.</p>
+    </div>
+  </section>
+
+  <div id="resultsCount" class="results-pill">0 results</div>
+  <div class="credit-pill">startuplogin.com — India's startup directory</div>
+
+  <!-- Detail slide-over -->
+  <aside id="detailPanel" class="detail-panel" aria-hidden="true">
+    <button id="detailClose" class="detail-close" aria-label="Close">&times;</button>
+    <div id="detailBody"></div>
+  </aside>
+
+  <!-- Submit view -->
+  <section id="submitRoot" class="submit-root hidden">
+    <div class="submit-inner">
+      <a href="#/" class="back-link" id="backLink">&larr; All startups</a>
+      <h1>Submit a startup</h1>
+      <p class="submit-sub">Know an Indian startup that should be on Startup Login? Fill in what
+        you know — only the name and a one-line description are required. Listing is free.
+        We review every submission before it goes live.</p>
+      <form id="submitForm" novalidate>
+        <div class="form-row">
+          <label>Company name <span class="req">*</span>
+            <input name="name" required maxlength="80">
+          </label>
+          <label>Website
+            <input name="website" type="url" placeholder="https://…">
+          </label>
+        </div>
+        <label>One-line description <span class="req">*</span> <span class="hint">— what they do, in a sentence</span>
+          <input name="tagline" required maxlength="200">
+        </label>
+        <div class="form-row">
+          <label>City
+            <input name="city" list="cityList" placeholder="e.g. Bengaluru">
+            <datalist id="cityList"></datalist>
+          </label>
+          <label>Sector
+            <select name="sector"><option value="">Select a sector…</option></select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Stage
+            <select name="stage">
+              <option value="">Select a stage…</option>
+              <option>Pre-seed</option><option>Seed</option><option>Series A</option>
+              <option>Series B</option><option>Series C+</option><option>Bootstrapped</option>
+              <option>Public</option><option>Acquired</option>
+            </select>
+          </label>
+          <label>Your email <span class="hint">— so we can follow up</span>
+            <input name="email" type="email" placeholder="you@example.com">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-submit big">Submit startup</button>
+          <a href="#/" class="cancel-link">Cancel</a>
+        </div>
+        <p id="submitMsg" class="submit-msg hidden"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="vendor/markercluster/leaflet.markercluster.js"></script>
+<script src="data/startups.js"></script>
+<script src="data/vcs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
