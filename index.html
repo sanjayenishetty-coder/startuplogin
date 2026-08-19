@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Login — Where Indian Startups Log In</title>
+<meta name="description" content="Startup Login is India's open startup registry. Discover startups and investors across 25+ Indian cities by city, sector and stage — and log your startup in for free.">
+<meta property="og:title" content="Startup Login — Where Indian Startups Log In">
+<meta property="og:description" content="India's open startup registry. Browse by city, sector and stage. Free to list, open to all.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://startuplogin.com/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="#/">startuplogin<span class="cursor">_</span></a>
+  <nav class="site-nav">
+    <a href="#/explore" data-nav="explore">Explore</a>
+    <a href="#/explore?view=map" data-nav="map">Map</a>
+  </nav>
+  <div class="head-actions">
+    <button id="themeToggle" class="theme-toggle" aria-label="Switch theme" title="Switch theme">
+      <span class="theme-dot"></span>
+    </button>
+    <a class="btn-cta" href="#/submit">List your startup</a>
+  </div>
+</header>
+
+<main id="viewRoot">
+
+  <!-- ============ HOME ============ -->
+  <section id="homeView" class="view">
+    <div class="hero">
+      <p class="eyebrow">INDIA'S OPEN STARTUP REGISTRY</p>
+      <h1 class="hero-title">Where Indian startups<br>log&nbsp;in<span class="accent">.</span></h1>
+      <p class="hero-sub">Every startup deserves to be found. Browse the registry by city,
+        sector and stage — or log yours in. Free to list, open to all.</p>
+      <form class="prompt-search" id="heroSearch">
+        <span class="prompt-chevron">&gt;</span>
+        <input id="heroSearchInput" type="search" placeholder="search startups, sectors, founders…" autocomplete="off" aria-label="Search the registry">
+        <button type="submit">Search</button>
+      </form>
+      <div class="stat-strip" id="statStrip"></div>
+    </div>
+
+    <div class="rail">
+      <div class="rail-head">
+        <h2>Browse by city</h2>
+        <a class="rail-more" href="#/explore">all cities →</a>
+      </div>
+      <div class="city-grid" id="cityGrid"></div>
+    </div>
+
+    <div class="rail">
+      <div class="rail-head">
+        <h2>Browse by sector</h2>
+        <a class="rail-more" href="#/explore">all sectors →</a>
+      </div>
+      <div class="chip-cloud" id="sectorCloud"></div>
+    </div>
+
+    <div class="rail">
+      <div class="rail-head">
+        <h2>By stage</h2>
+        <span class="rail-note mono" id="stageNote"></span>
+      </div>
+      <div class="stage-bar" id="stageBar"></div>
+      <div class="stage-legend" id="stageLegend"></div>
+    </div>
+
+    <div class="rail">
+      <div class="rail-head">
+        <h2>New to the registry</h2>
+        <a class="rail-more" href="#/explore">explore all →</a>
+      </div>
+      <div class="card-grid" id="freshGrid"></div>
+    </div>
+
+    <div class="vc-band" id="vcBand"></div>
+
+    <div class="home-cta">
+      <h2>Your startup belongs here<span class="accent">.</span></h2>
+      <p>Listing is free and takes two minutes. Every submission is reviewed before it goes live.</p>
+      <a class="btn-cta big" href="#/submit">Log your startup in</a>
+    </div>
+  </section>
+
+  <!-- ============ EXPLORE ============ -->
+  <section id="exploreView" class="view hidden">
+    <div class="explore-bar">
+      <div class="prompt-search slim">
+        <span class="prompt-chevron">&gt;</span>
+        <input id="searchInput" type="search" placeholder="search the registry…" autocomplete="off" aria-label="Search">
+      </div>
+      <select id="typeFilter" class="filter-select" aria-label="Type">
+        <option value="">Type</option>
+        <option value="startup">Startups</option>
+        <option value="vc">Investors</option>
+      </select>
+      <select id="stateFilter" class="filter-select" aria-label="State"><option value="">State</option></select>
+      <select id="cityFilter" class="filter-select" aria-label="City"><option value="">City</option></select>
+      <select id="stageFilter" class="filter-select" aria-label="Stage"><option value="">Stage</option></select>
+      <select id="sectorFilter" class="filter-select" aria-label="Sector"><option value="">Sector</option></select>
+      <div class="view-toggle" role="tablist" aria-label="View">
+        <button id="listViewBtn" class="active" role="tab">List</button>
+        <button id="mapViewBtn" role="tab">Map</button>
+      </div>
+    </div>
+    <div class="applied-row" id="appliedRow"></div>
+    <p class="result-line mono" id="resultLine"></p>
+
+    <div id="gridRoot" class="grid-root">
+      <div id="gridCards" class="card-grid wide"></div>
+      <div id="gridEmpty" class="grid-empty hidden"></div>
+    </div>
+    <div id="mapRoot" class="map-root hidden"><div id="map"></div></div>
+  </section>
+
+  <!-- ============ PROFILE ============ -->
+  <section id="profileView" class="view hidden">
+    <div class="profile-inner" id="profileBody"></div>
+  </section>
+
+  <!-- ============ SUBMIT ============ -->
+  <section id="submitView" class="view hidden">
+    <div class="submit-inner">
+      <p class="eyebrow">FREE LISTING</p>
+      <h1>Log your startup in<span class="accent">.</span></h1>
+      <p class="submit-sub">Only the name and a one-line description are required — fill in
+        whatever you know. We review every submission before it goes live.</p>
+
+      <ol class="status-track" id="statusTrack">
+        <li class="on" data-step="1"><span>1</span>Submit</li>
+        <li data-step="2"><span>2</span>Review</li>
+        <li data-step="3"><span>3</span>Live on the registry</li>
+      </ol>
+
+      <form id="submitForm" novalidate>
+        <div class="form-row">
+          <label>Company name <em class="req">*</em>
+            <input name="name" required maxlength="80" autocomplete="organization">
+            <small class="dup-hint hidden" id="dupHint"></small>
+          </label>
+          <label>Website
+            <input name="website" type="url" placeholder="https://…">
+          </label>
+        </div>
+        <label>One-line description <em class="req">*</em> <small class="hint">what you do, in a sentence</small>
+          <input name="tagline" required maxlength="200">
+        </label>
+        <div class="form-row">
+          <label>City
+            <input name="city" list="cityList" placeholder="e.g. Bengaluru">
+            <datalist id="cityList"></datalist>
+          </label>
+          <label>Sector
+            <select name="sector"><option value="">Select a sector…</option></select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Stage
+            <select name="stage">
+              <option value="">Select a stage…</option>
+              <option>Pre-seed</option><option>Seed</option><option>Series A</option>
+              <option>Series B</option><option>Series C+</option><option>Bootstrapped</option>
+              <option>Public</option><option>Acquired</option>
+            </select>
+          </label>
+          <label>Your email <small class="hint">so we can follow up</small>
+            <input name="email" type="email" placeholder="you@example.com">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-cta big">Submit for review</button>
+          <a href="#/" class="cancel-link">Cancel</a>
+        </div>
+        <p id="submitMsg" class="submit-msg hidden" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <span class="mono">startuplogin.com</span>
+  <span>India's open startup registry · free to list, open to all</span>
+  <a href="#/submit">List your startup</a>
+</footer>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script src="config.js"></script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="vendor/markercluster/leaflet.markercluster.js"></script>
+<script src="data/startups.js"></script>
+<script src="data/vcs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
