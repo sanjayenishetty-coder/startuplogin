@@ -90,6 +90,7 @@ a { color: inherit; }
   border-bottom: 1px solid var(--hairline);
 }
 .wordmark {
+  display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 17px;
@@ -815,3 +816,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 #submitForm .other-input { margin-top: 8px; }
+
+.logo-mark { width: 27px; height: 27px; flex: none; display: block; }

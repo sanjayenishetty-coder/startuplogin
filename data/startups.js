@@ -368,8 +368,8 @@ window.STARTUP_DATA = [
   "tagline": "AI-enabled coach for mental and emotional wellness",
   "description": "AI-enabled coach for mental and emotional wellness. The company provides AI conversational care that guides through both curated CBT programs and on-demand self care through evidence based exercises. The company offers an AI chatbot that uses research backed techniques of cognitive behavioral therapy, dialectical behavior therapy, and meditation to support users with depression, stress, anxiety, sleep, and other mental health and wellness needs. It also, offers features such as a mood tracker, anxiety helper, and mood boosting, and provides coaching services include synchronous live sessions with professionals, text based sessions, and exercises.",
   "website": "https://www.wysa.com/",
-  "city": "Boston",
-  "state": "Outside India",
+  "city": "Bengaluru",
+  "state": "Karnataka",
   "sector": "Healthtech",
   "industry": "Big Data Analytics & AI",
   "stage": "Series B",
@@ -377,8 +377,8 @@ window.STARTUP_DATA = [
   "founders": "Jo Aggarwal",
   "investors": "legacy.vn, Nitesh Agarwal",
   "funding": "30.5M",
-  "lat": 42.35394,
-  "lng": -71.11202,
+  "lat": 12.96544,
+  "lng": 77.54148,
   "slug": "wysa"
  },
  {
