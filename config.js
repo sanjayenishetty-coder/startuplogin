@@ -1,5 +1,12 @@
 // Site configuration — edit these values.
 window.SL_CONFIG = {
+  // Supabase project (see supabase/schema.sql for one-time setup).
+  // Project URL + anon public key from Supabase → Settings → API.
+  // The anon key is safe to publish — access is controlled by row-level
+  // security in the database. Leave both empty to run from bundled data.
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+
   // Optional: endpoint that receives "Submit a startup" POSTs as JSON.
   // Works out of the box with Formspree/Getform/Basin-style form services,
   // e.g. "https://formspree.io/f/XXXXXXX". Leave empty to store submissions

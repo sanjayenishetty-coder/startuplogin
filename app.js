@@ -3,9 +3,9 @@
   "use strict";
 
   var CFG = window.SL_CONFIG || {};
-  var ALL = (window.STARTUP_DATA || []).concat(window.VC_DATA || []);
+  var DB = window.SL_DB || { enabled: false };
+  var ALL = [];
   var bySlug = {};
-  ALL.forEach(function (e) { bySlug[e.slug] = e; });
 
   var CITY_CODES = {
     Bengaluru: "BLR", Hyderabad: "HYD", Mumbai: "BOM", Pune: "PNQ", Delhi: "DEL",
@@ -458,7 +458,19 @@
       msg.classList.remove("hidden");
       toast("submission received");
     }
-    if (CFG.formEndpoint) {
+    if (DB.enabled) {
+      var contact = { email: data.email, linkedin: data.linkedin };
+      var fields = {
+        name: data.name, tagline: data.tagline, website: data.website,
+        city: data.city, sector: data.sector, stage: data.stage,
+        founded: data.founded, founders: data.founders
+      };
+      DB.submit(fields, contact).then(ok).catch(function () {
+        msg.textContent = "Couldn't send your submission — check your connection and try again.";
+        msg.classList.remove("hidden");
+        msg.classList.add("err");
+      });
+    } else if (CFG.formEndpoint) {
       fetch(CFG.formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -496,7 +508,20 @@
   });
 
   /* ---------- boot ---------- */
-  initFilters();
-  renderHome();
-  route();
+  function boot(data) {
+    ALL = data;
+    bySlug = {};
+    ALL.forEach(function (e) { bySlug[e.slug] = e; });
+    initFilters();
+    renderHome();
+    route();
+  }
+  var bundled = (window.STARTUP_DATA || []).concat(window.VC_DATA || []);
+  if (DB.enabled) {
+    var timeout = new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 3500); });
+    Promise.race([DB.fetchListings().catch(function () { return null; }), timeout])
+      .then(function (rows) { boot(rows && rows.length ? rows : bundled); });
+  } else {
+    boot(bundled);
+  }
 })();
