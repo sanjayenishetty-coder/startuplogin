@@ -105,6 +105,8 @@
     sector: "sector", industry: "sector",
     stage: "stage",
     email: "email", "your email": "email", "submitter email": "email",
+    linkedin: "linkedin", "founder linkedin": "linkedin",
+    "founder's linkedin": "linkedin", "founder linkedin profile": "linkedin",
     founded: "founded", "founded year": "founded",
     founders: "founders", founder: "founders",
     submittedat: "submittedAt", date: "submittedAt"
@@ -180,7 +182,7 @@
   });
 
   /* ---------- editor ---------- */
-  var FIELDS = ["name", "website", "city", "sector", "stage", "founded", "founders", "email", "tagline", "description"];
+  var FIELDS = ["name", "website", "city", "sector", "stage", "founded", "founders", "linkedin", "email", "tagline", "description"];
   function selectItem(i) {
     selected = i;
     var q = queue[i];

@@ -1,16 +1,16 @@
 # Startup Login — startuplogin.com
 
 **The discovery platform for Indian startups.** An interactive map + directory of
-Indian startups and VCs, searchable and filterable by city, state, sector, stage
+Indian startups and VCs, searchable and filterable by city, sector, stage
 and type — with a registry-console visual identity: directory-first home, explore workspace, full startup profiles and an India map view. Any startup
 can submit a free listing; every submission is reviewed before it goes live.
 
 ## Features
 
-- **Map view** — Leaflet map of India with logo pins and colour-coded cluster
-  bubbles (Carto Voyager basemap, warm cream style). Zoom from an all-India view
-  down to street level per city.
-- **Grid view** — card directory with logo, one-liner, and city/sector/stage chips.
+- **City-first browsing** — top startup cities on the home page, list-based
+  explore with type/city/stage/sector filters. (The earlier map view was removed
+  for now; it can be restored from git history if wanted.)
+- **Card directory** — logo, one-liner, and city/sector/stage chips.
 - **Filters** — type (Startups/VCs), state, city (narrows by selected state),
   stage, sector, plus full-text search across names, taglines, sectors and founders.
 - **Detail panel** — description, founders, industry, key investors, total
