@@ -146,6 +146,14 @@
         <div id="editorEmpty" class="queue-empty">Select a submission from the queue to review it.</div>
         <div id="editorBody" class="hidden">
           <div class="editor-grid">
+            <label>Listing type
+              <select id="f_type">
+                <option value="startup">Startup</option>
+                <option value="vc">Investor</option>
+                <option value="incubator">Incubator / Accelerator</option>
+                <option value="event">Event</option>
+              </select>
+            </label>
             <label>Name<input id="f_name"></label>
             <label>Website<input id="f_website"></label>
             <label>City<input id="f_city" list="cityList"><datalist id="cityList"></datalist></label>

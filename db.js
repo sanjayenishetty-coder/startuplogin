@@ -37,6 +37,7 @@
       if (!client) return Promise.reject(new Error("db not configured"));
       var id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : null;
       var row = Object.assign({ status: "pending" }, fields);
+      if (!row.timing) delete row.timing;   // column exists only after events.sql
       if (id) row.id = id;
       return client.from("listings").insert(row).then(function (res) {
         if (res.error) throw res.error;
