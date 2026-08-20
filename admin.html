@@ -11,6 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
+  .site-head { position: static; }
+  .gate-wrap { max-width: 420px; margin: 12vh auto 0; padding: 0 24px; }
+  .gate-card { background: var(--surface); border: 1px solid var(--hairline); border-radius: 18px; padding: 34px 30px; box-shadow: var(--shadow); }
+  .gate-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--accent); margin: 0 0 12px; }
+  .gate-card h1 { font-family: var(--font-display); font-size: 27px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 8px; }
+  .gate-card p { color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin: 0 0 22px; }
+  .gate-card label { display: block; font: 600 12px var(--font-mono); letter-spacing: .08em; color: var(--ink-soft); text-transform: uppercase; }
+  .gate-card input { display: block; width: 100%; margin: 7px 0 14px; font: 500 16px var(--font-mono); color: var(--ink); background: var(--ground); border: 1.5px solid var(--hairline); border-radius: 10px; padding: 12px 14px; outline: none; box-sizing: border-box; letter-spacing: .08em; }
+  .gate-card input:focus { border-color: var(--accent); }
+  .gate-err { color: var(--warn-ink); background: var(--warn-soft); border-radius: 9px; padding: 9px 13px; font-size: 13px; margin: 0 0 14px; }
   .console-wrap { max-width: 1160px; margin: 0 auto; padding: 34px 24px 80px; }
   .console-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
   .console-sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 640px; }
@@ -73,7 +83,21 @@
   </div>
 </header>
 
-<div class="console-wrap">
+<div class="gate-wrap hidden" id="gateWrap">
+  <div class="gate-card">
+    <p class="gate-eyebrow">RESTRICTED · ADMIN</p>
+    <h1>Review console</h1>
+    <p>Enter the admin passcode to open the submission review queue.</p>
+    <form id="gateForm">
+      <label for="gatePass">Passcode</label>
+      <input id="gatePass" type="password" autocomplete="current-password" autofocus>
+      <p class="gate-err hidden" id="gateErr">That passcode isn't right — try again.</p>
+      <button type="submit" class="btn-cta" style="width:100%">Unlock console</button>
+    </form>
+  </div>
+</div>
+
+<div class="console-wrap hidden" id="consoleWrap">
   <h1 class="console-title">Review queue</h1>
   <p class="console-sub">Paste submissions from your inbox, check them against the registry,
     approve or reject — then export the updated data file and push it. Nothing here is
@@ -145,6 +169,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="config.js"></script>
 <script src="data/startups.js"></script>
 <script src="data/vcs.js"></script>
 <script src="admin.js"></script>
