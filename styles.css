@@ -824,3 +824,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 32px; font-weight: 800; letter-spacing: -.02em;
   max-width: 1160px; margin: 26px auto 2px; padding: 0 24px;
 }
+
+.submit-mode { display: inline-flex; margin-bottom: 16px; }

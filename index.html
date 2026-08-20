@@ -20,8 +20,10 @@
 <header class="site-head">
   <a class="wordmark" href="#/"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="slgh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b82ff"/><stop offset="1" stop-color="#2456f5"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="#0e1b2c"/><path d="M21 19 L37 32 L21 45" fill="none" stroke="url(#slgh)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="40" y1="45" x2="50" y2="45" stroke="#2bc98a" stroke-width="6.5" stroke-linecap="round"/></svg>startuplogin<span class="cursor">_</span></a>
   <nav class="site-nav">
-    <a href="#/startups" data-nav="startups">Startups</a>
-    <a href="#/investors" data-nav="investors">Investors</a>
+    <a href="#/startups" data-nav="startup">Startups</a>
+    <a href="#/investors" data-nav="vc">Investors</a>
+    <a href="#/incubators" data-nav="incubator">Incubators &amp; Accelerators</a>
+    <a href="#/events" data-nav="event">Events</a>
   </nav>
   <div class="head-actions">
     <button id="themeToggle" class="theme-toggle" aria-label="Switch theme" title="Switch theme">
@@ -120,7 +122,11 @@
   <section id="submitView" class="view hidden">
     <div class="submit-inner">
       <p class="eyebrow">FREE LISTING</p>
-      <h1>Log your startup in<span class="accent">.</span></h1>
+      <div class="view-toggle submit-mode" role="tablist" aria-label="Listing type">
+        <button id="modeStartupBtn" class="active" role="tab">Startup</button>
+        <button id="modeInvestorBtn" role="tab">Investor</button>
+      </div>
+      <h1 id="submitTitle">Log your startup in<span class="accent">.</span></h1>
       <p class="submit-sub">Only the name and a one-line description are required — fill in
         whatever you know. We review every submission before it goes live.</p>
 
@@ -132,7 +138,7 @@
 
       <form id="submitForm" novalidate>
         <div class="form-row">
-          <label>Company name <em class="req">*</em>
+          <label><span id="lblName">Company name</span> <em class="req">*</em>
             <input name="name" required maxlength="80" autocomplete="organization">
             <small class="dup-hint hidden" id="dupHint"></small>
           </label>
@@ -140,7 +146,7 @@
             <input name="website" type="url" placeholder="https://…">
           </label>
         </div>
-        <label>One-line description <em class="req">*</em> <small class="hint">what you do, in a sentence</small>
+        <label>One-line description <em class="req">*</em> <small class="hint" id="lblTagHint">what you do, in a sentence</small>
           <input name="tagline" required maxlength="200">
         </label>
         <div class="form-row">
@@ -155,7 +161,7 @@
             </select>
             <input name="cityOther" id="cityOther" class="other-input hidden" placeholder="Type your city" maxlength="40" aria-label="Your city">
           </label>
-          <label>Sector
+          <label><span id="lblSector">Sector</span>
             <select name="sector" id="sectorSelect">
               <option value="">Select a sector…</option>
               <option>AI</option><option>SaaS</option><option>Fintech</option>
@@ -172,7 +178,7 @@
           </label>
         </div>
         <div class="form-row">
-          <label>Stage
+          <label id="stageField">Stage
             <select name="stage">
               <option value="">Select a stage…</option>
               <option>Pre-seed</option><option>Seed</option><option>Series A</option>
@@ -185,10 +191,10 @@
           </label>
         </div>
         <div class="form-row">
-          <label>Founder name(s)
+          <label><span id="lblFounders">Founder name(s)</span>
             <input name="founders" placeholder="e.g. Anita Rao, Vikram Shah" maxlength="120">
           </label>
-          <label>Founder's LinkedIn
+          <label><span id="lblLinkedin">Founder's LinkedIn</span>
             <input name="linkedin" type="url" placeholder="https://linkedin.com/in/…">
           </label>
         </div>
@@ -219,6 +225,8 @@
 <script src="db.js"></script>
 <script src="data/startups.js"></script>
 <script src="data/vcs.js"></script>
+<script src="data/incubators.js"></script>
+<script src="data/events.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

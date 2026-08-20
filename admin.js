@@ -274,8 +274,9 @@
     ALL.forEach(function (e) { slugs[e.slug] = 1; });
     queue.forEach(function (q) { if (q.entry) slugs[q.entry.slug] = 1; });
     while (slugs[slug]) slug += "-2";
+    var srcType = (selected >= 0 && queue[selected] && queue[selected].data.type) || "startup";
     var entry = {
-      name: d.name, type: "startup",
+      name: d.name, type: srcType === "vc" ? "vc" : srcType,
       tagline: d.tagline, description: d.description || "",
       website: d.website && !/^https?:/.test(d.website) ? "https://" + d.website : d.website,
       city: cityKey || (d.city || ""), state: info ? info[0] : (d.city ? "India" : ""),
@@ -406,12 +407,12 @@
   Object.keys(CITY_INFO).sort().forEach(function (c) {
     var o = document.createElement("option"); o.value = c; cityDl.appendChild(o);
   });
-  var secSel = $("f_sector");
-  var sectors = {};
+  var secDl = $("sectorList");
+  var sectors = { "Others": 1, "VC Funds": 1, "Angel Networks / Funds": 1, "Family Office": 1,
+    "Private Equities": 1, "Micro PE / VC": 1, "Angels": 1, "Incubator": 1, "Accelerator": 1 };
   EXISTING.forEach(function (e) { if (e.sector) sectors[e.sector] = 1; });
-  ["Others"].concat(Object.keys(sectors).sort()).forEach(function (s, i, arr) {
-    if (arr.indexOf(s) !== i) return;
-    var o = document.createElement("option"); o.textContent = s; secSel.appendChild(o);
+  Object.keys(sectors).sort().forEach(function (s) {
+    var o = document.createElement("option"); o.value = s; secDl.appendChild(o);
   });
   var stSel = $("f_stage");
   STAGES.forEach(function (s) {
