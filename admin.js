@@ -17,29 +17,77 @@
     gateWrap.classList.add("hidden");
     consoleWrap.classList.remove("hidden");
   }
-  var unlocked = false;
-  try { unlocked = sessionStorage.getItem("sl_admin_ok") === "1"; } catch (e) {}
-  if (!CFG.adminPassHash || unlocked || !window.crypto || !crypto.subtle) {
-    unlock(); // no passcode configured (or no WebCrypto) — open console directly
-  } else {
+  var DB = window.SL_DB || { enabled: false };
+  if (DB.enabled) {
+    // Database mode: real email + password sign-in (Supabase Auth).
+    document.getElementById("gateEmail").classList.remove("hidden");
+    document.getElementById("gateEmailLabel").classList.remove("hidden");
+    document.getElementById("gatePassLabel").textContent = "Password";
+    document.getElementById("gateDesc").textContent =
+      "Sign in with your admin email and password to open the review queue.";
     gateWrap.classList.remove("hidden");
+    DB.getSession().then(function (session) {
+      if (session) { unlock(); onDbUnlock(); }
+    });
     document.getElementById("gateForm").addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var pass = document.getElementById("gatePass").value;
-      sha256hex(pass).then(function (hex) {
-        if (hex === CFG.adminPassHash) {
-          try { sessionStorage.setItem("sl_admin_ok", "1"); } catch (e) {}
-          unlock();
-        } else {
+      DB.signIn(document.getElementById("gateEmail").value.trim(),
+                document.getElementById("gatePass").value)
+        .then(function () { unlock(); onDbUnlock(); })
+        .catch(function () {
+          document.getElementById("gateErr").textContent =
+            "Sign-in failed — check the email and password.";
           document.getElementById("gateErr").classList.remove("hidden");
-          document.getElementById("gatePass").select();
-        }
-      });
+        });
     });
+  } else {
+    var unlocked = false;
+    try { unlocked = sessionStorage.getItem("sl_admin_ok") === "1"; } catch (e) {}
+    if (!CFG.adminPassHash || unlocked || !window.crypto || !crypto.subtle) {
+      unlock(); // no passcode configured (or no WebCrypto) — open console directly
+    } else {
+      gateWrap.classList.remove("hidden");
+      document.getElementById("gateForm").addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var pass = document.getElementById("gatePass").value;
+        sha256hex(pass).then(function (hex) {
+          if (hex === CFG.adminPassHash) {
+            try { sessionStorage.setItem("sl_admin_ok", "1"); } catch (e) {}
+            unlock();
+          } else {
+            document.getElementById("gateErr").classList.remove("hidden");
+            document.getElementById("gatePass").select();
+          }
+        });
+      });
+    }
   }
 
   var EXISTING = window.STARTUP_DATA || [];
   var ALL = EXISTING.concat(window.VC_DATA || []);
+
+  function onDbUnlock() {
+    document.getElementById("dbModeNote").classList.remove("hidden");
+    document.getElementById("exportBar").classList.add("hidden");
+    document.querySelector(".export-steps").classList.add("hidden");
+    document.getElementById("refreshDbBtn").classList.remove("hidden");
+    document.getElementById("loadLocalBtn").classList.add("hidden");
+    DB.fetchListings().then(function (rows) {
+      if (rows && rows.length) ALL = rows;   // dup-check against the real registry
+    }).catch(function () {});
+    loadPendingFromDb();
+  }
+  function loadPendingFromDb() {
+    DB.fetchPending().then(function (rows) {
+      queue = rows.map(function (r) {
+        return { data: r, status: "pending", dbid: r.id };
+      });
+      selected = -1;
+      renderQueue();
+      toast(rows.length ? rows.length + " submission" + (rows.length === 1 ? "" : "s") + " waiting for review"
+                        : "No pending submissions right now");
+    }).catch(function () { toast("Couldn't load submissions — check your connection"); });
+  }
 
   // city -> [state, lat, lng] (mirrors scripts/transform_data.py)
   var CITY_INFO = {
@@ -273,16 +321,37 @@
     if (!d.city || !Object.keys(CITY_INFO).some(function (c) { return c.toLowerCase() === d.city.toLowerCase(); })) {
       if (!d.city) { toast("Add a city so the startup appears on the map and city pages"); return; }
     }
-    queue[selected].entry = buildEntry(d);
-    queue[selected].status = "approved";
-    Object.assign(queue[selected].data, d);
+    var entry = buildEntry(d);
+    var item = queue[selected];
+    if (item.dbid) {
+      DB.approve(item.dbid, entry).then(function () {
+        item.entry = entry;
+        item.status = "approved";
+        Object.assign(item.data, d);
+        renderQueue();
+        toast(d.name + " is LIVE on the registry");
+      }).catch(function () { toast("Couldn't publish — check your connection and try again"); });
+      return;
+    }
+    item.entry = entry;
+    item.status = "approved";
+    Object.assign(item.data, d);
     renderQueue();
     toast(d.name + " approved — export when you're done reviewing");
   });
   $("rejectBtn").addEventListener("click", function () {
     if (selected < 0) return;
-    queue[selected].status = "rejected";
-    queue[selected].entry = null;
+    var item = queue[selected];
+    if (item.dbid) {
+      DB.reject(item.dbid).then(function () {
+        item.status = "rejected"; item.entry = null;
+        renderQueue();
+        toast("Rejected — it won't appear on the registry");
+      }).catch(function () { toast("Couldn't update — try again"); });
+      return;
+    }
+    item.status = "rejected";
+    item.entry = null;
     renderQueue();
     toast("Rejected — it won't be included in the export");
   });
@@ -292,6 +361,7 @@
     addToQueue(parsePaste($("pasteBox").value));
     $("pasteBox").value = "";
   });
+  $("refreshDbBtn").addEventListener("click", loadPendingFromDb);
   $("loadLocalBtn").addEventListener("click", function () {
     var box = [];
     try { box = JSON.parse(localStorage.getItem("sl_submissions") || "[]"); } catch (e) {}

@@ -35,6 +35,26 @@ Any static host works — GitHub Pages, Vercel, Netlify, Cloudflare Pages. Point
 the `startuplogin.com` domain at the host and you're live. (Map tiles and logo
 favicons load from Carto/Google at runtime in the visitor's browser.)
 
+## Supabase database (recommended)
+
+With Supabase connected, listings live in Postgres: founder submissions insert
+straight into the database as `pending`, the review console signs in with
+Supabase Auth and approvals go **live instantly** — no Formspree, no export,
+no git commit. One-time setup (~10 min, free tier):
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. Open `supabase/schema.sql`, replace `YOUR-ADMIN-EMAIL@example.com` with your
+   email, and run it in the project's SQL Editor. Then run `supabase/seed.sql`
+   (loads the current 305 listings as live).
+3. In Authentication → Users, add a user with that email + a password
+   ("Auto confirm user"). In Authentication → Sign In / Up, disable
+   "Allow new users to sign up".
+4. Copy Settings → API → Project URL and anon public key into `config.js`
+   (`supabaseUrl`, `supabaseAnonKey`) and push. The anon key is safe to
+   publish — row-level security controls all access.
+
+Without keys, everything below still works (bundled data + export workflow).
+
 ## Receiving submissions
 
 By default, submissions are stored in the visitor's browser (localStorage) — fine
