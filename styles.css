@@ -818,3 +818,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 #submitForm .other-input { margin-top: 8px; }
 
 .logo-mark { width: 27px; height: 27px; flex: none; display: block; }
+
+.explore-title {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 800; letter-spacing: -.02em;
+  max-width: 1160px; margin: 26px auto 2px; padding: 0 24px;
+}

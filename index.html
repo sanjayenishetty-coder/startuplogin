@@ -20,7 +20,8 @@
 <header class="site-head">
   <a class="wordmark" href="#/"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="slgh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b82ff"/><stop offset="1" stop-color="#2456f5"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="#0e1b2c"/><path d="M21 19 L37 32 L21 45" fill="none" stroke="url(#slgh)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="40" y1="45" x2="50" y2="45" stroke="#2bc98a" stroke-width="6.5" stroke-linecap="round"/></svg>startuplogin<span class="cursor">_</span></a>
   <nav class="site-nav">
-    <a href="#/explore" data-nav="explore">Explore</a>
+    <a href="#/startups" data-nav="startups">Startups</a>
+    <a href="#/investors" data-nav="investors">Investors</a>
   </nav>
   <div class="head-actions">
     <button id="themeToggle" class="theme-toggle" aria-label="Switch theme" title="Switch theme">
@@ -50,7 +51,7 @@
     <div class="rail">
       <div class="rail-head">
         <h2>Browse by city</h2>
-        <a class="rail-more" href="#/explore">all cities →</a>
+        <a class="rail-more" href="#/startups">all cities →</a>
       </div>
       <div class="city-grid" id="cityGrid"></div>
     </div>
@@ -58,7 +59,7 @@
     <div class="rail">
       <div class="rail-head">
         <h2>Browse by sector</h2>
-        <a class="rail-more" href="#/explore">all sectors →</a>
+        <a class="rail-more" href="#/startups">all sectors →</a>
       </div>
       <div class="chip-cloud" id="sectorCloud"></div>
     </div>
@@ -75,7 +76,7 @@
     <div class="rail">
       <div class="rail-head">
         <h2>New to the registry</h2>
-        <a class="rail-more" href="#/explore">explore all →</a>
+        <a class="rail-more" href="#/startups">explore all →</a>
       </div>
       <div class="card-grid" id="freshGrid"></div>
     </div>
@@ -91,16 +92,12 @@
 
   <!-- ============ EXPLORE ============ -->
   <section id="exploreView" class="view hidden">
+    <h1 class="explore-title" id="exploreTitle">Startups</h1>
     <div class="explore-bar">
       <div class="prompt-search slim">
         <span class="prompt-chevron">&gt;</span>
         <input id="searchInput" type="search" placeholder="search the registry…" autocomplete="off" aria-label="Search">
       </div>
-      <select id="typeFilter" class="filter-select" aria-label="Type">
-        <option value="">Type</option>
-        <option value="startup">Startups</option>
-        <option value="vc">Investors</option>
-      </select>
       <select id="cityFilter" class="filter-select" aria-label="City"><option value="">City</option></select>
       <select id="stageFilter" class="filter-select" aria-label="Stage"><option value="">Stage</option></select>
       <select id="sectorFilter" class="filter-select" aria-label="Sector"><option value="">Sector</option></select>
