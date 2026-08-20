@@ -46,6 +46,15 @@ create index if not exists listings_city_idx   on public.listings (city);
 alter table public.listings enable row level security;
 alter table public.contacts enable row level security;
 
+
+-- Safe to re-run: drop existing policies first, then recreate.
+drop policy if exists "public read live listings"    on public.listings;
+drop policy if exists "public submit pending listing" on public.listings;
+drop policy if exists "admin full access listings"   on public.listings;
+drop policy if exists "public submit contact"        on public.contacts;
+drop policy if exists "admin read contacts"          on public.contacts;
+drop policy if exists "admin delete contacts"        on public.contacts;
+
 -- Anyone may read LIVE listings only.
 create policy "public read live listings"
   on public.listings for select
