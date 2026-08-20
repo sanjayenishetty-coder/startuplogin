@@ -145,6 +145,7 @@
   var selected = -1;
 
   var KEY_MAP = {
+    type: "type", "listing type": "type",
     name: "name", "company name": "name", company: "name", startup: "name",
     website: "website", weblink: "website", url: "website",
     tagline: "tagline", "one-line description": "tagline", "one liner": "tagline", oneliner: "tagline",
@@ -215,9 +216,11 @@
 
   function renderQueue() {
     var html = queue.map(function (q, i) {
+      var typeLabels = { startup: "STARTUP", vc: "INVESTOR", incubator: "INCUBATOR", event: "EVENT" };
       return '<div class="queue-item' + (i === selected ? " sel" : "") + '" data-i="' + i + '">' +
         "<div><div class=\"q-name\">" + esc(q.data.name) + "</div>" +
-        '<div class="q-meta">' + esc([q.data.city, q.data.stage].filter(Boolean).join(" · ") || "—") + "</div></div>" +
+        '<div class="q-meta">' + esc([typeLabels[q.data.type] || "STARTUP", q.data.city, q.data.sector || q.data.stage]
+          .filter(Boolean).join(" · ")) + "</div></div>" +
         '<span class="q-status ' + q.status + '">' + q.status.toUpperCase() + "</span></div>";
     }).join("");
     $("queueList").innerHTML = html;
@@ -231,13 +234,14 @@
   });
 
   /* ---------- editor ---------- */
-  var FIELDS = ["name", "website", "city", "sector", "stage", "founded", "timing", "founders", "linkedin", "email", "tagline", "description"];
+  var FIELDS = ["type", "name", "website", "city", "sector", "stage", "founded", "timing", "founders", "linkedin", "email", "tagline", "description"];
   function selectItem(i) {
     selected = i;
     var q = queue[i];
     $("editorEmpty").classList.add("hidden");
     $("editorBody").classList.remove("hidden");
     FIELDS.forEach(function (f) { $("f_" + f).value = q.data[f] || ""; });
+    if (!$("f_type").value) $("f_type").value = "startup";
     if (q.entry) FIELDS.forEach(function (f) {
       if (f !== "email" && q.entry[f] != null) $("f_" + f).value = q.entry[f];
     });
@@ -275,9 +279,8 @@
     ALL.forEach(function (e) { slugs[e.slug] = 1; });
     queue.forEach(function (q) { if (q.entry) slugs[q.entry.slug] = 1; });
     while (slugs[slug]) slug += "-2";
-    var srcType = (selected >= 0 && queue[selected] && queue[selected].data.type) || "startup";
     var entry = {
-      name: d.name, type: srcType === "vc" ? "vc" : srcType,
+      name: d.name, type: d.type || "startup",
       tagline: d.tagline, description: d.description || "",
       website: d.website && !/^https?:/.test(d.website) ? "https://" + d.website : d.website,
       city: cityKey || (d.city || ""), state: info ? info[0] : (d.city ? "India" : ""),
