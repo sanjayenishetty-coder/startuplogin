@@ -32,7 +32,7 @@
   var els = {
     views: { home: $("homeView"), explore: $("exploreView"), profile: $("profileView"), submit: $("submitView") },
     search: $("searchInput"), heroSearch: $("heroSearchInput"),
-    type: $("typeFilter"), city: $("cityFilter"),
+    city: $("cityFilter"),
     stage: $("stageFilter"), sector: $("sectorFilter"),
     applied: $("appliedRow"), resultLine: $("resultLine"),
     gridRoot: $("gridRoot"), gridCards: $("gridCards"), gridEmpty: $("gridEmpty"),
@@ -122,10 +122,11 @@
   }
   function buildExploreHash() {
     var qs = [];
-    ["q", "type", "city", "stage", "sector"].forEach(function (k) {
+    ["q", "city", "stage", "sector"].forEach(function (k) {
       if (state[k]) qs.push(k + "=" + encodeURIComponent(state[k]));
     });
-    return "#/explore" + (qs.length ? "?" + qs.join("&") : "");
+    var path = state.type === "vc" ? "investors" : "startups";
+    return "#/" + path + (qs.length ? "?" + qs.join("&") : "");
   }
   function go(hash) { location.hash = hash; }
 
@@ -134,24 +135,28 @@
       els.views[k].classList.toggle("hidden", k !== name);
     });
     document.querySelectorAll(".site-nav a").forEach(function (a) {
-      a.classList.toggle("on", name === "explore");
+      var nav = a.getAttribute("data-nav");
+      a.classList.toggle("on", name === "explore" &&
+        ((nav === "investors" && state.type === "vc") ||
+         (nav === "startups" && state.type !== "vc")));
     });
     window.scrollTo(0, 0);
   }
 
   function route() {
     var r = parseHash();
-    if (r.path === "explore") {
-      ["q", "type", "city", "stage", "sector"].forEach(function (k) {
+    if (r.path === "startups" || r.path === "investors" || r.path === "explore") {
+      ["q", "city", "stage", "sector"].forEach(function (k) {
         state[k] = r.params[k] || "";
       });
+      state.type = (r.path === "investors" || r.params.type === "vc") ? "vc" : "startup";
       syncControls();
       showView("explore");
       renderExplore();
     } else if (/^startup\//.test(r.path)) {
       var slug = r.path.split("/")[1];
       if (bySlug[slug]) { showView("profile"); renderProfile(bySlug[slug]); }
-      else go("#/explore");
+      else go("#/startups");
     } else if (r.path === "submit") {
       showView("submit");
       resetSubmit();
@@ -215,24 +220,24 @@
     // delegates
     $("cityGrid").addEventListener("click", function (ev) {
       var t = ev.target.closest("[data-city]");
-      if (t) go("#/explore?city=" + encodeURIComponent(t.getAttribute("data-city")));
+      if (t) go("#/startups?city=" + encodeURIComponent(t.getAttribute("data-city")));
     });
     $("sectorCloud").addEventListener("click", function (ev) {
       var t = ev.target.closest("[data-sector]");
-      if (t) go("#/explore?sector=" + encodeURIComponent(t.getAttribute("data-sector")));
+      if (t) go("#/startups?sector=" + encodeURIComponent(t.getAttribute("data-sector")));
     });
     [$("stageBar"), $("stageLegend")].forEach(function (root) {
       root.addEventListener("click", function (ev) {
         var t = ev.target.closest("[data-stage]");
-        if (t) go("#/explore?stage=" + encodeURIComponent(t.getAttribute("data-stage")));
+        if (t) go("#/startups?stage=" + encodeURIComponent(t.getAttribute("data-stage")));
       });
     });
     $("freshGrid").addEventListener("click", cardClick);
-    $("vcBand").addEventListener("click", function () { go("#/explore?type=vc"); });
+    $("vcBand").addEventListener("click", function () { go("#/investors"); });
     $("heroSearch").addEventListener("submit", function (ev) {
       ev.preventDefault();
       var q = els.heroSearch.value.trim();
-      go(q ? "#/explore?q=" + encodeURIComponent(q) : "#/explore");
+      go(q ? "#/startups?q=" + encodeURIComponent(q) : "#/startups");
     });
   }
 
@@ -275,18 +280,17 @@
   }
   function syncControls() {
     els.search.value = state.q;
-    els.type.value = state.type;
     els.city.value = state.city;
     els.stage.value = state.stage;
     els.sector.value = state.sector;
   }
 
-  var FILTER_LABELS = { q: "search", type: "type", city: "city", stage: "stage", sector: "sector" };
+  var FILTER_LABELS = { q: "search", city: "city", stage: "stage", sector: "sector" };
   function renderApplied() {
     var chips = [];
     Object.keys(FILTER_LABELS).forEach(function (k) {
       if (!state[k]) return;
-      var label = k === "type" ? (state[k] === "vc" ? "Investors" : "Startups") : state[k];
+      var label = state[k];
       if (k === "q") label = "“" + label + "”";
       chips.push('<button class="applied-chip" data-clear="' + k + '">' + esc(label) + '<span class="x">✕</span></button>');
     });
@@ -297,7 +301,7 @@
     var t = ev.target.closest("[data-clear]");
     if (!t) return;
     var k = t.getAttribute("data-clear");
-    if (k === "*") { ["q", "type", "city", "stage", "sector"].forEach(function (f) { state[f] = ""; }); }
+    if (k === "*") { ["q", "city", "stage", "sector"].forEach(function (f) { state[f] = ""; }); }
     else state[k] = "";
     history.replaceState(null, "", buildExploreHash());
     syncControls();
@@ -305,6 +309,10 @@
   });
 
   function renderExplore() {
+    var isVc = state.type === "vc";
+    $("exploreTitle").textContent = isVc ? "Investors" : "Startups";
+    els.stage.classList.toggle("hidden", isVc);
+    els.sector.classList.toggle("hidden", isVc);
     var list = filtered();
     renderApplied();
     var scope = [];
@@ -316,7 +324,7 @@
 
     els.gridCards.innerHTML = list.map(cardHTML).join("");
     if (!list.length) {
-      var sub = state.sector || state.stage || "startups";
+      var sub = state.sector || state.stage || (state.type === "vc" ? "investors" : "startups");
       els.gridEmpty.innerHTML = "<h3>Nothing here yet.</h3>" +
         "<p>No " + esc(sub) + (state.city ? " in " + esc(state.city) : "") + " on the registry yet — " +
         '<a href="#/explore">browse everything</a> or <a href="#/submit">be the first to list one</a>.</p>';
@@ -338,7 +346,7 @@
       renderExplore();
     }, 160);
   });
-  [["type", els.type], ["city", els.city],
+  [["city", els.city],
    ["stage", els.stage], ["sector", els.sector]].forEach(function (pair) {
     pair[1].addEventListener("change", function () {
       state[pair[0]] = pair[1].value;
