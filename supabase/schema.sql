@@ -11,7 +11,7 @@ create table if not exists public.listings (
   id          uuid primary key default gen_random_uuid(),
   slug        text unique,
   name        text not null,
-  type        text not null default 'startup' check (type in ('startup', 'vc')),
+  type        text not null default 'startup' check (type in ('startup', 'vc', 'incubator', 'event')),
   tagline     text not null default '',
   description text not null default '',
   website     text not null default '',
