@@ -4,8 +4,8 @@ window.SL_CONFIG = {
   // Project URL + anon public key from Supabase → Settings → API.
   // The anon key is safe to publish — access is controlled by row-level
   // security in the database. Leave both empty to run from bundled data.
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  supabaseUrl: "https://ofzkkrerikwxpuangqxg.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9memtrcmVyaWt3eHB1YW5ncXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyMDgwMTEsImV4cCI6MjEwMjc4NDAxMX0.yN5e7pibWjOW9ZwvteG29vTNSxgBCNK4gRZUbbnnfh4",
 
   // Optional: endpoint that receives "Submit a startup" POSTs as JSON.
   // Works out of the box with Formspree/Getform/Basin-style form services,
