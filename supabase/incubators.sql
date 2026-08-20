@@ -1,6 +1,11 @@
 -- Incubators & accelerators + investor city fixes.
 -- Run once in the SQL Editor AFTER investor_tags.sql. Safe to re-run.
 
+-- Allow the new listing types (the original constraint only knew startup/vc)
+alter table public.listings drop constraint if exists listings_type_check;
+alter table public.listings add constraint listings_type_check
+  check (type in ('startup', 'vc', 'incubator', 'event'));
+
 -- Gurugram is now in the investor city list — restore the two NCR funds
 update public.listings set city = 'Gurugram'
   where slug in ('elevation-capital', 'titan-capital');
