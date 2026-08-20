@@ -20,6 +20,10 @@
   }
 
   var STAGE_ORDER = ["Pre-seed", "Seed", "Series A", "Series B", "Series C+", "Bootstrapped", "Public", "Acquired"];
+  var INVESTOR_CITIES = ["Bengaluru", "Mumbai", "Delhi", "Pune", "Hyderabad",
+    "Kolkata", "Chennai", "Ahmedabad", "Surat", "Lucknow"];
+  var INVESTOR_CATEGORIES = ["VC Funds", "Angel Networks / Funds", "Family Office",
+    "Private Equities", "Micro PE / VC", "Angels"];
   var STAGE_COLORS = {
     "Pre-seed": "#9db4ff", "Seed": "#5b82ff", "Series A": "#2456f5", "Series B": "#173cba",
     "Series C+": "#0e2a85", "Bootstrapped": "#0fa36b", "Public": "#0b7f54", "Acquired": "#5a6676"
@@ -312,7 +316,19 @@
     var isVc = state.type === "vc";
     $("exploreTitle").textContent = isVc ? "Investors" : "Startups";
     els.stage.classList.toggle("hidden", isVc);
-    els.sector.classList.toggle("hidden", isVc);
+    // per-section filter options
+    if (isVc) {
+      fillSelect(els.city, INVESTOR_CITIES);
+      fillSelect(els.sector, INVESTOR_CATEGORIES);
+      els.sector.options[0].textContent = "Category";
+    } else {
+      var startups = ALL.filter(function (e) { return e.type === "startup"; });
+      fillSelect(els.city, sortedKeys(counts("city", startups)));
+      fillSelect(els.sector, sortedKeys(counts("sector", startups)));
+      els.sector.options[0].textContent = "Sector";
+    }
+    els.city.value = state.city;
+    els.sector.value = state.sector;
     var list = filtered();
     renderApplied();
     var scope = [];
