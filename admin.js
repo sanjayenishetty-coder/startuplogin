@@ -157,6 +157,7 @@
     "founder's linkedin": "linkedin", "founder linkedin profile": "linkedin",
     founded: "founded", "founded year": "founded",
     founders: "founders", founder: "founders",
+    timing: "timing", "when does it happen?": "timing",
     submittedat: "submittedAt", date: "submittedAt"
   };
 
@@ -230,7 +231,7 @@
   });
 
   /* ---------- editor ---------- */
-  var FIELDS = ["name", "website", "city", "sector", "stage", "founded", "founders", "linkedin", "email", "tagline", "description"];
+  var FIELDS = ["name", "website", "city", "sector", "stage", "founded", "timing", "founders", "linkedin", "email", "tagline", "description"];
   function selectItem(i) {
     selected = i;
     var q = queue[i];
@@ -282,6 +283,7 @@
       city: cityKey || (d.city || ""), state: info ? info[0] : (d.city ? "India" : ""),
       sector: d.sector || "Others", industry: "",
       stage: d.stage || "", founded: (d.founded.match(/\d{4}/) || [""])[0],
+      timing: d.timing || "",
       founders: d.founders || "", investors: "", funding: "",
       slug: slug
     };
