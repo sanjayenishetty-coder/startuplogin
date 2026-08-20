@@ -186,15 +186,18 @@
     $("statStrip").innerHTML =
       '<span><span class="live-dot"></span><b>' + startups.length + "</b> startups</span>" +
       "<span><b>" + vcs.length + "</b> investors</span>" +
-      "<span><b>" + Object.keys(cityCount).length + "</b> cities</span>" +
+      "<span><b>" + STARTUP_CITIES.filter(function (c) { return cityCount[c]; }).length + "</b> cities</span>" +
       "<span><b>" + Object.keys(sectorCount).length + "</b> sectors</span>" +
       "<span>updated " + new Date().toLocaleDateString("en-IN", { month: "short", year: "numeric" }).toUpperCase() + "</span>";
 
-    $("cityGrid").innerHTML = sortedKeys(cityCount).slice(0, 10).map(function (c) {
+    var featured = STARTUP_CITIES.slice().sort(function (a, b) {
+      return (cityCount[b] || 0) - (cityCount[a] || 0);
+    });
+    $("cityGrid").innerHTML = featured.map(function (c) {
       return '<button class="city-tile" data-city="' + esc(c) + '">' +
         '<span class="city-code">' + esc(cityCode(c)) + "</span>" +
         '<span class="city-name">' + esc(c) + "</span>" +
-        '<span class="city-count">' + cityCount[c] + " startup" + (cityCount[c] === 1 ? "" : "s") + "</span>" +
+        '<span class="city-count">' + (cityCount[c] || 0) + " startup" + (cityCount[c] === 1 ? "" : "s") + "</span>" +
         "</button>";
     }).join("");
 
