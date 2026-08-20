@@ -123,8 +123,10 @@
     <div class="submit-inner">
       <p class="eyebrow">FREE LISTING</p>
       <div class="view-toggle submit-mode" role="tablist" aria-label="Listing type">
-        <button id="modeStartupBtn" class="active" role="tab">Startup</button>
-        <button id="modeInvestorBtn" role="tab">Investor</button>
+        <button id="modeStartupBtn" class="active" role="tab" data-mode="startup">Startup</button>
+        <button id="modeInvestorBtn" role="tab" data-mode="investor">Investor</button>
+        <button id="modeIncubatorBtn" role="tab" data-mode="incubator">Incubator / Accelerator</button>
+        <button id="modeEventBtn" role="tab" data-mode="event">Event</button>
       </div>
       <h1 id="submitTitle">Log your startup in<span class="accent">.</span></h1>
       <p class="submit-sub">Only the name and a one-line description are required — fill in
@@ -186,8 +188,11 @@
               <option>Public</option><option>Acquired</option>
             </select>
           </label>
-          <label>Founded year
+          <label id="foundedField">Founded year
             <input name="founded" inputmode="numeric" placeholder="e.g. 2023" maxlength="4">
+          </label>
+          <label id="timingField" class="hidden">When does it happen?
+            <input name="timing" placeholder="e.g. Annual · October, or 12–14 Mar 2027" maxlength="60">
           </label>
         </div>
         <div class="form-row">

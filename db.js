@@ -15,7 +15,7 @@
   }
 
   var PUBLIC_COLS = "slug,name,type,tagline,description,website,city,state," +
-    "sector,industry,stage,founded,founders,investors,funding,lat,lng";
+    "sector,industry,stage,founded,founders,investors,funding,lat,lng,timing";
 
   window.SL_DB = {
     enabled: !!client,

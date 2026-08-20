@@ -24,6 +24,7 @@ create table if not exists public.listings (
   founders    text not null default '',
   investors   text not null default '',
   funding     text not null default '',
+  timing      text not null default '',
   lat         double precision,
   lng         double precision,
   status      text not null default 'pending' check (status in ('pending', 'live', 'rejected')),

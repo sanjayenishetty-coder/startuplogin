@@ -168,7 +168,7 @@
     } else if (r.path === "submit") {
       showView("submit");
       resetSubmit();
-      applySubmitMode(r.params.as === "investor" ? "investor" : "startup");
+      applySubmitMode(SUBMIT_MODES[r.params.as] ? r.params.as : "startup");
     } else {
       showView("home");
     }
@@ -320,8 +320,14 @@
 
   function renderExplore() {
     var t = state.type;
+    var CTA = {
+      startup: ["#/submit", "list your startup →"],
+      vc: ["#/submit?as=investor", "list as an investor →"],
+      incubator: ["#/submit?as=incubator", "list your incubator or accelerator →"],
+      event: ["#/submit?as=event", "list an event →"]
+    };
     $("exploreTitle").innerHTML = (SECTIONS[t] || SECTIONS.startup).title +
-      (t === "vc" ? ' <a class="rail-more" href="#/submit?as=investor">list as an investor →</a>' : "");
+      ' <a class="rail-more" href="' + CTA[t][0] + '">' + CTA[t][1] + "</a>";
     els.stage.classList.toggle("hidden", t !== "startup");
     els.sector.classList.toggle("hidden", t === "event");
     var subset = ALL.filter(function (e) { return e.type === t; });
@@ -461,6 +467,39 @@
     "Traveltech", "Legaltech", "Spacetech", "Manufacturing", "IT Services"];
   var STARTUP_CITIES = ["Bengaluru", "Hyderabad", "Mumbai", "Delhi", "Gurugram",
     "Noida", "Pune", "Chennai", "Ahmedabad", "Jaipur"];
+  var SUBMIT_MODES = {
+    startup: {
+      type: "startup", title: "Log your startup in",
+      name: "Company name", tagHint: "what you do, in a sentence",
+      cities: STARTUP_CITIES, sectorLabel: "Sector", sectors: STARTUP_SECTORS,
+      sectorPlaceholder: "Select a sector…", stage: true, timing: false,
+      founders: "Founder name(s)", linkedin: "Founder's LinkedIn"
+    },
+    investor: {
+      type: "vc", title: "List as an investor",
+      name: "Fund / firm name", tagHint: "what you invest in, in a sentence",
+      cities: null /* INVESTOR_CITIES */, sectorLabel: "Category",
+      sectors: INVESTOR_CATEGORIES, sectorPlaceholder: "Select a category…",
+      stage: false, timing: false,
+      founders: "Partner name(s)", linkedin: "Partner's LinkedIn"
+    },
+    incubator: {
+      type: "incubator", title: "List your incubator or accelerator",
+      name: "Incubator / accelerator name", tagHint: "what you offer founders, in a sentence",
+      cities: STARTUP_CITIES, sectorLabel: "Category",
+      sectors: ["Incubator", "Accelerator"], sectorPlaceholder: "Select a category…",
+      stage: false, timing: false,
+      founders: "Contact person(s)", linkedin: "Contact's LinkedIn"
+    },
+    event: {
+      type: "event", title: "List an event",
+      name: "Event name", tagHint: "what the event is, in a sentence",
+      cities: STARTUP_CITIES, sectorLabel: "Event type",
+      sectors: ["Conference", "Summit", "Meetup", "Demo Day", "Hackathon"],
+      sectorPlaceholder: "Select a type…", stage: false, timing: true,
+      founders: "Organiser", linkedin: "Organiser's LinkedIn"
+    }
+  };
   function setOptions(sel, values, placeholder, otherLabel) {
     while (sel.options.length) sel.remove(0);
     var p = document.createElement("option");
@@ -475,35 +514,30 @@
   }
   function applySubmitMode(mode) {
     submitMode = mode;
-    var inv = mode === "investor";
-    $("modeStartupBtn").classList.toggle("active", !inv);
-    $("modeInvestorBtn").classList.toggle("active", inv);
-    $("submitTitle").innerHTML = inv
-      ? 'List as an investor<span class="accent">.</span>'
-      : 'Log your startup in<span class="accent">.</span>';
-    $("lblName").textContent = inv ? "Fund / firm name" : "Company name";
-    $("lblTagHint").textContent = inv ? "what you invest in, in a sentence" : "what you do, in a sentence";
-    $("lblSector").textContent = inv ? "Category" : "Sector";
-    $("lblFounders").textContent = inv ? "Partner name(s)" : "Founder name(s)";
-    $("lblLinkedin").textContent = inv ? "Partner's LinkedIn" : "Founder's LinkedIn";
-    $("stageField").classList.toggle("hidden", inv);
-    if (inv) {
-      setOptions($("citySelect"), INVESTOR_CITIES, "Select your city…", "Other — add your city");
-      setOptions($("sectorSelect"), INVESTOR_CATEGORIES, "Select a category…", "Other — tell us");
-    } else {
-      setOptions($("citySelect"), STARTUP_CITIES, "Select your city…", "Other — add your city");
-      setOptions($("sectorSelect"), STARTUP_SECTORS, "Select a sector…", "Other — tell us");
-    }
+    var m = SUBMIT_MODES[mode];
+    document.querySelectorAll(".submit-mode button").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-mode") === mode);
+    });
+    $("submitTitle").innerHTML = m.title + '<span class="accent">.</span>';
+    $("lblName").textContent = m.name;
+    $("lblTagHint").textContent = m.tagHint;
+    $("lblSector").textContent = m.sectorLabel;
+    $("lblFounders").textContent = m.founders;
+    $("lblLinkedin").textContent = m.linkedin;
+    $("stageField").classList.toggle("hidden", !m.stage);
+    $("foundedField").classList.toggle("hidden", m.timing);
+    $("timingField").classList.toggle("hidden", !m.timing);
+    setOptions($("citySelect"), m.cities || INVESTOR_CITIES, "Select your city…", "Other — add your city");
+    setOptions($("sectorSelect"), m.sectors, m.sectorPlaceholder, "Other — tell us");
     $("cityOther").classList.add("hidden");
     $("sectorOther").classList.add("hidden");
   }
-  $("modeStartupBtn").addEventListener("click", function () {
-    history.replaceState(null, "", "#/submit");
-    applySubmitMode("startup");
-  });
-  $("modeInvestorBtn").addEventListener("click", function () {
-    history.replaceState(null, "", "#/submit?as=investor");
-    applySubmitMode("investor");
+  document.querySelectorAll(".submit-mode button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var mode = b.getAttribute("data-mode");
+      history.replaceState(null, "", mode === "startup" ? "#/submit" : "#/submit?as=" + mode);
+      applySubmitMode(mode);
+    });
   });
 
   [["citySelect", "cityOther"], ["sectorSelect", "sectorOther"]].forEach(function (pair) {
@@ -520,10 +554,11 @@
     var city = f.city.value === "Other" ? f.cityOther.value.trim() : f.city.value;
     var sector = f.sector.value === "Other" ? f.sectorOther.value.trim() : f.sector.value;
     var data = {
-      type: submitMode === "investor" ? "vc" : "startup",
+      type: SUBMIT_MODES[submitMode].type,
       name: f.name.value.trim(), website: f.website.value.trim(),
       tagline: f.tagline.value.trim(), city: city,
-      sector: sector, stage: submitMode === "investor" ? "" : f.stage.value,
+      sector: sector, stage: submitMode === "startup" ? f.stage.value : "",
+      timing: submitMode === "event" ? f.timing.value.trim() : "",
       founded: f.founded.value.trim(), founders: f.founders.value.trim(),
       linkedin: f.linkedin.value.trim(), email: f.email.value.trim(),
       submittedAt: new Date().toISOString()
@@ -555,7 +590,7 @@
         type: data.type,
         name: data.name, tagline: data.tagline, website: data.website,
         city: data.city, sector: data.sector, stage: data.stage,
-        founded: data.founded, founders: data.founders
+        founded: data.founded, founders: data.founders, timing: data.timing
       };
       DB.submit(fields, contact).then(ok).catch(function () {
         msg.textContent = "Couldn't send your submission — check your connection and try again.";
@@ -607,7 +642,10 @@
     if (!data.some(function (e) { return e.type === "incubator"; })) {
       data = data.concat(window.INCUBATOR_DATA || []);
     }
-    ALL = data.concat(window.EVENT_DATA || []);
+    if (!data.some(function (e) { return e.type === "event"; })) {
+      data = data.concat(window.EVENT_DATA || []);
+    }
+    ALL = data;
     bySlug = {};
     ALL.forEach(function (e) { bySlug[e.slug] = e; });
     initFilters();
