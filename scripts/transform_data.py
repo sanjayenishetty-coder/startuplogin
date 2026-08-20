@@ -27,6 +27,8 @@ import json
 import re
 import sys
 
+SKIP_LOCATIONS = {"boston", "usa", "us", "uk", "london", "singapore", "dubai"}
+
 CITY_MAP = {
     "bengaluru": ("Bengaluru", "Karnataka", 12.9716, 77.5946),
     "bangalore": ("Bengaluru", "Karnataka", 12.9716, 77.5946),
@@ -76,7 +78,6 @@ CITY_MAP = {
     "ranchi": ("Ranchi", "Jharkhand", 23.3441, 85.3096),
     "goa": ("Goa", "Goa", 15.4909, 73.8278),
     "panaji": ("Goa", "Goa", 15.4909, 73.8278),
-    "boston": ("Boston", "Outside India", 42.3601, -71.0589),
 }
 
 STAGE_MAP = {
@@ -281,6 +282,8 @@ def parse_file(path):
             continue
         founded = re.sub(r"\D", "", clean_text(get(r, "founded")))[:4]
         loc_key = re.sub(r"\s+", " ", clean_text(get(r, "location")).lower())
+        if loc_key in SKIP_LOCATIONS:
+            loc_key = ""
         city, state, lat, lng = CITY_MAP.get(loc_key, ("", "", None, None))
         if not city and loc_key and loc_key != "na":
             city, state = clean_text(get(r, "location")).title(), "India"
