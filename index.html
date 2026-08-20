@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,7 +21,6 @@
   <a class="wordmark" href="#/">startuplogin<span class="cursor">_</span></a>
   <nav class="site-nav">
     <a href="#/explore" data-nav="explore">Explore</a>
-    <a href="#/explore?view=map" data-nav="map">Map</a>
   </nav>
   <div class="head-actions">
     <button id="themeToggle" class="theme-toggle" aria-label="Switch theme" title="Switch theme">
@@ -103,14 +101,9 @@
         <option value="startup">Startups</option>
         <option value="vc">Investors</option>
       </select>
-      <select id="stateFilter" class="filter-select" aria-label="State"><option value="">State</option></select>
       <select id="cityFilter" class="filter-select" aria-label="City"><option value="">City</option></select>
       <select id="stageFilter" class="filter-select" aria-label="Stage"><option value="">Stage</option></select>
       <select id="sectorFilter" class="filter-select" aria-label="Sector"><option value="">Sector</option></select>
-      <div class="view-toggle" role="tablist" aria-label="View">
-        <button id="listViewBtn" class="active" role="tab">List</button>
-        <button id="mapViewBtn" role="tab">Map</button>
-      </div>
     </div>
     <div class="applied-row" id="appliedRow"></div>
     <p class="result-line mono" id="resultLine"></p>
@@ -119,7 +112,6 @@
       <div id="gridCards" class="card-grid wide"></div>
       <div id="gridEmpty" class="grid-empty hidden"></div>
     </div>
-    <div id="mapRoot" class="map-root hidden"><div id="map"></div></div>
   </section>
 
   <!-- ============ PROFILE ============ -->
@@ -156,11 +148,30 @@
         </label>
         <div class="form-row">
           <label>City
-            <input name="city" list="cityList" placeholder="e.g. Bengaluru">
-            <datalist id="cityList"></datalist>
+            <select name="city" id="citySelect">
+              <option value="">Select your city…</option>
+              <option>Bengaluru</option><option>Hyderabad</option><option>Mumbai</option>
+              <option>Delhi</option><option>Gurugram</option><option>Noida</option>
+              <option>Pune</option><option>Chennai</option><option>Ahmedabad</option>
+              <option>Jaipur</option>
+              <option value="Other">Other — add your city</option>
+            </select>
+            <input name="cityOther" id="cityOther" class="other-input hidden" placeholder="Type your city" maxlength="40" aria-label="Your city">
           </label>
           <label>Sector
-            <select name="sector"><option value="">Select a sector…</option></select>
+            <select name="sector" id="sectorSelect">
+              <option value="">Select a sector…</option>
+              <option>AI</option><option>SaaS</option><option>Fintech</option>
+              <option>Edtech</option><option>Healthtech</option><option>Agritech</option>
+              <option>D2C</option><option>E-commerce</option><option>Consumer</option>
+              <option>Deeptech</option><option>Cybersecurity</option><option>Gaming</option>
+              <option>Sports</option><option>Cleantech</option><option>Logistics</option>
+              <option>HRtech</option><option>Foodtech</option><option>Media &amp; Adtech</option>
+              <option>Proptech</option><option>Traveltech</option><option>Legaltech</option>
+              <option>Spacetech</option><option>Manufacturing</option><option>IT Services</option>
+              <option value="Other">Other — tell us</option>
+            </select>
+            <input name="sectorOther" id="sectorOther" class="other-input hidden" placeholder="Describe your sector" maxlength="60" aria-label="Your sector">
           </label>
         </div>
         <div class="form-row">
@@ -172,10 +183,21 @@
               <option>Public</option><option>Acquired</option>
             </select>
           </label>
-          <label>Your email <small class="hint">so we can follow up</small>
-            <input name="email" type="email" placeholder="you@example.com">
+          <label>Founded year
+            <input name="founded" inputmode="numeric" placeholder="e.g. 2023" maxlength="4">
           </label>
         </div>
+        <div class="form-row">
+          <label>Founder name(s)
+            <input name="founders" placeholder="e.g. Anita Rao, Vikram Shah" maxlength="120">
+          </label>
+          <label>Founder's LinkedIn
+            <input name="linkedin" type="url" placeholder="https://linkedin.com/in/…">
+          </label>
+        </div>
+        <label>Your email <small class="hint">we'll notify you here once you're listed</small>
+          <input name="email" type="email" placeholder="you@example.com">
+        </label>
         <div class="form-actions">
           <button type="submit" class="btn-cta big">Submit for review</button>
           <a href="#/" class="cancel-link">Cancel</a>
@@ -196,8 +218,6 @@
 <div id="toast" class="toast" role="status"></div>
 
 <script src="config.js"></script>
-<script src="vendor/leaflet/leaflet.js"></script>
-<script src="vendor/markercluster/leaflet.markercluster.js"></script>
 <script src="data/startups.js"></script>
 <script src="data/vcs.js"></script>
 <script src="app.js"></script>

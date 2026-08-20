@@ -15,14 +15,6 @@
     Ahmednagar: "ANR", Chandigarh: "IXC", Nashik: "ISK", Kochi: "COK",
     Thiruvananthapuram: "TRV", Boston: "BOS", Kota: "KTT", Goa: "GOI"
   };
-  var CITY_COORDS = {
-    Bengaluru: [12.9716, 77.5946], Hyderabad: [17.426, 78.452], Mumbai: [19.076, 72.8777],
-    Pune: [18.5204, 73.8567], Delhi: [28.6139, 77.209], Gurugram: [28.4595, 77.0266],
-    Noida: [28.5355, 77.391], Chennai: [13.0827, 80.2707], Jaipur: [26.9124, 75.7873],
-    Ahmedabad: [23.0225, 72.5714], Indore: [22.7196, 75.8577], Kolkata: [22.5726, 88.3639],
-    Lucknow: [26.8467, 80.9462], Kanpur: [26.4499, 80.3319], Surat: [21.1702, 72.8311],
-    Bhubaneswar: [20.2961, 85.8245], Chandigarh: [30.7333, 76.7794], Kota: [25.2138, 75.8648]
-  };
   function cityCode(city) {
     return CITY_CODES[city] || (city || "IND").replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase();
   }
@@ -34,18 +26,16 @@
   };
 
   /* ---------- state ---------- */
-  var state = { q: "", type: "", state: "", city: "", stage: "", sector: "", view: "list" };
+  var state = { q: "", type: "", city: "", stage: "", sector: "" };
 
   var $ = function (id) { return document.getElementById(id); };
   var els = {
     views: { home: $("homeView"), explore: $("exploreView"), profile: $("profileView"), submit: $("submitView") },
     search: $("searchInput"), heroSearch: $("heroSearchInput"),
-    type: $("typeFilter"), st: $("stateFilter"), city: $("cityFilter"),
+    type: $("typeFilter"), city: $("cityFilter"),
     stage: $("stageFilter"), sector: $("sectorFilter"),
-    listBtn: $("listViewBtn"), mapBtn: $("mapViewBtn"),
     applied: $("appliedRow"), resultLine: $("resultLine"),
     gridRoot: $("gridRoot"), gridCards: $("gridCards"), gridEmpty: $("gridEmpty"),
-    mapRoot: $("mapRoot"),
     profileBody: $("profileBody"),
     submitForm: $("submitForm"), submitMsg: $("submitMsg"), dupHint: $("dupHint"),
     statusTrack: $("statusTrack"), toast: $("toast")
@@ -94,7 +84,6 @@
   /* ---------- filtering ---------- */
   function matches(e) {
     if (state.type && e.type !== state.type) return false;
-    if (state.state && e.state !== state.state) return false;
     if (state.city && e.city !== state.city) return false;
     if (state.stage && e.stage !== state.stage) return false;
     if (state.sector && e.sector !== state.sector) return false;
@@ -133,10 +122,9 @@
   }
   function buildExploreHash() {
     var qs = [];
-    ["q", "type", "state", "city", "stage", "sector"].forEach(function (k) {
+    ["q", "type", "city", "stage", "sector"].forEach(function (k) {
       if (state[k]) qs.push(k + "=" + encodeURIComponent(state[k]));
     });
-    if (state.view === "map") qs.push("view=map");
     return "#/explore" + (qs.length ? "?" + qs.join("&") : "");
   }
   function go(hash) { location.hash = hash; }
@@ -146,9 +134,7 @@
       els.views[k].classList.toggle("hidden", k !== name);
     });
     document.querySelectorAll(".site-nav a").forEach(function (a) {
-      var nav = a.getAttribute("data-nav");
-      a.classList.toggle("on", (name === "explore" &&
-        ((nav === "map" && state.view === "map") || (nav === "explore" && state.view !== "map"))));
+      a.classList.toggle("on", name === "explore");
     });
     window.scrollTo(0, 0);
   }
@@ -156,10 +142,9 @@
   function route() {
     var r = parseHash();
     if (r.path === "explore") {
-      ["q", "type", "state", "city", "stage", "sector"].forEach(function (k) {
+      ["q", "type", "city", "stage", "sector"].forEach(function (k) {
         state[k] = r.params[k] || "";
       });
-      state.view = r.params.view === "map" ? "map" : "list";
       syncControls();
       showView("explore");
       renderExplore();
@@ -282,40 +267,21 @@
     sel.value = values.indexOf(current) !== -1 ? current : "";
   }
   function initFilters() {
-    fillSelect(els.st, sortedKeys(counts("state")));
     fillSelect(els.city, sortedKeys(counts("city")));
     fillSelect(els.stage, STAGE_ORDER.filter(function (s) {
       return ALL.some(function (e) { return e.stage === s; });
     }));
     fillSelect(els.sector, sortedKeys(counts("sector")));
-    var dl = $("cityList");
-    sortedKeys(counts("city")).forEach(function (c) {
-      var o = document.createElement("option"); o.value = c; dl.appendChild(o);
-    });
-    var secSel = els.submitForm.querySelector('select[name="sector"]');
-    sortedKeys(counts("sector")).filter(function (s) {
-      return s !== "Venture Capital" && s !== "Incubator";
-    }).forEach(function (s) {
-      var o = document.createElement("option"); o.textContent = s; secSel.appendChild(o);
-    });
   }
   function syncControls() {
     els.search.value = state.q;
     els.type.value = state.type;
-    els.st.value = state.state;
-    if (state.state) {
-      fillSelect(els.city, sortedKeys(counts("city", ALL.filter(function (e) { return e.state === state.state; }))));
-    } else {
-      fillSelect(els.city, sortedKeys(counts("city")));
-    }
     els.city.value = state.city;
     els.stage.value = state.stage;
     els.sector.value = state.sector;
-    els.listBtn.classList.toggle("active", state.view !== "map");
-    els.mapBtn.classList.toggle("active", state.view === "map");
   }
 
-  var FILTER_LABELS = { q: "search", type: "type", state: "state", city: "city", stage: "stage", sector: "sector" };
+  var FILTER_LABELS = { q: "search", type: "type", city: "city", stage: "stage", sector: "sector" };
   function renderApplied() {
     var chips = [];
     Object.keys(FILTER_LABELS).forEach(function (k) {
@@ -331,7 +297,7 @@
     var t = ev.target.closest("[data-clear]");
     if (!t) return;
     var k = t.getAttribute("data-clear");
-    if (k === "*") { ["q", "type", "state", "city", "stage", "sector"].forEach(function (f) { state[f] = ""; }); }
+    if (k === "*") { ["q", "type", "city", "stage", "sector"].forEach(function (f) { state[f] = ""; }); }
     else state[k] = "";
     history.replaceState(null, "", buildExploreHash());
     syncControls();
@@ -343,28 +309,19 @@
     renderApplied();
     var scope = [];
     if (state.city) scope.push(state.city);
-    else if (state.state) scope.push(state.state);
     if (state.sector) scope.push(state.sector);
     if (state.stage) scope.push(state.stage);
     els.resultLine.innerHTML = "showing <b>" + list.length + "</b> of " + ALL.length +
       " entries" + (scope.length ? " · " + esc(scope.join(" · ")) : "");
 
-    els.gridRoot.classList.toggle("hidden", state.view === "map");
-    els.mapRoot.classList.toggle("hidden", state.view !== "map");
-
-    if (state.view === "map") {
-      ensureMap();
-      renderMap(list);
-    } else {
-      els.gridCards.innerHTML = list.map(cardHTML).join("");
-      if (!list.length) {
-        var sub = state.sector || state.stage || "startups";
-        els.gridEmpty.innerHTML = "<h3>Nothing here yet.</h3>" +
-          "<p>No " + esc(sub) + (state.city ? " in " + esc(state.city) : "") + " on the registry yet — " +
-          '<a href="#/explore">browse everything</a> or <a href="#/submit">be the first to list one</a>.</p>';
-      }
-      els.gridEmpty.classList.toggle("hidden", list.length > 0);
+    els.gridCards.innerHTML = list.map(cardHTML).join("");
+    if (!list.length) {
+      var sub = state.sector || state.stage || "startups";
+      els.gridEmpty.innerHTML = "<h3>Nothing here yet.</h3>" +
+        "<p>No " + esc(sub) + (state.city ? " in " + esc(state.city) : "") + " on the registry yet — " +
+        '<a href="#/explore">browse everything</a> or <a href="#/submit">be the first to list one</a>.</p>';
     }
+    els.gridEmpty.classList.toggle("hidden", list.length > 0);
   }
   els.gridCards.addEventListener("click", cardClick);
   els.gridCards.addEventListener("keydown", function (ev) {
@@ -381,93 +338,15 @@
       renderExplore();
     }, 160);
   });
-  [["type", els.type], ["state", els.st], ["city", els.city],
+  [["type", els.type], ["city", els.city],
    ["stage", els.stage], ["sector", els.sector]].forEach(function (pair) {
     pair[1].addEventListener("change", function () {
       state[pair[0]] = pair[1].value;
-      if (pair[0] === "state") {
-        var cities = sortedKeys(counts("city", state.state ? ALL.filter(function (e) { return e.state === state.state; }) : null));
-        fillSelect(els.city, cities);
-        if (cities.indexOf(state.city) === -1) state.city = "";
-      }
       history.replaceState(null, "", buildExploreHash());
       syncControls();
       renderExplore();
-      if (state.view === "map") zoomToSelection();
     });
   });
-  els.listBtn.addEventListener("click", function () {
-    state.view = "list";
-    history.replaceState(null, "", buildExploreHash());
-    syncControls(); renderExplore();
-  });
-  els.mapBtn.addEventListener("click", function () {
-    state.view = "map";
-    history.replaceState(null, "", buildExploreHash());
-    syncControls(); renderExplore();
-  });
-
-  /* ---------- map ---------- */
-  var map, cluster, labelLayer;
-  function ensureMap() {
-    if (map) { setTimeout(function () { map.invalidateSize(); }, 60); return; }
-    map = L.map("map", { zoomControl: false }).setView([21.8, 79.5], 5);
-    L.control.zoom({ position: "bottomright" }).addTo(map);
-    L.tileLayer(CFG.tileUrl, { attribution: CFG.tileAttribution, maxZoom: 19, subdomains: "abcd" }).addTo(map);
-    labelLayer = L.layerGroup().addTo(map);
-    Object.keys(CITY_COORDS).forEach(function (c) {
-      L.marker(CITY_COORDS[c], {
-        icon: L.divIcon({
-          html: '<div class="city-label">' + esc(cityCode(c)) + " · " + esc(c.toUpperCase()) + "</div>",
-          className: "", iconSize: [120, 16], iconAnchor: [-14, 8]
-        }),
-        interactive: false, keyboard: false
-      }).addTo(labelLayer);
-    });
-    cluster = L.markerClusterGroup({
-      showCoverageOnHover: false,
-      maxClusterRadius: 46,
-      spiderfyOnMaxZoom: true,
-      iconCreateFunction: function (c) {
-        var n = c.getChildCount();
-        var size = n < 10 ? 34 : n < 50 ? 42 : 50;
-        return L.divIcon({
-          html: '<div class="cluster" style="width:' + size + "px;height:" + size + 'px">' + n + "</div>",
-          className: "", iconSize: [size, size]
-        });
-      }
-    });
-    map.addLayer(cluster);
-  }
-  function renderMap(list) {
-    if (!cluster) return;
-    cluster.clearLayers();
-    cluster.addLayers(list.filter(function (e) { return e.lat != null; }).map(function (e) {
-      var letter = e.name.charAt(0).toUpperCase();
-      var d = e.website ? domainOf(e.website) : "";
-      var inner = '<div class="avatar" style="background:' + colorFor(e.name) + '">' +
-        (d ? '<img src="https://www.google.com/s2/favicons?domain=' + encodeURIComponent(d) +
-          '&sz=64" alt="" onerror="this.remove()" style="position:absolute;inset:0">' : "") + letter + "</div>";
-      var m = L.marker([e.lat, e.lng], {
-        icon: L.divIcon({
-          html: '<div class="pin" title="' + esc(e.name) + '" style="position:relative">' + inner + "</div>",
-          className: "", iconSize: [36, 36], iconAnchor: [18, 18]
-        }),
-        title: e.name
-      });
-      m.on("click", function () { go("#/startup/" + e.slug); });
-      return m;
-    }));
-  }
-  function zoomToSelection() {
-    if (!map) return;
-    var pts = filtered().filter(function (e) { return e.lat != null; });
-    if ((state.city || state.state) && pts.length) {
-      map.fitBounds(L.latLngBounds(pts.map(function (e) { return [e.lat, e.lng]; })).pad(0.25), { maxZoom: 12 });
-    } else if (!state.city && !state.state) {
-      map.setView([21.8, 79.5], 5);
-    }
-  }
 
   /* ---------- profile ---------- */
   function renderProfile(e) {
@@ -517,6 +396,8 @@
     els.submitForm.reset();
     els.submitMsg.classList.add("hidden");
     els.dupHint.classList.add("hidden");
+    $("cityOther").classList.add("hidden");
+    $("sectorOther").classList.add("hidden");
     els.statusTrack.querySelectorAll("li").forEach(function (li, i) {
       li.classList.toggle("on", i === 0);
       li.classList.remove("done");
@@ -535,13 +416,25 @@
       els.dupHint.classList.add("hidden");
     }
   });
+  [["citySelect", "cityOther"], ["sectorSelect", "sectorOther"]].forEach(function (pair) {
+    $(pair[0]).addEventListener("change", function () {
+      var other = $(pair[1]);
+      other.classList.toggle("hidden", this.value !== "Other");
+      if (this.value === "Other") other.focus();
+    });
+  });
+
   els.submitForm.addEventListener("submit", function (ev) {
     ev.preventDefault();
     var f = els.submitForm;
+    var city = f.city.value === "Other" ? f.cityOther.value.trim() : f.city.value;
+    var sector = f.sector.value === "Other" ? f.sectorOther.value.trim() : f.sector.value;
     var data = {
       name: f.name.value.trim(), website: f.website.value.trim(),
-      tagline: f.tagline.value.trim(), city: f.city.value.trim(),
-      sector: f.sector.value, stage: f.stage.value, email: f.email.value.trim(),
+      tagline: f.tagline.value.trim(), city: city,
+      sector: sector, stage: f.stage.value,
+      founded: f.founded.value.trim(), founders: f.founders.value.trim(),
+      linkedin: f.linkedin.value.trim(), email: f.email.value.trim(),
       submittedAt: new Date().toISOString()
     };
     var msg = els.submitMsg;
@@ -559,9 +452,9 @@
       var steps = els.statusTrack.querySelectorAll("li");
       steps[0].classList.remove("on"); steps[0].classList.add("done");
       steps[1].classList.add("on");
-      msg.innerHTML = "<b>" + esc(data.name) + "</b> is in the review queue. " +
-        "Listings usually go live within a few days — we'll email you" +
-        (data.email ? " at " + esc(data.email) : "") + " when it's up.";
+      msg.innerHTML = "<b>" + esc(data.name) + "</b> is in the review queue and will be " +
+        "live on the registry within 24 hours. We'll send you an email" +
+        (data.email ? " at " + esc(data.email) : "") + " once it's listed.";
       msg.classList.remove("hidden");
       toast("submission received");
     }

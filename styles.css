@@ -813,3 +813,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .filter-select { max-width: none; flex: 1 1 40%; }
   .site-foot a { margin-left: 0; }
 }
+
+#submitForm .other-input { margin-top: 8px; }
