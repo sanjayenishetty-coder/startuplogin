@@ -136,6 +136,10 @@
     ["q", "city", "stage", "sector"].forEach(function (k) {
       if (state[k]) qs.push(k + "=" + encodeURIComponent(state[k]));
     });
+    if (state.trending && state.sector === "Spacetech") {
+      var tqs = qs.filter(function (p) { return p.indexOf("sector=") !== 0; });
+      return "#/trending/spacetech" + (tqs.length ? "?" + tqs.join("&") : "");
+    }
     var path = (SECTIONS[state.type] || SECTIONS.startup).path;
     return "#/" + path + (qs.length ? "?" + qs.join("&") : "");
   }
@@ -153,11 +157,20 @@
 
   function route() {
     var r = parseHash();
-    if (PATH_TO_TYPE[r.path]) {
+    if (r.path === "trending/spacetech") {
+      ["q", "city", "stage"].forEach(function (k) { state[k] = r.params[k] || ""; });
+      state.type = "startup";
+      state.sector = "Spacetech";
+      state.trending = true;
+      syncControls();
+      showView("explore");
+      renderExplore();
+    } else if (PATH_TO_TYPE[r.path]) {
       ["q", "city", "stage", "sector"].forEach(function (k) {
         state[k] = r.params[k] || "";
       });
       state.type = r.params.type === "vc" ? "vc" : PATH_TO_TYPE[r.path];
+      state.trending = false;
       syncControls();
       showView("explore");
       renderExplore();
@@ -303,6 +316,7 @@
     var chips = [];
     Object.keys(FILTER_LABELS).forEach(function (k) {
       if (!state[k]) return;
+      if (k === "sector" && state.trending) return;
       var label = state[k];
       if (k === "q") label = "“" + label + "”";
       chips.push('<button class="applied-chip" data-clear="' + k + '">' + esc(label) + '<span class="x">✕</span></button>');
@@ -329,10 +343,22 @@
       incubator: ["#/submit?as=incubator", "list your incubator or accelerator →"],
       event: ["#/submit?as=event", "list an event →"]
     };
-    $("exploreTitle").innerHTML = (SECTIONS[t] || SECTIONS.startup).title +
-      ' <a class="rail-more" href="' + CTA[t][0] + '">' + CTA[t][1] + "</a>";
+    var spaceCount = ALL.filter(function (e) { return e.type === "startup" && e.sector === "Spacetech"; }).length;
+    $("trendBanner").classList.toggle("hidden", !(t === "startup" && !state.trending));
+    $("trendCount").textContent = spaceCount;
+    $("trendNote").classList.toggle("hidden", !state.trending);
+    if (state.trending) {
+      $("trendNote").innerHTML = "India's space sector is on a tear — <b>440+ space startups</b> registered, " +
+        "private investment past <b>$618M</b> and over <b>$1B</b> raised to date, led from Bengaluru, " +
+        "Hyderabad and Chennai. These are the ventures building it.";
+    }
+    $("exploreTitle").innerHTML = state.trending
+      ? '🚀 Spacetech <span class="trend-label" style="vertical-align:middle">TRENDING</span>' +
+        ' <a class="rail-more" href="#/submit">list your spacetech startup →</a>'
+      : (SECTIONS[t] || SECTIONS.startup).title +
+        ' <a class="rail-more" href="' + CTA[t][0] + '">' + CTA[t][1] + "</a>";
     els.stage.classList.toggle("hidden", t !== "startup");
-    els.sector.classList.toggle("hidden", t === "event");
+    els.sector.classList.toggle("hidden", t === "event" || !!state.trending);
     var subset = ALL.filter(function (e) { return e.type === t; });
     if (t === "vc") {
       fillSelect(els.city, INVESTOR_CITIES);
