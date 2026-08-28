@@ -826,3 +826,40 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .submit-mode { display: inline-flex; margin-bottom: 16px; }
+
+/* trending spotlight */
+.trend-banner {
+  display: flex; align-items: center; gap: 12px;
+  max-width: 1160px; margin: 14px auto 0;
+  padding: 12px 18px;
+  border: 1.5px solid rgba(245, 158, 11, .45);
+  background: rgba(245, 158, 11, .10);
+  border-radius: 13px;
+  text-decoration: none; color: var(--ink);
+  font-size: 14px;
+  transition: transform .12s, box-shadow .12s;
+}
+@media (min-width: 1209px) { .trend-banner { margin-left: auto; margin-right: auto; } }
+@media (max-width: 1208px) { .trend-banner { margin-left: 24px; margin-right: 24px; } }
+.trend-banner:hover { transform: translateY(-1px); box-shadow: var(--shadow-lift); }
+.trend-dot {
+  width: 9px; height: 9px; border-radius: 50%; flex: none;
+  background: #f59e0b;
+  animation: trendpulse 1.4s ease-out infinite;
+}
+@keyframes trendpulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, .55); }
+  100% { box-shadow: 0 0 0 11px rgba(245, 158, 11, 0); }
+}
+.trend-label {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .16em; color: #b45309; flex: none;
+}
+:root[data-theme="dark"] .trend-label { color: #fbbf24; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .trend-label { color: #fbbf24; } }
+.trend-text { flex: 1; min-width: 0; }
+.trend-arrow { font-weight: 700; color: #d97706; flex: none; }
+.trend-note {
+  max-width: 1160px; margin: 6px auto 0; padding: 0 24px;
+  color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 1160px;
+}
