@@ -37,7 +37,7 @@
   };
 
   /* ---------- state ---------- */
-  var state = { q: "", type: "", city: "", stage: "", sector: "" };
+  var state = { q: "", type: "", city: "", stage: "", sector: "", fund: "" };
 
   var $ = function (id) { return document.getElementById(id); };
   var els = {
@@ -93,10 +93,13 @@
   }
 
   /* ---------- filtering ---------- */
+  var FUNDED_STAGES = { "Pre-seed": 1, "Seed": 1, "Series A": 1, "Series B": 1, "Series C+": 1, "Public": 1, "Acquired": 1 };
   function matches(e) {
     if (state.type && e.type !== state.type) return false;
     if (state.city && e.city !== state.city) return false;
     if (state.stage && e.stage !== state.stage) return false;
+    if (state.fund === "funded" && !FUNDED_STAGES[e.stage]) return false;
+    if (state.fund === "bootstrapped" && e.stage !== "Bootstrapped") return false;
     if (state.sector && e.sector !== state.sector) return false;
     if (state.q) {
       var q = state.q.toLowerCase();
@@ -133,7 +136,7 @@
   }
   function buildExploreHash() {
     var qs = [];
-    ["q", "city", "stage", "sector"].forEach(function (k) {
+    ["q", "city", "stage", "sector", "fund"].forEach(function (k) {
       if (state[k]) qs.push(k + "=" + encodeURIComponent(state[k]));
     });
     if (state.trending && state.sector === "Spacetech") {
@@ -158,7 +161,7 @@
   function route() {
     var r = parseHash();
     if (r.path === "trending/spacetech") {
-      ["q", "city", "stage"].forEach(function (k) { state[k] = r.params[k] || ""; });
+      ["q", "city", "stage", "fund"].forEach(function (k) { state[k] = r.params[k] || ""; });
       state.type = "startup";
       state.sector = "Spacetech";
       state.trending = true;
@@ -166,7 +169,7 @@
       showView("explore");
       renderExplore();
     } else if (PATH_TO_TYPE[r.path]) {
-      ["q", "city", "stage", "sector"].forEach(function (k) {
+      ["q", "city", "stage", "sector", "fund"].forEach(function (k) {
         state[k] = r.params[k] || "";
       });
       state.type = r.params.type === "vc" ? "vc" : PATH_TO_TYPE[r.path];
@@ -328,7 +331,7 @@
     var t = ev.target.closest("[data-clear]");
     if (!t) return;
     var k = t.getAttribute("data-clear");
-    if (k === "*") { ["q", "city", "stage", "sector"].forEach(function (f) { state[f] = ""; }); }
+    if (k === "*") { ["q", "city", "stage", "sector", "fund"].forEach(function (f) { state[f] = ""; }); }
     else state[k] = "";
     history.replaceState(null, "", buildExploreHash());
     syncControls();
@@ -358,6 +361,10 @@
       : (SECTIONS[t] || SECTIONS.startup).title +
         ' <a class="rail-more" href="' + CTA[t][0] + '">' + CTA[t][1] + "</a>";
     els.stage.classList.toggle("hidden", t !== "startup");
+    $("fundToggle").classList.toggle("hidden", t !== "startup");
+    document.querySelectorAll("#fundToggle button").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-fund") === state.fund);
+    });
     els.sector.classList.toggle("hidden", t === "event" || !!state.trending);
     var subset = ALL.filter(function (e) { return e.type === t; });
     if (t === "vc") {
@@ -661,6 +668,14 @@
     applyTheme(next);
     try { localStorage.setItem("sl_theme", next); } catch (e) {}
     toast(next + " mode");
+  });
+
+  $("fundToggle").addEventListener("click", function (ev) {
+    var b = ev.target.closest("[data-fund]");
+    if (!b) return;
+    state.fund = b.getAttribute("data-fund");
+    history.replaceState(null, "", buildExploreHash());
+    renderExplore();
   });
 
   /* ---------- boot ---------- */
