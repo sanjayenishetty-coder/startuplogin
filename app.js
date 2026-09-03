@@ -388,10 +388,16 @@
     renderApplied();
     var scope = [];
     if (state.city) scope.push(state.city);
-    if (state.sector) scope.push(state.sector);
+    if (state.sector && !state.trending) scope.push(state.sector);
     if (state.stage) scope.push(state.stage);
-    els.resultLine.innerHTML = "showing <b>" + list.length + "</b> of " + ALL.length +
-      " entries" + (scope.length ? " · " + esc(scope.join(" · ")) : "");
+    if (t === "startup" && state.fund) scope.push(state.fund === "funded" ? "Funded" : "Bootstrapped");
+    var NOUNS = { startup: "startups", vc: "investors", incubator: "incubators & accelerators", event: "events" };
+    var pool = state.trending
+      ? subset.filter(function (e) { return e.sector === "Spacetech"; }).length
+      : subset.length;
+    els.resultLine.innerHTML = "showing <b>" + list.length + "</b> of <b>" + pool + "</b> " +
+      (state.trending ? "spacetech startups" : NOUNS[t] || "entries") +
+      (scope.length ? " · " + esc(scope.join(" · ")) : "");
 
     els.gridCards.innerHTML = list.map(cardHTML).join("");
     if (!list.length) {
