@@ -531,7 +531,7 @@
       type: "event", title: "List an event",
       name: "Event name", tagHint: "what the event is, in a sentence",
       cities: STARTUP_CITIES, sectorLabel: "Event type",
-      sectors: ["Conference", "Summit", "Meetup", "Demo Day", "Hackathon"],
+      sectors: ["Conference", "Summit", "Expo", "Meetup", "Demo Day", "Hackathon", "Awards"],
       sectorPlaceholder: "Select a type…", stage: false, timing: true,
       founders: "Organiser", linkedin: "Organiser's LinkedIn"
     }
