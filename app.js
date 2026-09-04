@@ -504,7 +504,7 @@
   });
   var submitMode = "startup";
   var STARTUP_SECTORS = ["AI", "SaaS", "Fintech", "Edtech", "Healthtech", "Agritech",
-    "D2C", "E-commerce", "Consumer", "Deeptech", "Cybersecurity", "Gaming", "Sports",
+    "D2C & Consumer", "E-commerce", "Deeptech", "Cybersecurity", "Gaming", "Sports",
     "Cleantech", "Logistics", "HRtech", "Foodtech", "Media & Adtech", "Proptech",
     "Traveltech", "Legaltech", "Spacetech", "Manufacturing", "IT Services"];
   var STARTUP_CITIES = ["Bengaluru", "Hyderabad", "Mumbai", "Delhi", "Gurugram",
