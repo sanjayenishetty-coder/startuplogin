@@ -113,6 +113,8 @@
         <div class="panel-actions">
           <button class="btn-cta" id="parseBtn">Add to queue</button>
           <button class="btn-ghost2 hidden" id="refreshDbBtn">Refresh from database</button>
+          <button class="btn-ghost2 hidden" id="syncDbBtn" title="Pushes every listing bundled with this deploy into the database — run after each site update">Sync site data → database</button>
+          <span class="queue-empty hidden" id="syncStatus"></span>
           <button class="btn-ghost2" id="loadLocalBtn" title="Loads test submissions made from this same browser">Load this browser's test submissions</button>
         </div>
       </section>
@@ -189,6 +191,8 @@
 <script src="db.js"></script>
 <script src="data/startups.js"></script>
 <script src="data/vcs.js"></script>
+<script src="data/incubators.js"></script>
+<script src="data/events.js"></script>
 <script src="admin.js"></script>
 </body>
 </html>
