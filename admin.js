@@ -16,6 +16,8 @@
   function unlock() {
     gateWrap.classList.add("hidden");
     consoleWrap.classList.remove("hidden");
+    document.getElementById("accountEmail").textContent = "admin";
+    document.getElementById("accountBar").classList.remove("hidden");
   }
   var DB = window.SL_DB || { enabled: false };
   if (DB.enabled) {
@@ -67,6 +69,13 @@
   var ALL = EXISTING.concat(window.VC_DATA || []);
 
   function onDbUnlock() {
+    DB.getSession().then(function (session) {
+      var email = session && session.user ? session.user.email : "";
+      if (email) {
+        document.getElementById("accountEmail").textContent = email;
+        document.getElementById("accountBar").classList.remove("hidden");
+      }
+    });
     document.getElementById("dbModeNote").classList.remove("hidden");
     document.getElementById("exportBar").classList.add("hidden");
     document.querySelector(".export-steps").classList.add("hidden");
@@ -78,6 +87,13 @@
     }).catch(function () {});
     loadPendingFromDb();
   }
+
+  document.getElementById("signOutBtn").addEventListener("click", function () {
+    (DB.enabled ? DB.signOut() : Promise.resolve()).then(function () {
+      try { sessionStorage.removeItem("sl_admin_ok"); } catch (e) {}
+      location.reload();   // back to the sign-in gate
+    });
+  });
 
   document.getElementById("syncDbBtn").addEventListener("click", function () {
     var bundled = (window.STARTUP_DATA || []).concat(
