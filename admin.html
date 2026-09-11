@@ -23,6 +23,8 @@
   .gate-err { color: var(--warn-ink); background: var(--warn-soft); border-radius: 9px; padding: 9px 13px; font-size: 13px; margin: 0 0 14px; }
   .console-wrap { max-width: 1160px; margin: 0 auto; padding: 34px 24px 80px; }
   .console-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+  .account-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    margin: 0 0 18px; padding: 10px 14px; border: 1px solid var(--line, rgba(128,128,128,.25)); border-radius: 10px; font-size: 13px; }
   .console-sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 640px; }
   .console-grid { display: grid; grid-template-columns: minmax(300px, 5fr) minmax(340px, 7fr); gap: 26px; align-items: start; }
   @media (max-width: 920px) { .console-grid { grid-template-columns: 1fr; } }
@@ -100,6 +102,10 @@
 </div>
 
 <div class="console-wrap hidden" id="consoleWrap">
+  <div class="account-bar hidden" id="accountBar">
+    <span class="mono">signed in as <b id="accountEmail"></b></span>
+    <button class="btn-ghost2" id="signOutBtn">Sign out</button>
+  </div>
   <h1 class="console-title">Review queue</h1>
   <p class="console-sub">Paste submissions from your inbox, check them against the registry,
     approve or reject — then export the updated data file and push it. Nothing here is
