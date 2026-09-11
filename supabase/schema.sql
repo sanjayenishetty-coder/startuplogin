@@ -1,7 +1,7 @@
 -- Startup Login — Supabase schema
 -- Run this once in your Supabase project: SQL Editor → New query → paste → Run.
 --
--- IMPORTANT: before running, replace YOUR-ADMIN-EMAIL@example.com below with
+-- IMPORTANT: before running, replace support@startuplogin.com below with
 -- the email address you will use to sign in to the review console.
 -- Afterwards create that user in Authentication → Users → "Add user"
 -- (set a password, tick "Auto confirm user"), and turn OFF public signups in
@@ -78,15 +78,15 @@ create policy "public submit contact"
 create policy "admin full access listings"
   on public.listings for all
   to authenticated
-  using ((auth.jwt() ->> 'email') = 'YOUR-ADMIN-EMAIL@example.com')
-  with check ((auth.jwt() ->> 'email') = 'YOUR-ADMIN-EMAIL@example.com');
+  using ((auth.jwt() ->> 'email') = 'support@startuplogin.com')
+  with check ((auth.jwt() ->> 'email') = 'support@startuplogin.com');
 
 create policy "admin read contacts"
   on public.contacts for select
   to authenticated
-  using ((auth.jwt() ->> 'email') = 'YOUR-ADMIN-EMAIL@example.com');
+  using ((auth.jwt() ->> 'email') = 'support@startuplogin.com');
 
 create policy "admin delete contacts"
   on public.contacts for delete
   to authenticated
-  using ((auth.jwt() ->> 'email') = 'YOUR-ADMIN-EMAIL@example.com');
+  using ((auth.jwt() ->> 'email') = 'support@startuplogin.com');
