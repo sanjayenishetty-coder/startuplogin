@@ -95,6 +95,39 @@
       return client.from("listings").update({ status: "rejected" }).eq("id", id)
         .then(function (res) { if (res.error) throw res.error; });
     },
+    // Admin: push every bundled listing into the database (insert or update
+    // by slug), so a deploy + one click replaces running SQL migrations.
+    syncBundled: function (rows, onProgress) {
+      if (!client) return Promise.reject(new Error("db not configured"));
+      var clean = rows.map(function (r) {
+        var row = {
+          slug: r.slug, name: r.name, type: r.type, tagline: r.tagline || "",
+          description: r.description || "", website: r.website || "",
+          city: r.city || "", state: r.state || "", sector: r.sector || "",
+          industry: r.industry || "", stage: r.stage || "",
+          founded: r.founded || "", founders: r.founders || "",
+          investors: r.investors || "", funding: r.funding || "",
+          lat: (typeof r.lat === "number") ? r.lat : null,
+          lng: (typeof r.lng === "number") ? r.lng : null,
+          timing: r.timing || "", status: "live"
+        };
+        return row;
+      });
+      var CHUNK = 100, done = 0;
+      function step() {
+        if (done >= clean.length) return Promise.resolve(clean.length);
+        var part = clean.slice(done, done + CHUNK);
+        return client.from("listings").upsert(part, { onConflict: "slug" })
+          .then(function (res) {
+            if (res.error) throw res.error;
+            done += part.length;
+            if (onProgress) onProgress(done, clean.length);
+            return step();
+          });
+      }
+      return step();
+    },
+
     liveSlugs: function () {
       return client.from("listings").select("slug").then(function (res) {
         return (res.data || []).map(function (r) { return r.slug; });

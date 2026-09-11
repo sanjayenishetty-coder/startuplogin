@@ -71,12 +71,35 @@
     document.getElementById("exportBar").classList.add("hidden");
     document.querySelector(".export-steps").classList.add("hidden");
     document.getElementById("refreshDbBtn").classList.remove("hidden");
+    document.getElementById("syncDbBtn").classList.remove("hidden");
     document.getElementById("loadLocalBtn").classList.add("hidden");
     DB.fetchListings().then(function (rows) {
       if (rows && rows.length) ALL = rows;   // dup-check against the real registry
     }).catch(function () {});
     loadPendingFromDb();
   }
+
+  document.getElementById("syncDbBtn").addEventListener("click", function () {
+    var bundled = (window.STARTUP_DATA || []).concat(
+      window.VC_DATA || [], window.INCUBATOR_DATA || [], window.EVENT_DATA || []);
+    var status = document.getElementById("syncStatus");
+    var btn = document.getElementById("syncDbBtn");
+    if (!bundled.length) { status.textContent = "No bundled data on this page."; status.classList.remove("hidden"); return; }
+    if (!window.confirm("Push all " + bundled.length + " bundled listings into the database?\n" +
+        "Missing ones are added; existing ones are refreshed to match this deploy.")) return;
+    btn.disabled = true;
+    status.classList.remove("hidden");
+    status.textContent = "Syncing…";
+    DB.syncBundled(bundled, function (done, total) {
+      status.textContent = "Syncing… " + done + " / " + total;
+    }).then(function (total) {
+      status.textContent = "✓ Synced " + total + " listings — the site now matches this deploy.";
+      btn.disabled = false;
+    }).catch(function (err) {
+      status.textContent = "Sync failed: " + (err && err.message ? err.message : err);
+      btn.disabled = false;
+    });
+  });
   function loadPendingFromDb() {
     DB.fetchPending().then(function (rows) {
       queue = rows.map(function (r) {
