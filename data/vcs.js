@@ -860,10 +860,10 @@ window.VC_DATA = [
   "name": "SucSEED Indovation",
   "type": "vc",
   "tagline": "SEBI-registered early-stage fund backing deep-tech and product startups across India.",
-  "website": "https://sucseed.com",
+  "website": "https://sucseed-indovation.com",
   "city": "Hyderabad",
   "state": "Telangana",
-  "sector": "Micro PE / VC",
+  "sector": "Angel Networks / Funds",
   "stage": "",
   "founded": "2016",
   "lat": 17.38133,
@@ -882,5 +882,33 @@ window.VC_DATA = [
   "founded": "2021",
   "lat": 17.38077,
   "lng": 78.52025
+ },
+ {
+  "slug": "marwari-angels",
+  "name": "Marwari Angels",
+  "type": "vc",
+  "tagline": "Angel network blending traditional Marwari business networks with early-stage tech investing.",
+  "website": "https://themarwariangels.com",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "sector": "Angel Networks / Funds",
+  "stage": "",
+  "founded": "2018",
+  "lat": 17.37953,
+  "lng": 78.51743
+ },
+ {
+  "slug": "tie-hyderabad",
+  "name": "TiE Hyderabad",
+  "type": "vc",
+  "tagline": "TiE chapter whose member angels invest in early-stage startups alongside mentorship programs.",
+  "website": "https://hyderabad.tie.org",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "sector": "Angel Networks / Funds",
+  "stage": "",
+  "founded": "1999",
+  "lat": 17.39474,
+  "lng": 78.52059
  }
 ];
