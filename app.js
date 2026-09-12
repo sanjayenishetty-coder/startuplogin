@@ -703,24 +703,42 @@
     route();
   }
   var bundled = (window.STARTUP_DATA || []).concat(window.VC_DATA || [], window.INCUBATOR_DATA || []);
+  function dataStatus(text, isLive) {
+    var el = $("dataStatus");
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = isLive ? "" : "#c47f17";
+  }
   if (DB.enabled) {
     // Boot from the database; fall back to bundled data if it's slow, but
     // swap the live data in whenever it eventually arrives.
     var dbFetch = DB.fetchListings();
     var settled = false;
+    var lastErr = null;
     var timeout = new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 8000); });
-    Promise.race([dbFetch.catch(function () { return null; }), timeout])
+    Promise.race([dbFetch.catch(function (e) { lastErr = e; return null; }), timeout])
       .then(function (rows) {
-        if (rows && rows.length) { settled = true; boot(rows); return; }
-        console.warn("registry: database slow or unreachable — showing bundled data for now");
+        if (rows && rows.length) {
+          settled = true; boot(rows);
+          dataStatus("● live data · " + rows.length + " listings", true);
+          return;
+        }
+        console.warn("registry: database slow or unreachable — showing bundled data for now", lastErr);
         boot(bundled);
+        dataStatus("● offline snapshot — live data " +
+          (lastErr ? "error: " + (lastErr.message || lastErr.code || "unknown") : "still loading…"), false);
         dbFetch.then(function (late) {
-          if (!settled && late && late.length) { settled = true; boot(late); }
+          if (!settled && late && late.length) {
+            settled = true; boot(late);
+            dataStatus("● live data · " + late.length + " listings", true);
+          }
         }).catch(function (e) {
           console.warn("registry: database fetch failed", e && e.message);
+          dataStatus("● offline snapshot — live data error: " + ((e && (e.message || e.code)) || "unknown"), false);
         });
       });
   } else {
     boot(bundled);
+    dataStatus("● bundled data (no database configured)", false);
   }
 })();
