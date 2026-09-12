@@ -704,9 +704,22 @@
   }
   var bundled = (window.STARTUP_DATA || []).concat(window.VC_DATA || [], window.INCUBATOR_DATA || []);
   if (DB.enabled) {
-    var timeout = new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 3500); });
-    Promise.race([DB.fetchListings().catch(function () { return null; }), timeout])
-      .then(function (rows) { boot(rows && rows.length ? rows : bundled); });
+    // Boot from the database; fall back to bundled data if it's slow, but
+    // swap the live data in whenever it eventually arrives.
+    var dbFetch = DB.fetchListings();
+    var settled = false;
+    var timeout = new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 8000); });
+    Promise.race([dbFetch.catch(function () { return null; }), timeout])
+      .then(function (rows) {
+        if (rows && rows.length) { settled = true; boot(rows); return; }
+        console.warn("registry: database slow or unreachable — showing bundled data for now");
+        boot(bundled);
+        dbFetch.then(function (late) {
+          if (!settled && late && late.length) { settled = true; boot(late); }
+        }).catch(function (e) {
+          console.warn("registry: database fetch failed", e && e.message);
+        });
+      });
   } else {
     boot(bundled);
   }
