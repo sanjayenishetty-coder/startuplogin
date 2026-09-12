@@ -91,6 +91,17 @@
         if (res.error) throw res.error;
       });
     },
+    // Fire the approval email (Edge Function). Resolves {sent, ...}; never throws
+    // in a way that should block the approval itself.
+    notifyApproved: function (id) {
+      if (!client || !client.functions) return Promise.resolve({ sent: false });
+      return client.functions.invoke("notify-approved", { body: { id: id } })
+        .then(function (res) {
+          if (res.error) throw res.error;
+          return res.data || { sent: false };
+        });
+    },
+
     reject: function (id) {
       return client.from("listings").update({ status: "rejected" }).eq("id", id)
         .then(function (res) { if (res.error) throw res.error; });

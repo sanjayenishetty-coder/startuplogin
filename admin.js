@@ -374,7 +374,11 @@
         item.status = "approved";
         Object.assign(item.data, d);
         renderQueue();
-        toast(d.name + " is LIVE on the registry");
+        DB.notifyApproved(item.dbid).then(function (r) {
+          toast(d.name + " is LIVE" + (r && r.sent ? " — founder notified by email" : ""));
+        }).catch(function () {
+          toast(d.name + " is LIVE (email notification failed — see console)");
+        });
       }).catch(function () { toast("Couldn't publish — check your connection and try again"); });
       return;
     }
