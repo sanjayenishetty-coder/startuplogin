@@ -22,14 +22,23 @@
     client: client,
 
     // All live listings, shaped exactly like the bundled data files.
+    // Supabase caps every response at 1000 rows, so page until a short page.
     fetchListings: function () {
       if (!client) return Promise.reject(new Error("db not configured"));
-      return client.from("listings").select(PUBLIC_COLS).eq("status", "live")
-        .order("created_at", { ascending: true }).limit(5000)
-        .then(function (res) {
-          if (res.error) throw res.error;
-          return res.data || [];
-        });
+      var PAGE = 1000;
+      function page(from, acc) {
+        return client.from("listings").select(PUBLIC_COLS).eq("status", "live")
+          .order("created_at", { ascending: true })
+          .range(from, from + PAGE - 1)
+          .then(function (res) {
+            if (res.error) throw res.error;
+            var rows = res.data || [];
+            acc = acc.concat(rows);
+            if (rows.length < PAGE) return acc;
+            return page(from + PAGE, acc);
+          });
+      }
+      return page(0, []);
     },
 
     // Founder submission -> pending listing + private contact row.
