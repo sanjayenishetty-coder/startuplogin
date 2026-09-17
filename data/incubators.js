@@ -460,7 +460,7 @@ window.INCUBATOR_DATA = [
   "slug": "fiire",
   "name": "FiiRE",
   "type": "incubator",
-  "tagline": "NIDHI TBI — Tourism, Tech & Hardware.",
+  "tagline": "NIDHI TBI — tourism, tech and hardware, for coastal founders building from Goa outward.",
   "description": "",
   "website": "https://fiire.org.in",
   "city": "Fatorda",

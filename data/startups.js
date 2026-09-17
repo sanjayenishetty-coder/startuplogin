@@ -14974,7 +14974,7 @@ window.STARTUP_DATA = [
  {
   "name": "Swaaha",
   "type": "startup",
-  "tagline": "CleanTech / Waste Management.",
+  "tagline": "Turning event and city waste streams into audited zero-landfill outcomes.",
   "description": "",
   "website": "https://swaaha.in",
   "city": "Indore",
