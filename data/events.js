@@ -264,7 +264,7 @@ window.EVENT_DATA = [
   "slug": "echai-startup-demo-days",
   "name": "eChai Startup Demo Days",
   "type": "event",
-  "tagline": "Monthly Meetups — Grassroots Pitching & Community.",
+  "tagline": "Monthly grassroots demo days where first-time founders pitch beyond the metro spotlight.",
   "description": "",
   "website": "https://echai.ventures",
   "city": "Pan-India",
