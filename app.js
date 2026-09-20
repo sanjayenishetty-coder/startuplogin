@@ -13,12 +13,21 @@
     Indore: "IDR", Kolkata: "CCU", Lucknow: "LKO", Kanpur: "KNP", Faridabad: "FBD",
     Ghaziabad: "GZB", Surat: "STV", Bhubaneswar: "BBI", Roorkee: "RKE",
     Ahmednagar: "ANR", Chandigarh: "IXC", Nashik: "ISK", Kochi: "COK",
-    Thiruvananthapuram: "TRV", Boston: "BOS", Kota: "KTT", Goa: "GOI"
+    Thiruvananthapuram: "TRV", Boston: "BOS", Kota: "KTT", Goa: "GOI",
+    Nagpur: "NAG", Vadodara: "BDQ", Rajkot: "RAJ", Coimbatore: "CJB",
+    Madurai: "IXM", Bhopal: "BHO", Thane: "THN", Mohali: "MOH",
+    Jalandhar: "JLD", Raipur: "RPR", Varanasi: "VNS", Kozhikode: "CCJ",
+    Mysuru: "MYQ", Mangaluru: "IXE", Guwahati: "GAU", Dehradun: "DED",
+    Jabalpur: "JLR", Jamshedpur: "IXW", Prayagraj: "IXD", Puducherry: "PNY",
+    Gandhinagar: "GNR", Vellore: "VLR", Kottayam: "KTM", Udaipur: "UDR",
+    Panipat: "PNP", Visakhapatnam: "VTZ", Vijayawada: "VGA", Patna: "PAT",
+    Ranchi: "IXR"
   };
   function cityCode(city) {
     return CITY_CODES[city] || (city || "IND").replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase();
   }
 
+  var HOME_CITY_TILES = 12;
   var STAGE_ORDER = ["Pre-seed", "Seed", "Series A", "Series B", "Series C+", "Bootstrapped", "Public", "Acquired"];
   var INVESTOR_CITIES = ["Bengaluru", "Mumbai", "Delhi", "Gurugram", "Pune", "Hyderabad",
     "Kolkata", "Chennai", "Ahmedabad", "Surat", "Lucknow", "Chandigarh"];
@@ -202,13 +211,11 @@
     $("statStrip").innerHTML =
       '<span><span class="live-dot"></span><b>' + startups.length + "</b> startups</span>" +
       "<span><b>" + vcs.length + "</b> investors</span>" +
-      "<span><b>" + STARTUP_CITIES.filter(function (c) { return cityCount[c]; }).length + "</b> cities</span>" +
+      "<span><b>" + Object.keys(cityCount).length + "</b> cities</span>" +
       "<span><b>" + Object.keys(sectorCount).length + "</b> sectors</span>" +
       "<span>updated " + new Date().toLocaleDateString("en-IN", { month: "short", year: "numeric" }).toUpperCase() + "</span>";
 
-    var featured = STARTUP_CITIES.slice().sort(function (a, b) {
-      return (cityCount[b] || 0) - (cityCount[a] || 0);
-    });
+    var featured = sortedKeys(cityCount).slice(0, HOME_CITY_TILES);
     $("cityGrid").innerHTML = featured.map(function (c) {
       return '<button class="city-tile" data-city="' + esc(c) + '">' +
         '<span class="city-code">' + esc(cityCode(c)) + "</span>" +
@@ -508,7 +515,9 @@
     "Cleantech", "Logistics", "HRtech", "Foodtech", "Media & Adtech", "Proptech",
     "Traveltech", "Legaltech", "Spacetech", "Manufacturing", "IT Services"];
   var STARTUP_CITIES = ["Bengaluru", "Hyderabad", "Mumbai", "Delhi", "Gurugram",
-    "Noida", "Pune", "Chennai", "Ahmedabad", "Jaipur"];
+    "Noida", "Pune", "Chennai", "Ahmedabad", "Jaipur", "Kolkata", "Chandigarh",
+    "Indore", "Bhopal", "Surat", "Lucknow", "Kochi", "Coimbatore", "Nagpur",
+    "Thane", "Vadodara", "Thiruvananthapuram"];
   var SUBMIT_MODES = {
     startup: {
       type: "startup", title: "Log your startup in",
