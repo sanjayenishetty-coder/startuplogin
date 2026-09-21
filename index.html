@@ -76,6 +76,7 @@
     <a href="#/investors" data-nav="vc">Investors</a>
     <a href="#/incubators" data-nav="incubator">Incubators &amp; Accelerators</a>
     <a href="#/events" data-nav="event">Events</a>
+    <a href="#/schemes" data-nav="scheme">Startup Schemes</a>
   </nav>
   <div class="head-actions">
     <button id="themeToggle" class="theme-toggle" aria-label="Switch theme" title="Switch theme">
@@ -180,6 +181,36 @@
   <!-- ============ PROFILE ============ -->
   <section id="profileView" class="view hidden">
     <div class="profile-inner" id="profileBody"></div>
+  </section>
+
+  <!-- ============ STARTUP SCHEMES (coming soon) ============ -->
+  <section id="schemesView" class="view hidden">
+    <div class="schemes-inner">
+      <p class="eyebrow">COMING SOON</p>
+      <h1>Startup Schemes<span class="accent">.</span></h1>
+      <p class="schemes-sub">Every government scheme an Indian startup can actually use —
+        central and state, in one place. Grants, seed funds, interest subsidies, patent
+        and certification reimbursements, incubation support and tax benefits, with who
+        qualifies, what you get and where to apply.</p>
+
+      <ul class="schemes-preview">
+        <li><b>Central schemes</b> — Startup India Seed Fund, Fund of Funds, CGSS, SISFS, MSME programmes</li>
+        <li><b>State policies</b> — Telangana, Karnataka, Kerala, Gujarat, Maharashtra, Tamil Nadu and more</li>
+        <li><b>Filtered the way you think</b> — by your state, sector, stage and entity type</li>
+        <li><b>Deadlines that matter</b> — application windows, with what to prepare beforehand</li>
+      </ul>
+
+      <form id="notifyForm" class="notify-form" novalidate>
+        <label for="notifyEmail">Get an email the day it goes live</label>
+        <div class="notify-row">
+          <input id="notifyEmail" name="email" type="email" required
+                 placeholder="you@company.com" autocomplete="email" maxlength="120">
+          <button class="btn-cta" type="submit" id="notifyBtn">Notify me</button>
+        </div>
+        <small class="notify-note">One email about this, nothing else. No newsletter, no sharing your address.</small>
+        <p id="notifyMsg" class="notify-msg hidden" role="status"></p>
+      </form>
+    </div>
   </section>
 
   <!-- ============ SUBMIT ============ -->

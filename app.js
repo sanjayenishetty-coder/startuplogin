@@ -28,6 +28,8 @@
   }
 
   var HOME_CITY_TILES = 12;
+  // Always given a tile, even when the count alone would not earn one.
+  var PINNED_CITIES = ["Chandigarh"];
   var STAGE_ORDER = ["Pre-seed", "Seed", "Series A", "Series B", "Series C+", "Bootstrapped", "Public", "Acquired"];
   var INVESTOR_CITIES = ["Bengaluru", "Mumbai", "Delhi", "Gurugram", "Pune", "Hyderabad",
     "Kolkata", "Chennai", "Ahmedabad", "Surat", "Lucknow", "Chandigarh"];
@@ -50,7 +52,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var els = {
-    views: { home: $("homeView"), explore: $("exploreView"), profile: $("profileView"), submit: $("submitView") },
+    views: { home: $("homeView"), explore: $("exploreView"), profile: $("profileView"),
+      submit: $("submitView"), schemes: $("schemesView") },
     search: $("searchInput"), heroSearch: $("heroSearchInput"),
     city: $("cityFilter"),
     stage: $("stageFilter"), sector: $("sectorFilter"),
@@ -162,7 +165,10 @@
       els.views[k].classList.toggle("hidden", k !== name);
     });
     document.querySelectorAll(".site-nav a").forEach(function (a) {
-      a.classList.toggle("on", name === "explore" && a.getAttribute("data-nav") === state.type);
+      var nav = a.getAttribute("data-nav");
+      a.classList.toggle("on", name === "schemes"
+        ? nav === "scheme"
+        : name === "explore" && nav === state.type);
     });
     window.scrollTo(0, 0);
   }
@@ -190,6 +196,10 @@
       var slug = r.path.split("/")[1];
       if (bySlug[slug]) { showView("profile"); renderProfile(bySlug[slug]); }
       else go("#/startups");
+    } else if (r.path === "schemes") {
+      state.type = "";
+      showView("schemes");
+      resetNotify();
     } else if (r.path === "submit") {
       showView("submit");
       resetSubmit();
@@ -199,6 +209,52 @@
     }
   }
   window.addEventListener("hashchange", route);
+
+  /* ---------- startup schemes: coming soon + notify ---------- */
+  function notifyMsg(text, ok) {
+    var el = $("notifyMsg");
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove("hidden");
+    el.classList.toggle("bad", ok === false);
+  }
+  function resetNotify() {
+    var f = $("notifyForm");
+    if (!f) return;
+    f.reset();
+    $("notifyMsg").classList.add("hidden");
+    $("notifyBtn").disabled = false;
+    $("notifyBtn").textContent = "Notify me";
+  }
+  var notifyForm = $("notifyForm");
+  if (notifyForm) {
+    notifyForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var email = $("notifyEmail").value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+        notifyMsg("That email doesn't look right — check it and try again.", false);
+        return;
+      }
+      var btn = $("notifyBtn");
+      btn.disabled = true;
+      btn.textContent = "Saving…";
+      DB.notifySignup(email, "schemes").then(function () {
+        notifyMsg("You're on the list. We'll email " + email + " the day Startup Schemes goes live.", true);
+        btn.textContent = "Added ✓";
+        $("notifyEmail").value = "";
+      }).catch(function (err) {
+        var dup = err && (err.code === "23505" || /duplicate/i.test(err.message || ""));
+        if (dup) {
+          notifyMsg("You're already on the list — we'll be in touch.", true);
+          btn.textContent = "Added ✓";
+        } else {
+          notifyMsg("Couldn't save that just now. Please try again in a moment.", false);
+          btn.disabled = false;
+          btn.textContent = "Notify me";
+        }
+      });
+    });
+  }
 
   /* ---------- home ---------- */
   function renderHome() {
@@ -216,6 +272,9 @@
       "<span>updated " + new Date().toLocaleDateString("en-IN", { month: "short", year: "numeric" }).toUpperCase() + "</span>";
 
     var featured = sortedKeys(cityCount).slice(0, HOME_CITY_TILES);
+    PINNED_CITIES.forEach(function (c) {
+      if (featured.indexOf(c) === -1) featured.push(c);
+    });
     $("cityGrid").innerHTML = featured.map(function (c) {
       return '<button class="city-tile" data-city="' + esc(c) + '">' +
         '<span class="city-code">' + esc(cityCode(c)) + "</span>" +
