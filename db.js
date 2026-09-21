@@ -41,6 +41,16 @@
       return page(0, []);
     },
 
+    // "Notify me when it launches" signup. Write-only for the public: the
+    // table's RLS allows insert but never select, so no one can read the
+    // list back from the browser.
+    notifySignup: function (email, source) {
+      if (!client) return Promise.reject(new Error("db not configured"));
+      return client.from("notify_signups")
+        .insert({ email: String(email || "").trim().toLowerCase(), source: source || "schemes" })
+        .then(function (res) { if (res.error) throw res.error; return true; });
+    },
+
     // Founder submission -> pending listing + private contact row.
     submit: function (fields, contact) {
       if (!client) return Promise.reject(new Error("db not configured"));
