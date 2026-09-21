@@ -771,7 +771,8 @@
     renderHome();
     route();
   }
-  var bundled = (window.STARTUP_DATA || []).concat(window.VC_DATA || [], window.INCUBATOR_DATA || []);
+  var bundled = (window.STARTUP_DATA || []).concat(
+    window.VC_DATA || [], window.INCUBATOR_DATA || [], window.EVENT_DATA || []);
   function dataStatus(text, isLive) {
     var el = $("dataStatus");
     if (!el) return;
