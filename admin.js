@@ -466,4 +466,87 @@
   STAGES.forEach(function (s) {
     var o = document.createElement("option"); o.textContent = s; stSel.appendChild(o);
   });
+
+  /* ---------- Signups tab ---------- */
+  var signupRows = [];
+
+  function fmtWhen(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return iso || "";
+    return d.toLocaleString("en-IN", {
+      day: "2-digit", month: "short", year: "numeric",
+      hour: "2-digit", minute: "2-digit"
+    });
+  }
+
+  function renderSignups() {
+    var body = $("signupsBody"), table = $("signupsTable"), empty = $("signupsEmpty");
+    if (!signupRows.length) {
+      table.classList.add("hidden");
+      empty.classList.remove("hidden");
+      empty.textContent = "No signups yet.";
+      $("signupCount").textContent = "";
+      return;
+    }
+    body.innerHTML = signupRows.map(function (r) {
+      return "<tr><td class=\"email\">" + esc(r.email) + "</td>" +
+        '<td><span class="signup-src">' + esc(r.source || "schemes") + "</span></td>" +
+        '<td class="when">' + esc(fmtWhen(r.created_at)) + "</td></tr>";
+    }).join("");
+    empty.classList.add("hidden");
+    table.classList.remove("hidden");
+    $("signupCount").textContent = signupRows.length +
+      (signupRows.length === 1 ? " signup" : " signups");
+  }
+
+  function loadSignups() {
+    var empty = $("signupsEmpty"), table = $("signupsTable");
+    table.classList.add("hidden");
+    empty.classList.remove("hidden");
+    empty.textContent = "Loading…";
+    if (!DB.enabled) {
+      empty.textContent = "No database configured — signups are stored in Supabase.";
+      return;
+    }
+    DB.fetchSignups().then(function (rows) {
+      signupRows = rows;
+      renderSignups();
+    }).catch(function (err) {
+      var msg = (err && (err.message || err.code)) || "unknown error";
+      empty.textContent = /relation .* does not exist|schema cache/i.test(msg)
+        ? "The notify_signups table doesn't exist yet — run supabase/notify_signups.sql once in the SQL Editor."
+        : "Couldn't load signups: " + msg;
+    });
+  }
+
+  function exportSignups() {
+    if (!signupRows.length) { toast("Nothing to export yet"); return; }
+    var csv = "email,source,created_at\n" + signupRows.map(function (r) {
+      return [r.email, r.source || "schemes", r.created_at].map(function (v) {
+        return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+      }).join(",");
+    }).join("\n");
+    var url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "startuplogin-signups-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast(signupRows.length + " signup" + (signupRows.length === 1 ? "" : "s") + " downloaded");
+  }
+
+  var signupsLoaded = false;
+  function showTab(name) {
+    $("queueTab").classList.toggle("hidden", name !== "queue");
+    $("signupsTab").classList.toggle("hidden", name !== "signups");
+    $("tabQueueBtn").classList.toggle("active", name === "queue");
+    $("tabSignupsBtn").classList.toggle("active", name === "signups");
+    if (name === "signups" && !signupsLoaded) { signupsLoaded = true; loadSignups(); }
+  }
+  $("tabQueueBtn").addEventListener("click", function () { showTab("queue"); });
+  $("tabSignupsBtn").addEventListener("click", function () { showTab("signups"); });
+  $("reloadSignupsBtn").addEventListener("click", loadSignups);
+  $("exportSignupsBtn").addEventListener("click", exportSignups);
 })();

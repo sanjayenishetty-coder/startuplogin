@@ -51,6 +51,19 @@
         .then(function (res) { if (res.error) throw res.error; return true; });
     },
 
+    // Admin only: the notify list. RLS blocks this for everyone else, so an
+    // ordinary visitor gets an empty array rather than other people's emails.
+    fetchSignups: function () {
+      if (!client) return Promise.reject(new Error("db not configured"));
+      return client.from("notify_signups")
+        .select("email,source,created_at")
+        .order("created_at", { ascending: false })
+        .then(function (res) {
+          if (res.error) throw res.error;
+          return res.data || [];
+        });
+    },
+
     // Founder submission -> pending listing + private contact row.
     submit: function (fields, contact) {
       if (!client) return Promise.reject(new Error("db not configured"));
