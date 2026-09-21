@@ -464,7 +464,8 @@
       '<span class="badge-live">LIVE ON THE REGISTRY</span>' +
       (e.type === "startup" ? '<span class="badge-unclaimed">UNCLAIMED</span>' : "") +
       "</div>" +
-      (e.tagline ? '<p class="profile-tagline">' + esc(e.tagline) + ".</p>" : "") +
+      (e.tagline ? '<p class="profile-tagline">' + esc(e.tagline) +
+        (/[.!?\u2026]$/.test(e.tagline.trim()) ? "" : ".") + "</p>" : "") +
       (e.description ? '<p class="profile-desc">' + esc(e.description) + "</p>" : "") +
       (fields ? '<dl class="field-table">' + fields + "</dl>" : "") +
       '<div class="profile-actions">' +
