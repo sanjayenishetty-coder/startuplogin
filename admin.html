@@ -26,6 +26,21 @@
   .account-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     margin: 0 0 18px; padding: 10px 14px; border: 1px solid var(--line, rgba(128,128,128,.25)); border-radius: 10px; font-size: 13px; }
   .console-sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 640px; }
+  .console-tabs { display: inline-flex; gap: 4px; margin: 0 0 22px; padding: 4px;
+    border: 1px solid var(--hairline); border-radius: 12px; }
+  .console-tabs button { font: 600 13px var(--font-body, inherit); padding: 8px 16px;
+    border: 0; border-radius: 9px; background: transparent; color: var(--ink-soft); cursor: pointer; }
+  .console-tabs button.active { background: var(--ink); color: var(--ground); }
+  .signup-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 16px; }
+  .signup-toolbar .count { font: 600 13px var(--font-mono); color: var(--ink-soft); }
+  .signup-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .signup-table th { text-align: left; font: 600 11px var(--font-mono); letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-soft); padding: 0 10px 10px 0; border-bottom: 1px solid var(--hairline); }
+  .signup-table td { padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  .signup-table td.email { font-family: var(--font-mono); word-break: break-all; }
+  .signup-table td.when { color: var(--ink-soft); white-space: nowrap; }
+  .signup-src { font: 600 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px; background: var(--warn-soft, rgba(36,86,245,.1)); }
   .console-grid { display: grid; grid-template-columns: minmax(300px, 5fr) minmax(340px, 7fr); gap: 26px; align-items: start; }
   @media (max-width: 920px) { .console-grid { grid-template-columns: 1fr; } }
 
@@ -111,7 +126,12 @@
     approve or reject — then export the updated data file and push it. Nothing here is
     published until you commit the export.</p>
 
-  <div class="console-grid">
+  <div class="console-tabs" role="tablist">
+    <button id="tabQueueBtn" class="active" role="tab" data-tab="queue">Review queue</button>
+    <button id="tabSignupsBtn" role="tab" data-tab="signups">Signups</button>
+  </div>
+
+  <div class="console-grid" id="queueTab">
     <div>
       <section class="panel">
         <h2>1 · Add submissions</h2>
@@ -187,6 +207,25 @@
         </div>
       </section>
     </div>
+  </div>
+
+  <div id="signupsTab" class="hidden">
+    <section class="panel">
+      <h2>Startup Schemes — notify list</h2>
+      <p class="console-sub" style="margin:0 0 18px">Everyone who asked to be told when the
+        Startup Schemes section launches. Readable only by the admin account; the public
+        key can add an address but never list them.</p>
+      <div class="signup-toolbar">
+        <button class="btn-ghost2" id="reloadSignupsBtn">Reload</button>
+        <button class="btn-cta" id="exportSignupsBtn">Download CSV</button>
+        <span class="count" id="signupCount"></span>
+      </div>
+      <p class="queue-empty" id="signupsEmpty">Loading…</p>
+      <table class="signup-table hidden" id="signupsTable">
+        <thead><tr><th>Email</th><th>Section</th><th>Signed up</th></tr></thead>
+        <tbody id="signupsBody"></tbody>
+      </table>
+    </section>
   </div>
 </div>
 
