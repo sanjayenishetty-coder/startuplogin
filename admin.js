@@ -490,6 +490,7 @@
     }
     body.innerHTML = signupRows.map(function (r) {
       return "<tr><td class=\"email\">" + esc(r.email) + "</td>" +
+        "<td>" + (r.startup_name ? esc(r.startup_name) : '<span class="muted">—</span>') + "</td>" +
         '<td><span class="signup-src">' + esc(r.source || "schemes") + "</span></td>" +
         '<td class="when">' + esc(fmtWhen(r.created_at)) + "</td></tr>";
     }).join("");
@@ -521,8 +522,8 @@
 
   function exportSignups() {
     if (!signupRows.length) { toast("Nothing to export yet"); return; }
-    var csv = "email,source,created_at\n" + signupRows.map(function (r) {
-      return [r.email, r.source || "schemes", r.created_at].map(function (v) {
+    var csv = "email,startup_name,source,created_at\n" + signupRows.map(function (r) {
+      return [r.email, r.startup_name || "", r.source || "schemes", r.created_at].map(function (v) {
         return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
       }).join(",");
     }).join("\n");

@@ -235,13 +235,15 @@
         notifyMsg("That email doesn't look right — check it and try again.", false);
         return;
       }
+      var startup = $("notifyStartup").value.trim();
       var btn = $("notifyBtn");
       btn.disabled = true;
       btn.textContent = "Saving…";
-      DB.notifySignup(email, "schemes").then(function () {
+      DB.notifySignup(email, "schemes", startup).then(function () {
         notifyMsg("You're on the list. We'll email " + email + " the day Startup Schemes goes live.", true);
         btn.textContent = "Added ✓";
         $("notifyEmail").value = "";
+        $("notifyStartup").value = "";
       }).catch(function (err) {
         var dup = err && (err.code === "23505" || /duplicate/i.test(err.message || ""));
         if (dup) {
