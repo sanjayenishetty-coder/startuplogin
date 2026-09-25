@@ -203,6 +203,8 @@
       <form id="notifyForm" class="notify-form" novalidate>
         <label for="notifyEmail">Get an email the day it goes live</label>
         <div class="notify-row">
+          <input id="notifyStartup" name="startup" type="text"
+                 placeholder="Startup name (optional)" autocomplete="organization" maxlength="80">
           <input id="notifyEmail" name="email" type="email" required
                  placeholder="you@company.com" autocomplete="email" maxlength="120">
           <button class="btn-cta" type="submit" id="notifyBtn">Notify me</button>

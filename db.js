@@ -44,10 +44,14 @@
     // "Notify me when it launches" signup. Write-only for the public: the
     // table's RLS allows insert but never select, so no one can read the
     // list back from the browser.
-    notifySignup: function (email, source) {
+    notifySignup: function (email, source, startupName) {
       if (!client) return Promise.reject(new Error("db not configured"));
       return client.from("notify_signups")
-        .insert({ email: String(email || "").trim().toLowerCase(), source: source || "schemes" })
+        .insert({
+          email: String(email || "").trim().toLowerCase(),
+          source: source || "schemes",
+          startup_name: String(startupName || "").trim()
+        })
         .then(function (res) { if (res.error) throw res.error; return true; });
     },
 
@@ -56,7 +60,7 @@
     fetchSignups: function () {
       if (!client) return Promise.reject(new Error("db not configured"));
       return client.from("notify_signups")
-        .select("email,source,created_at")
+        .select("email,startup_name,source,created_at")
         .order("created_at", { ascending: false })
         .then(function (res) {
           if (res.error) throw res.error;

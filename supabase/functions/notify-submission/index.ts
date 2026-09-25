@@ -51,12 +51,13 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         from: "Startup Login <notifications@startuplogin.com>",
         to: [to],
-        subject: `Notify list: ${rec.email} wants ${section}`,
+        subject: `Notify list: ${rec.startup_name || rec.email} wants ${section}`,
         html: `
           <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;color:#1a1a2e">
             <h3 style="margin:20px 0 8px">New notify-list signup</h3>
             <table style="font-size:14px;border-collapse:collapse">
               <tr><td style="padding:2px 12px 2px 0;color:#666">Email</td><td><b>${rec.email}</b></td></tr>
+              ${rec.startup_name ? `<tr><td style="padding:2px 12px 2px 0;color:#666">Startup</td><td>${rec.startup_name}</td></tr>` : ""}
               <tr><td style="padding:2px 12px 2px 0;color:#666">Waiting for</td><td>${section}</td></tr>
             </table>
             <p style="margin:16px 0"><a href="https://startuplogin.com/admin"
