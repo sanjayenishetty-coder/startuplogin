@@ -595,7 +595,7 @@ window.VC_DATA = [
   "website": "https://www.jswventures.in",
   "city": "Mumbai",
   "state": "Maharashtra",
-  "sector": "VC Funds",
+  "sector": "CVC",
   "stage": "",
   "founded": "2016",
   "lat": 19.11194,
