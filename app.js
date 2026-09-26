@@ -436,7 +436,7 @@
     els.sector.classList.toggle("hidden", t === "event" || !!state.trending);
     var subset = ALL.filter(function (e) { return e.type === t; });
     if (t === "vc") {
-      fillSelect(els.city, INVESTOR_CITIES);
+      fillSelect(els.city, sortedKeys(counts("city", subset)));
       fillSelect(els.sector, sortedKeys(counts("sector", subset)));
       els.sector.options[0].textContent = "Category";
     } else if (t === "incubator") {
