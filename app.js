@@ -33,7 +33,7 @@
   var STAGE_ORDER = ["Pre-seed", "Seed", "Series A", "Series B", "Series C+", "Bootstrapped", "Public", "Acquired"];
   var INVESTOR_CITIES = ["Bengaluru", "Mumbai", "Delhi", "Gurugram", "Pune", "Hyderabad",
     "Kolkata", "Chennai", "Ahmedabad", "Surat", "Lucknow", "Chandigarh"];
-  var INVESTOR_CATEGORIES = ["VC Funds", "Angel Networks / Funds", "Family Office",
+  var INVESTOR_CATEGORIES = ["VC Funds", "CVC", "Angel Networks / Funds", "Family Office",
     "Private Equities", "Micro PE / VC", "Angels"];
   var SECTIONS = {
     startup: { path: "startups", title: "Startups" },
@@ -436,8 +436,8 @@
     els.sector.classList.toggle("hidden", t === "event" || !!state.trending);
     var subset = ALL.filter(function (e) { return e.type === t; });
     if (t === "vc") {
-      fillSelect(els.city, INVESTOR_CITIES);
-      fillSelect(els.sector, INVESTOR_CATEGORIES);
+      fillSelect(els.city, sortedKeys(counts("city", subset)));
+      fillSelect(els.sector, sortedKeys(counts("sector", subset)));
       els.sector.options[0].textContent = "Category";
     } else if (t === "incubator") {
       fillSelect(els.city, sortedKeys(counts("city", subset)));
