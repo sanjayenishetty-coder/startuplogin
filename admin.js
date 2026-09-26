@@ -456,7 +456,7 @@
     var o = document.createElement("option"); o.value = c; cityDl.appendChild(o);
   });
   var secDl = $("sectorList");
-  var sectors = { "Others": 1, "VC Funds": 1, "Angel Networks / Funds": 1, "Family Office": 1,
+  var sectors = { "Others": 1, "VC Funds": 1, "CVC": 1, "Angel Networks / Funds": 1, "Family Office": 1,
     "Private Equities": 1, "Micro PE / VC": 1, "Angels": 1, "Incubator": 1, "Accelerator": 1 };
   EXISTING.forEach(function (e) { if (e.sector) sectors[e.sector] = 1; });
   Object.keys(sectors).sort().forEach(function (s) {
